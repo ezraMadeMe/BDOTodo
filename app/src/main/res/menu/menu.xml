@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/menu_bnv">
+        <item android:title="할 일" android:icon="@drawable/ic_daily_todo_24"/>
+        <item android:title="히스토리" android:icon="@drawable/ic_baseline_history_edu_24"/>
+        <item android:title="목표" android:icon="@drawable/ic_goal_24"/>
+    </group>
+</menu>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+        <!--  본문 텍스트 스타일  -->
+    <style name="normaltextStyle" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="fontFamily">@font/nexonlv1</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+        <!--  BNV 텍스트 스타일  -->
+    <style name="selectedBNVtextStyle" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="fontFamily">@font/nexonlv1</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="notSelectedBNVtextStyle" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="fontFamily">@font/nexonlv1</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/colorOnSecondary</item>
+    </style>
+
+        <!--  데일리 리사이클러뷰 텍스트 스타일  -->
+    <style name="dailyRecyclerTitleStyle" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="fontFamily">@font/nexonlv1_bold</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="dailyRecyclerSubtitleStyle" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="fontFamily">@font/nexonlv1_light</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+            <!--  BS 버튼 텍스트 스타일  -->
+    <style name="bottomsheetButton" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/nexonlv1_bold</item>
+        <item name="android:background">@drawable/bs_today_selector</item>
+    </style>
+</resources>
