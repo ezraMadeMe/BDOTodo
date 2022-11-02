@@ -40,4 +40,17 @@
         <item name="fontFamily">@font/nexonlv1_bold</item>
         <item name="android:background">@drawable/bs_today_selector</item>
     </style>
+
+        <!--  History Dialog 세팅  -->
+
+    <style name="history_dialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="history_dialog_text" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:textColor">@color/colorOnSecondary</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
 </resources>

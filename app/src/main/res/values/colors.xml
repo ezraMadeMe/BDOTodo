@@ -15,6 +15,7 @@
     <color name="colorOnPrimary">#ffe0b2</color>
     <color name="colorSecondary">#50433b</color>
     <color name="colorOnSecondary">#f3eae1</color>
+    <color name="colorTransparent">#00000000</color>
     
         <!--  color picker colors  -->
     <color name="colorPicker01">#f700ff</color>

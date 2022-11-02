@@ -1,78 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
-    android:layout_weight="2">
+    android:layout_weight="2"
+    android:orientation="horizontal">
 
-        <LinearLayout
-            android:id="@+id/history_recycler_left"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-                android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_marginVertical="8dp">
+    <LinearLayout
+        android:id="@+id/history_recycler_left"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginVertical="8dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/history_recycler_datas_left"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    android:orientation="vertical"
-                    android:padding="8dp"/>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="3dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginLeft="12dp"
-                    android:background="@color/colorSecondary" />
-
-                <TextView
-                    android:id="@+id/history_recycler_date_left"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="2022/10/28"
-                    android:textAlignment="viewEnd"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginVertical="8dp"
-                    style="@style/dailyRecyclerTitleStyle"
-                    android:textSize="20sp"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/history_recycler_right"
-            android:layout_width="0dp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/history_recycler_datas_left"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_marginVertical="8dp">
+            android:padding="8dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/colorSecondary" />
+
+        <TextView
+            android:id="@+id/history_recycler_date_left"
+            style="@style/dailyRecyclerTitleStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:layout_marginRight="8dp"
+            android:text="2022/10/28"
+            android:textAlignment="viewEnd"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/history_recycler_right"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginVertical="8dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/history_recycler_datas_right"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="vertical"
-            android:padding="8dp"/>
+            android:padding="8dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="3dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginRight="12dp"
-                    android:background="@color/colorSecondary" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="12dp"
+            android:background="@color/colorSecondary" />
 
         <TextView
             android:id="@+id/history_recycler_date_right"
+            style="@style/dailyRecyclerTitleStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
             android:layout_marginLeft="8dp"
             android:text="2022/10/28"
-            android:layout_marginVertical="8dp"
-            style="@style/dailyRecyclerTitleStyle"
-            android:textSize="20sp"/>
+            android:textSize="20sp" />
 
-        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

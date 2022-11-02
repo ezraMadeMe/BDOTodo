@@ -6,11 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/main_FCV"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/main_ABL"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </androidx.fragment.app.FragmentContainerView>
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryVariant"
+        android:labelFor="@+id/main_TB">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+            app:titleCollapseMode="scale"
+            app:title="툴바">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/main_TB"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin" />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/main_VP"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/main_BNV"
+        android:layout_below="@+id/main_ABL"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/main_BNV"
@@ -22,6 +47,6 @@
         app:itemIconTint="@color/colorOnSecondary"
         app:itemTextColor="@color/colorOnSecondary"
         app:itemTextAppearanceActive="@style/selectedBNVtextStyle"
-        app:itemTextAppearanceInactive="@style/notSelectedBNVtextStyle"/>
+        app:itemTextAppearanceInactive="@style/notSelectedBNVtextStyle" />
 
 </RelativeLayout>
