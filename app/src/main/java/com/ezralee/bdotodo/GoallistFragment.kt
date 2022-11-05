@@ -19,7 +19,27 @@ class GoallistFragment : Fragment() {
         _binding = FragmentGoallistBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        binding.layoutPresetFAB.visibility = View.GONE
+        binding.layoutMyselfFAB.visibility = View.GONE
+
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.goallistMainFAB.setOnClickListener{
+
+            if (binding.layoutPresetFAB.visibility == View.GONE){
+                binding.layoutPresetFAB.visibility = View.VISIBLE
+                binding.layoutMyselfFAB.visibility = View.VISIBLE
+            }else{
+                binding.layoutPresetFAB.visibility = View.GONE
+                binding.layoutMyselfFAB.visibility = View.GONE
+            }
+
+        }
+
     }
 
     override fun onDestroyView() {

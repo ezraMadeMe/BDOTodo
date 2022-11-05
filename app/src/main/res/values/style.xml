@@ -46,11 +46,39 @@
     <style name="history_dialog" parent="Theme.AppCompat.Dialog">
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowFullscreen">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:background">@color/colorTransparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="borderlessButtonStyle">@null</item>
     </style>
 
     <style name="history_dialog_text" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:textColor">@color/colorOnSecondary</item>
         <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="button_basic" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:text">버튼</item>
+        <item name="android:textColor">@color/colorOnPrimary</item>
+        <item name="android:background">@drawable/bs_today_selector</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+    </style>
+    
+    <style name="TransparentCompat." parent="Theme.AppCompat.Dialog">
+        <item name="android:windowBackground">@color/colorTransparent</item>
+    </style>
+
+    <style name="DatePickerTheme" parent="Theme.AppCompat.Dialog">
+        <item name="colorAccent">@color/colorPrimaryVariant</item>
+        <item name="android:headerBackground">@color/colorPrimaryVariant</item>
+        <item name="android:textColorPrimary">@color/colorPrimaryVariant</item>
+        <item name="android:textColorSecondary">@color/colorSecondary</item>
     </style>
 
 </resources>

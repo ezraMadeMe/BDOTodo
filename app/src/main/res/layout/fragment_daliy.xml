@@ -17,4 +17,10 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="vertical"/>
 
+    <include layout="@layout/daily_recycler_add_item"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/daily_recycler"/>
+
+
 </RelativeLayout>

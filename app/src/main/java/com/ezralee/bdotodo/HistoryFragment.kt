@@ -40,7 +40,10 @@ class HistoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.historyBtn.setOnClickListener {
-            ShowHistoryDetailActivity().show(parentFragmentManager, "History Dialog")
+            //ShowHistoryDetailActivity().show(parentFragmentManager, "History Dialog")
+
+            SetHistoryActivity().show(parentFragmentManager,"set history")
+
         }
     }
 

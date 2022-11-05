@@ -16,31 +16,62 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_baseline_add_24"
-        android:backgroundTint="@color/colorOnSecondary"
+        android:backgroundTint="@color/colorPrimary"
         android:layout_margin="20dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/goallist_myself_FAB"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/ic_baseline_add_24"
-        android:backgroundTint="@color/colorSecondary"
+    <LinearLayout
+        android:id="@+id/layout_preset_FAB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_marginRight="28dp"
         android:layout_above="@+id/goallist_main_FAB"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentRight="true">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/goallist_preset_FAB"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/ic_baseline_add_24"
-        android:backgroundTint="@color/colorSecondary"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="프리셋"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="12dp"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/goallist_myself_FAB"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_outline_border_color_40"
+            android:backgroundTint="@color/colorSecondary"
+            app:fabCustomSize="40dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_myself_FAB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_marginRight="28dp"
-        android:layout_marginBottom="20dp"
-        android:layout_above="@+id/goallist_myself_FAB"
-        android:layout_alignParentRight="true"/>
+        android:layout_above="@+id/layout_preset_FAB"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="20dp">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="직접 설정"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="12dp"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/goallist_preset_FAB"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/colorSecondary"
+            android:src="@drawable/ic_baseline_library_books_40"
+            app:fabCustomSize="40dp"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

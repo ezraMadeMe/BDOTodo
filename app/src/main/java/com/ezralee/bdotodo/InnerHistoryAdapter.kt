@@ -1,8 +1,10 @@
 package com.ezralee.bdotodo
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ezralee.bdotodo.databinding.HistoryInnerRecyclerItemBinding
@@ -16,6 +18,7 @@ class InnerHistoryAdapter(val historyInnerItems: Array<HistoryInnerItem>) :
             Glide.with(binding.root).load(item.image).into(binding.innerRecyclerImage)
             binding.root.setOnClickListener{
                 //해당 데이터를 가진 ShowHistoryActivity 팝업
+
             }
         }
     }//inner class

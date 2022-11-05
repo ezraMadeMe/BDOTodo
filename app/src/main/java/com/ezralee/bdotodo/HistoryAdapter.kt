@@ -26,9 +26,6 @@ class HistoryAdapter(val historyItems: Array<HistoryItem>) : RecyclerView.Adapte
         fun bind(date: HistoryItem) {
             binding.historyRecyclerDateRight.text = date.date
             binding.historyRecyclerDateLeft.text = date.date
-            binding.root.setOnClickListener {
-
-            }
         }
     }//inner class VH
 
