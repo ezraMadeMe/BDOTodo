@@ -7,7 +7,19 @@
     <CalendarView
         android:id="@+id/daily_calendar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:theme="@style/DatePickerTheme"
+        android:background="@color/colorPrimary"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/daily_calendar">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
@@ -15,12 +27,41 @@
         android:id="@+id/daily_recycler"
         android:layout_below="@+id/daily_calendar"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:orientation="vertical"/>
+        android:orientation="vertical"
+        android:background="@color/colorOnSecondary"/>
 
-    <include layout="@layout/daily_recycler_add_item"
+    <RelativeLayout
+        android:id="@+id/add_todo"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_below="@+id/daily_recycler"/>
+        android:layout_below="@+id/daily_recycler"
+        android:background="@color/colorOnSecondary">
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
 
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/add_civ"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_baseline_add_24"
+                app:civ_border_color="@color/colorPrimary"
+                app:civ_circle_background_color="@color/colorSecondary"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="한 일/할 일 추가"
+                android:layout_toRightOf="@+id/add_civ"
+                android:layout_centerVertical="true"
+                android:textSize="20sp"
+                android:layout_marginHorizontal="8dp"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+    </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 </RelativeLayout>

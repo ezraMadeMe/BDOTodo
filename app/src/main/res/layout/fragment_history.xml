@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorOnSecondary">
 
     <View
         android:layout_width="3dp"
@@ -27,6 +28,6 @@
         android:layout_alignParentRight="true"
         android:layout_margin="20dp"
         android:src="@drawable/ic_baseline_add_24"
-        android:backgroundTint="@color/colorOnSecondary"/>
+        android:backgroundTint="@color/colorPrimary"/>
 
 </RelativeLayout>

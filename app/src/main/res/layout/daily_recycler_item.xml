@@ -57,7 +57,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorPrimaryVariant"
         android:layout_alignParentBottom="true"
         android:layout_marginHorizontal="10dp" />
 

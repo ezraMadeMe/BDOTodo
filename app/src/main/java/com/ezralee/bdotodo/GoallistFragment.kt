@@ -1,5 +1,6 @@
 package com.ezralee.bdotodo
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -37,7 +38,11 @@ class GoallistFragment : Fragment() {
                 binding.layoutPresetFAB.visibility = View.GONE
                 binding.layoutMyselfFAB.visibility = View.GONE
             }
+        }
 
+        binding.layoutPresetFAB.setOnClickListener {
+            val intent = Intent(requireContext(),GoalPresetActivity::class.java)
+            startActivity(intent)
         }
 
     }

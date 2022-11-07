@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="70dp"
     android:paddingHorizontal="16dp"
-    android:paddingVertical="8dp">
+    android:paddingVertical="8dp"
+    android:background="@color/colorTransparent">
 
     <TextView
         android:id="@+id/daily_recycler_item_date"
@@ -11,6 +12,7 @@
         android:layout_height="wrap_content"
         android:text="2022/11/03"
         style="@style/dailyRecyclerTitleStyle"
+        android:textColor="@color/colorOnSecondary"
         android:textSize="16dp"
         android:layout_centerHorizontal="true"
         android:textAlignment="viewEnd"/>
@@ -23,7 +25,8 @@
         style="@style/dailyRecyclerTitleStyle"
         android:layout_below="@+id/daily_recycler_item_date"
         android:maxLines="1"
-        android:ellipsize="end"/>
+        android:ellipsize="end"
+        android:textColor="@color/colorOnSecondary"/>
 
     <TextView
         android:id="@+id/daily_recycler_item_count"
@@ -34,7 +37,8 @@
         android:layout_below="@+id/daily_recycler_item_date"
         android:maxLines="1"
         android:ellipsize="end"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorOnSecondary"/>
 
     <Button
         android:id="@+id/btn_add_todo_delete"

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-        <!--  본문 텍스트 스타일  -->
+    <!--  본문 텍스트 스타일  -->
     <style name="normaltextStyle" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="fontFamily">@font/nexonlv1</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
-        <!--  BNV 텍스트 스타일  -->
+    <!--  BNV 텍스트 스타일  -->
     <style name="selectedBNVtextStyle" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="fontFamily">@font/nexonlv1</item>
         <item name="android:textSize">16sp</item>
@@ -21,7 +21,7 @@
         <item name="android:textColor">@color/colorOnSecondary</item>
     </style>
 
-        <!--  데일리 리사이클러뷰 텍스트 스타일  -->
+    <!--  데일리 리사이클러뷰 텍스트 스타일  -->
     <style name="dailyRecyclerTitleStyle" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="fontFamily">@font/nexonlv1_bold</item>
         <item name="android:textSize">24sp</item>
@@ -34,14 +34,14 @@
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
-            <!--  BS 버튼 텍스트 스타일  -->
+    <!--  BS 버튼 텍스트 스타일  -->
     <style name="bottomsheetButton" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:textSize">16sp</item>
         <item name="fontFamily">@font/nexonlv1_bold</item>
         <item name="android:background">@drawable/bs_today_selector</item>
     </style>
 
-        <!--  History Dialog 세팅  -->
+    <!--  History Dialog 세팅  -->
 
     <style name="history_dialog" parent="Theme.AppCompat.Dialog">
         <item name="android:windowIsFloating">false</item>
@@ -69,16 +69,22 @@
         <item name="android:paddingTop">8dp</item>
         <item name="android:paddingBottom">8dp</item>
     </style>
-    
+
     <style name="TransparentCompat." parent="Theme.AppCompat.Dialog">
         <item name="android:windowBackground">@color/colorTransparent</item>
     </style>
 
-    <style name="DatePickerTheme" parent="Theme.AppCompat.Dialog">
-        <item name="colorAccent">@color/colorPrimaryVariant</item>
-        <item name="android:headerBackground">@color/colorPrimaryVariant</item>
-        <item name="android:textColorPrimary">@color/colorPrimaryVariant</item>
-        <item name="android:textColorSecondary">@color/colorSecondary</item>
+    <style name="DatePickerTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:textColorPrimary">@color/colorOnPrimary</item>
+        <item name="android:textColorSecondary">@color/colorOnSecondary</item>
+        <item name="colorControlActivated">@color/colorSecondary</item>
+        <item name="android:colorAccent">@color/colorPrimary</item>
+        <item name="android:textColorPrimaryInverse">@color/colorOnSecondary</item>
+    </style>
+
+    <style name="NumberPickerTheme">
+        <item name="android:editTextColor">@color/colorOnPrimary</item>
+        <item name="colorControlNormal">@color/colorOnPrimary</item>
     </style>
 
 </resources>
