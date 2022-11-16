@@ -7,9 +7,7 @@
     <CalendarView
         android:id="@+id/daily_calendar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/DatePickerTheme"
-        android:background="@color/colorPrimary"/>
+        android:layout_height="wrap_content"/>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"

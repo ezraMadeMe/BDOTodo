@@ -10,14 +10,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="오네트의 정령수"
-            android:layout_centerVertical="true"/>
+            style="@style/history_dialog_text"
+            android:layout_centerVertical="true"
+            android:textSize="20sp"/>
 
         <ImageView
             android:id="@+id/select_goal"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/ic_baseline_arrow_forward_ios_24"
-            app:tint="@color/colorPrimary"
+            app:tint="@color/colorOnSecondary"
             android:layout_alignParentRight="true"/>
 
 </RelativeLayout>

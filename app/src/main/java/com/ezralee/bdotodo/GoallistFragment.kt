@@ -9,21 +9,26 @@ import androidx.fragment.app.Fragment
 import com.ezralee.bdotodo.databinding.FragmentGoallistBinding
 
 class GoallistFragment : Fragment() {
-    var _binding: FragmentGoallistBinding? = null
-    val binding get() = _binding!!
+    val binding: FragmentGoallistBinding by lazy { FragmentGoallistBinding.inflate(layoutInflater) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentGoallistBinding.inflate(inflater, container, false)
-        val view = binding.root
 
         binding.layoutPresetFAB.visibility = View.GONE
         binding.layoutMyselfFAB.visibility = View.GONE
 
-        return view
+        binding.layoutMyselfFAB.setOnClickListener {
+            startActivity(Intent(activity,SetGoalFragment::class.java))
+        }
+
+        binding.layoutPresetFAB.setOnClickListener {
+            startActivity(Intent(activity,GoalPresetActivity::class.java))
+        }
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -39,16 +44,10 @@ class GoallistFragment : Fragment() {
                 binding.layoutMyselfFAB.visibility = View.GONE
             }
         }
-
-        binding.layoutPresetFAB.setOnClickListener {
-            val intent = Intent(requireContext(),GoalPresetActivity::class.java)
-            startActivity(intent)
-        }
-
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+
     }
 }

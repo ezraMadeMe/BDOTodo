@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    android:layout_centerInParent="true">
+
+    <LinearLayout
+        android:id="@+id/task_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerInParent="true"
+        android:layout_marginVertical="12dp">
+
+        <EditText
+            android:id="@+id/goal_task_name"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            android:background="@drawable/bs_search_shape"
+            android:backgroundTint="@color/colorOnSecondary"
+            android:gravity="center_horizontal"
+            android:hint="재료명"
+            android:maxLines="1"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary"
+            android:textCursorDrawable="@color/colorPrimaryVariant" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이"
+            style="@style/history_dialog_text"
+            android:textSize="24sp"
+            android:layout_gravity="center"
+            android:layout_marginRight="12dp"/>
+
+        <EditText
+            android:id="@+id/goal_task_total"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
+            android:background="@drawable/bs_search_shape"
+            android:backgroundTint="@color/colorOnSecondary"
+            android:gravity="center_horizontal"
+            android:hint="필요개수"
+            android:maxLines="1"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary"
+            android:textCursorDrawable="@color/colorPrimaryVariant"
+            android:inputType="number"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="개"
+            style="@style/history_dialog_text"
+            android:textSize="24sp"
+            android:layout_gravity="center"/>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_baseline_add_circle_outline_24"
+            android:layout_gravity="center"/>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_baseline_delete_outline_24"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_picker"
+        android:entries="@array/task_and_or"
+        android:backgroundTint="@color/colorOnPrimary"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:padding="4dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="6dp"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

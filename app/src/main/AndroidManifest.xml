@@ -28,7 +28,19 @@
 
         <activity
             android:name=".GoalPresetActivity"
-            android:exported="true" >
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".SetGoalFragment"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
         </activity>
 
     </application>

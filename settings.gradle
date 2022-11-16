@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "BDOTodo"
 include ':app'
+include ':library'

@@ -27,10 +27,4 @@ class GoalPresetActivity: AppCompatActivity() {
         binding.goallistPresetRecycler.adapter = GoalPresetAdapter(this@GoalPresetActivity,items)
     }
 
-    override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
-        return super.onCreateView(name, context, attrs)
-    }
-
-
-
 }
