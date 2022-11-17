@@ -28,13 +28,13 @@ class GoallistFragment : Fragment() {
         binding.layoutMyselfFAB.visibility = View.GONE
         binding.finalGoalRecycler.adapter = GoallistAdapter(requireContext(),items)
 
-        binding.layoutMyselfFAB.setOnClickListener {
-            startActivity(Intent(activity,SetGoalFragment::class.java))
-        }
-
-        binding.layoutPresetFAB.setOnClickListener {
-            startActivity(Intent(activity,GoalPresetActivity::class.java))
-        }
+//        binding.layoutMyselfFAB.setOnClickListener {
+//            startActivity(Intent(activity,SetGoalActivity::class.java))
+//        }
+//
+//        binding.layoutPresetFAB.setOnClickListener {
+//            startActivity(Intent(activity,GoalPresetActivity::class.java))
+//        }
 
         return binding.root
     }
@@ -52,6 +52,15 @@ class GoallistFragment : Fragment() {
                 binding.layoutMyselfFAB.visibility = View.GONE
             }
         }
+
+        binding.layoutMyselfFAB.setOnClickListener {
+            startActivity(Intent(activity,SetGoalActivity::class.java))
+        }
+
+        binding.layoutPresetFAB.setOnClickListener {
+            startActivity(Intent(activity,GoalPresetActivity::class.java))
+        }
+
     }
 
     override fun onDestroyView() {

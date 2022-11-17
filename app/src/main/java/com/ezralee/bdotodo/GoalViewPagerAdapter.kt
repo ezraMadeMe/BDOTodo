@@ -6,7 +6,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
 class GoalViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) : FragmentStateAdapter(fragmentManager, lifecycle) {
-    override fun getItemCount(): Int = 2 //menu 개수
+
+    var items: MutableList<Fragment> = SetGoalActivity().fragments
+
+    override fun getItemCount(): Int = items.size
 
     override fun createFragment(position: Int): Fragment {
         return when(position){
@@ -15,4 +18,11 @@ class GoalViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycl
         }
     }
 
+    override fun getItemId(position: Int): Long {
+        return items[position] as Long
+    }
+
+    override fun containsItem(itemId: Long): Boolean {
+        return items.map { it.hashCode().toLong() }.contains(itemId)
+    }
 }

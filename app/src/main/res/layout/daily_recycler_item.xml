@@ -52,7 +52,8 @@
         android:layout_alignParentRight="true"
         android:layout_margin="12dp"
         style="@style/dailyRecyclerTitleStyle"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true"
+        android:textSize="20dp"/>
 
     <View
         android:layout_width="match_parent"

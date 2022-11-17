@@ -67,12 +67,7 @@ class SetHistoryActivity : DialogFragment() {
 //            }
 //        }, 2015, 02, 26).show();
 
-            val dlg = DatePickerDialog(requireContext(), object : DatePickerDialog.OnDateSetListener {
-                override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-                    binding.historyDateEdit.text = "${year}/${month+1}/${dayOfMonth}"
-                }
-            }, year, month, date)
-            dlg.show()
+            DatePickerDialog().show(parentFragmentManager,"date picker")
         }
 
         binding.historyDateToday.setOnClickListener {

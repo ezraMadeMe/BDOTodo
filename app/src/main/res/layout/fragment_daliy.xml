@@ -13,7 +13,10 @@
         app:mcv_arrowColor="@color/colorSecondary"
         app:mcv_calendarMode="month"
         app:mcv_selectionColor="@color/colorSecondary"
-        app:mcv_tileHeight="35dp"
+        app:mcv_tileHeight="40dp"
+        app:mcv_headerTextAppearance="@style/dailyRecyclerTitleStyle"
+        app:mcv_weekDayTextAppearance="@style/selectedBNVtextStyle"
+        app:mcv_dateTextAppearance="@style/normaltextStyle"
         />
 
     <androidx.core.widget.NestedScrollView

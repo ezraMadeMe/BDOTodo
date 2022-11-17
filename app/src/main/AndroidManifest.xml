@@ -35,7 +35,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".SetGoalFragment"
+        <activity android:name=".SetGoalActivity"
             android:exported="true"
             android:enabled="true">
             <intent-filter>

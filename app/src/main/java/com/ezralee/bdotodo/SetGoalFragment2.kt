@@ -19,5 +19,4 @@ class SetGoalFragment2: Fragment() {
 
         return view.root
     }
-
 }
