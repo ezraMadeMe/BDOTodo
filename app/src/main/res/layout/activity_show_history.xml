@@ -33,7 +33,7 @@
             android:layout_toLeftOf="@+id/history_close"
             android:layout_toRightOf="@+id/history_icon"
             android:ellipsize="end"
-            android:text="히스토리"
+            android:text="히스토리 상세"
             android:textColor="@color/colorOnPrimary"
             android:textSize="20dp" />
 
@@ -117,7 +117,7 @@
                     android:layout_below="@+id/history_image"
                     android:text="해당 히스토리에 대한 메모"
                     android:paddingHorizontal="8dp"
-                    android:layout_marginTop="8dp"/>
+                    android:layout_marginTop="12dp"/>
 
             </RelativeLayout>
 

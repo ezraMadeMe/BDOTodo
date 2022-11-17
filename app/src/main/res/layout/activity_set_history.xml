@@ -33,7 +33,7 @@
             android:layout_toLeftOf="@+id/history_close"
             android:layout_toRightOf="@+id/history_icon"
             android:ellipsize="end"
-            android:text="히스토리 수정"
+            android:text="히스토리 생성"
             android:textColor="@color/colorOnPrimary"
             android:textSize="20dp" />
 
@@ -71,7 +71,6 @@
                 android:background="@null"
                 android:hint="히스토리 제목 입력"
                 android:maxLines="1"
-                android:text="기존 히스토리 제목"
                 android:textColor="@color/colorOnSecondary"
                 android:textColorHint="@color/colorOnSecondary"
                 android:textCursorDrawable="@color/colorPrimaryVariant"

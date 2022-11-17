@@ -5,12 +5,12 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.ezralee.bdotodo"
         minSdk 23
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -61,4 +61,6 @@ dependencies {
 
     implementation platform('com.google.firebase:firebase-bom:31.0.3') //Firebase
     implementation 'com.google.firebase:firebase-firestore-ktx' //Firebase Firestore
+
+    implementation 'com.prolificinteractive:material-calendarview:1.4.3'
 }
