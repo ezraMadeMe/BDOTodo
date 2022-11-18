@@ -19,4 +19,9 @@ class SetGoalFragment1: Fragment() {
 
         return view.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+    }
 }

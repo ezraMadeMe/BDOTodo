@@ -1,5 +1,6 @@
 package com.ezralee.bdotodo
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Paint
 import android.os.Build
@@ -40,6 +41,9 @@ class DatePickerDialog: DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.datePicker.setOnDateChangedListener { datePicker, i, i2, i3 ->
             Toast.makeText(requireContext(), "$i/$i2/$i3", Toast.LENGTH_SHORT).show()
+            var intent = Intent().putExtra("date","$i/$i2/$i3")
+            startActivity(intent)
+            dismiss()
         }
     }
 

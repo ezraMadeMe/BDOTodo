@@ -25,7 +25,7 @@
 <!--        android:layout_alignParentRight="true"-->
 <!--        android:layout_marginRight="16dp"-->
 <!--        android:layout_marginTop="16dp"/>-->
-
+    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -145,7 +145,7 @@
 
             <EditText
                 android:id="@+id/goal_task_name"
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="4dp"
                 android:background="@drawable/bs_search_shape"
@@ -196,15 +196,29 @@
                 android:src="@drawable/ic_baseline_add_circle_outline_24" />
 
         </LinearLayout>
-        <Spinner
+        
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/shape_picker"
-            android:entries="@array/task_and_or"
-            android:backgroundTint="@color/colorOnPrimary"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:padding="4dp"/>
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="그리고"
+                style="@style/history_dialog_text"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="또는"
+                style="@style/history_dialog_text"
+                android:textSize="20sp"/>
+
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/task_recycler"

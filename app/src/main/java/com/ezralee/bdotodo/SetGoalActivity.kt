@@ -21,14 +21,14 @@ class SetGoalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.setGoalPager.adapter = GoalViewPagerAdapter(supportFragmentManager, lifecycle)
+        binding.setGoalPager.adapter = GoalViewPagerAdapter(supportFragmentManager, lifecycle, this@SetGoalActivity)
         //binding.setGoalPager.registerOnPageChangeCallback(pageChangeCallback)
 
         binding.deleteDetailGoalPage.visibility = View.VISIBLE
         binding.addDetailGoalPage.visibility = View.VISIBLE
 
         binding.addDetailGoalPage.setOnClickListener {
-            supportFragmentManager.fragments.add(SetGoalFragment2())
+
         }
 
         binding.deleteDetailGoalPage.setOnClickListener {
