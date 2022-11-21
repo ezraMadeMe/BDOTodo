@@ -1,13 +1,14 @@
-package com.ezralee.bdotodo
+package com.ezralee.bdotodo.daily
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.ezralee.bdotodo.history.DailyTodoItem
+import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.FragmentDaliyBinding
 import com.prolificinteractive.materialcalendarview.CalendarDay
-import com.prolificinteractive.materialcalendarview.CalendarMode
 import java.util.*
 
 class DailyFragment : Fragment() {
@@ -31,7 +32,7 @@ class DailyFragment : Fragment() {
         _binding = FragmentDaliyBinding.inflate(inflater,container,false)
         val view = binding.root
 
-        binding.dailyCalendarMonth.selectedDate = CalendarDay.today()
+        //binding.dailyCalendarMonth.selectedDate = CalendarDay.today()
 
         return view
     }

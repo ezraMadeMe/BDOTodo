@@ -1,11 +1,9 @@
-package com.ezralee.bdotodo
+package com.ezralee.bdotodo.main
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.DialogFragment
-import androidx.recyclerview.widget.RecyclerView.ItemDecoration
+import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.FragmentColorPickerBinding
 
 class ColorPickerFragment : DialogFragment() {

@@ -1,4 +1,4 @@
-package com.ezralee.bdotodo
+package com.ezralee.bdotodo.goallist
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.ezralee.bdotodo.history.GoalListItem
+import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.FragmentGoallistBinding
 
 class GoallistFragment : Fragment() {
@@ -54,11 +56,11 @@ class GoallistFragment : Fragment() {
         }
 
         binding.layoutMyselfFAB.setOnClickListener {
-            startActivity(Intent(activity,SetGoalActivity::class.java))
+            startActivity(Intent(activity, SetGoalActivity::class.java))
         }
 
         binding.layoutPresetFAB.setOnClickListener {
-            startActivity(Intent(activity,GoalPresetActivity::class.java))
+            startActivity(Intent(activity, GoalPresetActivity::class.java))
         }
 
     }

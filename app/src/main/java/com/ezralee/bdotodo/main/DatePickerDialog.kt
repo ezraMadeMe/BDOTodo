@@ -1,8 +1,6 @@
-package com.ezralee.bdotodo
+package com.ezralee.bdotodo.main
 
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.Paint
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.DialogFragment
+import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.FragmentDatePickerBinding
 
 class DatePickerDialog: DialogFragment() {

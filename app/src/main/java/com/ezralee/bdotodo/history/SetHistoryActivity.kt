@@ -1,15 +1,12 @@
-package com.ezralee.bdotodo
+package com.ezralee.bdotodo.history
 
-import android.app.DatePickerDialog
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
-import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
+import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.ActivitySetHistoryBinding
 import java.text.SimpleDateFormat
 import java.util.*
@@ -67,7 +64,7 @@ class SetHistoryActivity : DialogFragment() {
 //            }
 //        }, 2015, 02, 26).show();
 
-            DatePickerDialog().show(parentFragmentManager,"date picker")
+            com.ezralee.bdotodo.main.DatePickerDialog().show(parentFragmentManager,"date picker")
         }
 
         binding.historyDateToday.setOnClickListener {

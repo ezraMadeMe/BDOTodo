@@ -1,20 +1,12 @@
-package com.ezralee.bdotodo
+package com.ezralee.bdotodo.main
 
-import android.app.Activity
-import android.app.PendingIntent.getActivity
-import android.content.ContentProvider
 import android.content.Context
-import android.graphics.Color
-import android.graphics.PorterDuff
-import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.toColor
 import androidx.recyclerview.widget.RecyclerView
+import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.ColorPickerItemBinding
 
 class ColorPickerAdapter(var context: Context) : RecyclerView.Adapter<ColorPickerAdapter.VH>() {

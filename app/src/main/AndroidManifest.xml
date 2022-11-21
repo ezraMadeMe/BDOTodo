@@ -17,7 +17,7 @@
         android:theme="@style/Theme.BDOTodo"
         tools:targetApi="31" >
         <activity
-            android:name=".MainActivity"
+            android:name=".main.MainActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +27,7 @@
         </activity>
 
         <activity
-            android:name=".GoalPresetActivity"
+            android:name=".goallist.GoalPresetActivity"
             android:exported="true"
             android:enabled="true">
             <intent-filter>
@@ -35,7 +35,15 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".SetGoalActivity"
+        <activity android:name=".goallist.SetGoalActivity"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".history.ShowHistoryDetailActivity"
             android:exported="true"
             android:enabled="true">
             <intent-filter>

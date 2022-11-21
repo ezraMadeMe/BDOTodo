@@ -1,12 +1,12 @@
-package com.ezralee.bdotodo
+package com.ezralee.bdotodo.history
 
 //히스토리
 //바깥 리사이클러 날짜정보
-data class HistoryDateItem constructor(var date: String)
+//data class HistoryDateItem constructor(var date: String)
 //안쪽 리사이클러 미리보기 정보(제목/이미지)
-data class HistoryInnerItem constructor(var title: String, var image: Int)
+//data class HistoryItem constructor(var title: String, var image: Int)
 //히스토리 초기 세팅 시 필요한 종합 정보
-data class HistroyItem constructor(var title: String, var date: String, var category: String, var image: Int, var memo: String)
+data class HistoryItem constructor(var title: String, var date: String, var category: String, var image: Int, var memo: String)
 
 //데일리
 //

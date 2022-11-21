@@ -1,14 +1,11 @@
-package com.ezralee.bdotodo
+package com.ezralee.bdotodo.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.MenuItem
-import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
 import androidx.viewpager2.widget.ViewPager2
+import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.ActivityMainBinding
-import com.ezralee.bdotodo.databinding.ActivityMainBinding.bind
 import com.ezralee.bdotodo.databinding.ActivityMainBinding.inflate
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView

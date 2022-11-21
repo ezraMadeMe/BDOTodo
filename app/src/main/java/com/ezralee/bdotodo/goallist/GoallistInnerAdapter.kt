@@ -1,10 +1,12 @@
-package com.ezralee.bdotodo
+package com.ezralee.bdotodo.goallist
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.ezralee.bdotodo.history.GoalListInnerItem
+import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.GoallistInnerRecyclerItemBinding
 
 class GoallistInnerAdapter(var context: Context, var goallistInnerItem: Array<GoalListInnerItem>): RecyclerView.Adapter<GoallistInnerAdapter.VH>() {

@@ -1,4 +1,4 @@
-package com.ezralee.bdotodo
+package com.ezralee.bdotodo.history
 
 import android.os.Bundle
 import android.view.LayoutInflater

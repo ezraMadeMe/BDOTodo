@@ -1,4 +1,4 @@
-package com.ezralee.bdotodo
+package com.ezralee.bdotodo.daily
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.ezralee.bdotodo.history.AddTodoItem
+import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.AddTodoRecyclerItemBinding
 
 class AddTodoAdapter(var context: Context, var items: MutableList<AddTodoItem>): Adapter<AddTodoAdapter.VH>() {
