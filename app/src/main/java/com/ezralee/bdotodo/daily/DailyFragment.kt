@@ -32,7 +32,7 @@ class DailyFragment : Fragment() {
         _binding = FragmentDaliyBinding.inflate(inflater,container,false)
         val view = binding.root
 
-        //binding.dailyCalendarMonth.selectedDate = CalendarDay.today()
+        binding.dailyCalendarMonth.selectedDate = CalendarDay.today()
 
         return view
     }

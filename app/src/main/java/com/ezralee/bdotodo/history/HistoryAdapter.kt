@@ -2,6 +2,7 @@ package com.ezralee.bdotodo.history
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ezralee.bdotodo.R
@@ -20,6 +21,9 @@ class HistoryAdapter(var context: Context, var historyItems: Array<HistoryItem>)
         fun bind(date: HistoryItem) {
             binding.historyRecyclerDateRight.text = date.date
             binding.historyRecyclerDateLeft.text = date.date
+        }
+        init {
+            binding.historyRecyclerLeft.visibility = View.INVISIBLE
         }
 
     }//inner class VH
