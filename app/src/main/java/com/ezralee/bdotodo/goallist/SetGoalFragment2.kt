@@ -17,6 +17,8 @@ class SetGoalFragment2: Fragment() {
     ): View? {
         var view = FragmentSetGoal2Binding.inflate(inflater, container, false)
 
+        //(activity as SetGoalActivity).aaa()
+
         return view.root
     }
 

@@ -8,7 +8,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 
 class GoalViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle, var context: Context) : FragmentStateAdapter(fragmentManager, lifecycle) {
 
-    lateinit var items: MutableList<Fragment>
+    var items: MutableList<Fragment> = mutableListOf(SetGoalFragment1(),SetGoalFragment2())
 
     override fun getItemCount(): Int = items.size
 

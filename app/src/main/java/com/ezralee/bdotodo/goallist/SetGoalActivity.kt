@@ -17,15 +17,20 @@ class SetGoalActivity : AppCompatActivity() {
         binding.setGoalPager.adapter = GoalViewPagerAdapter(supportFragmentManager, lifecycle, this@SetGoalActivity)
         //binding.setGoalPager.registerOnPageChangeCallback(pageChangeCallback)
 
-        binding.deleteDetailGoalPage.visibility = View.VISIBLE
-        binding.addDetailGoalPage.visibility = View.VISIBLE
-
-        binding.addDetailGoalPage.setOnClickListener {
-
-        }
-
-        binding.deleteDetailGoalPage.setOnClickListener {
-            supportFragmentManager.fragments.removeAt(binding.setGoalPager.currentItem)
-        }
+//        binding.deleteDetailGoalPage.visibility = View.VISIBLE
+//        binding.addDetailGoalPage.visibility = View.VISIBLE
+//
+//        binding.addDetailGoalPage.setOnClickListener {
+//
+//        }
+//
+//        binding.deleteDetailGoalPage.setOnClickListener {
+//            supportFragmentManager.fragments.removeAt(binding.setGoalPager.currentItem)
+//        }
     }
+
+//      fun aaa(){
+//          supportFragmentManager.fragments.removeAt(binding.setGoalPager.currentItem)
+//          binding.setGoalPager.adapter?.notifyDataSetChanged()
+//      }
 }

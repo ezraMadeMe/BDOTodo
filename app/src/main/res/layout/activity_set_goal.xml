@@ -9,27 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <ImageView
-        android:id="@+id/delete_detail_goal_page"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="24dp"
-        android:src="@drawable/ic_baseline_delete_outline_24" />
-
-    <TextView
-        android:id="@+id/add_detail_goal_page"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="소목표 추가"
-        style="@style/history_dialog_text"
-        android:textSize="12sp"
-        android:drawableTop="@drawable/ic_baseline_add_24"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
