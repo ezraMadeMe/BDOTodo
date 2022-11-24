@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/menu_preset">
+<!--        <item android:id="@+id/menu_all" android:title="전체" android:icon="@drawable/ic_baseline_ballot_24"/>-->
+        <item android:id="@+id/menu_treasure" android:title="보물" android:icon="@drawable/ic_baseline_generating_tokens_24"/>
+        <item android:id="@+id/menu_lifeskill" android:title="생활" android:icon="@drawable/ic_baseline_hub_24"/>
+        <item android:id="@+id/menu_gear" android:title="장비" android:icon="@drawable/ic_baseline_insights_24"/>
+    </group>
+</menu>

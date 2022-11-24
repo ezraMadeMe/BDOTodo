@@ -34,7 +34,7 @@
             android:layout_toLeftOf="@+id/close"
             android:layout_toRightOf="@+id/icon"
             android:ellipsize="end"
-            android:text="상단바 텍스트"
+            android:text="목표 프리셋 선택"
             android:textColor="@color/colorOnPrimary"
             android:textSize="20dp" />
 
@@ -55,13 +55,24 @@
         android:layout_below="@+id/layout_history_title"
         android:background="@drawable/dialog_history_detail_2">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/goallist_preset_recycler"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:orientation="vertical"
-        style="@style/history_dialog_text"/>
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/preset_BNV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu="@menu/preset"
+            android:background="@color/colorPrimary"
+            android:layout_marginHorizontal="2dp"
+            app:itemIconTint="@color/colorOnPrimary"
+            app:itemTextColor="@color/colorOnPrimary"
+            app:itemTextAppearanceActive="@style/selectedBNVtextStyle"
+            app:itemTextAppearanceInactive="@style/notSelectedBNVtextStyle"
+            app:labelVisibilityMode="labeled" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/preset_VP"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/preset_BNV"/>
 
     </RelativeLayout>
 

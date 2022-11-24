@@ -29,7 +29,8 @@
         <activity
             android:name=".goallist.GoalPresetActivity"
             android:exported="true"
-            android:enabled="true">
+            android:enabled="true"
+            android:theme="@style/MyDialogActivity">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
