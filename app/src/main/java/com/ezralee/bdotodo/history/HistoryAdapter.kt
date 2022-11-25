@@ -25,7 +25,6 @@ class HistoryAdapter(var context: Context, var historyItems: Array<HistoryItem>)
         init {
             binding.historyRecyclerLeft.visibility = View.INVISIBLE
         }
-
     }//inner class VH
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
