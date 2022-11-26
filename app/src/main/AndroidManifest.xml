@@ -5,6 +5,7 @@
 
     <!-- 인터넷 사용 권한 설정-->
     <uses-permission android:name="android.permission.INTERNET" />
+<!--    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>-->
 
     <application
         android:name=".main.KakaoLogin"
@@ -22,7 +23,7 @@
             android:name=".main.MainActivity"
             android:exported="true">
             <intent-filter>
-
+                <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -60,7 +61,16 @@
             android:name=".main.LoginActivity"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".main.IntroActivity"
+            android:exported="true">
+            <intent-filter>
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

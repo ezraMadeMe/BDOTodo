@@ -33,6 +33,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/logo"
-            android:src="@drawable/kakao_login_medium_narrow" />
+            android:src="@drawable/kakao_login_medium_narrow"
+            android:layout_centerHorizontal="true"/>
+
     </RelativeLayout>
 </RelativeLayout>

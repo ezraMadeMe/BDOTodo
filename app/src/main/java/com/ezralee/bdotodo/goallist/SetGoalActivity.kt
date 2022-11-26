@@ -22,6 +22,8 @@ class SetGoalActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.setGoalPager.adapter = adapter
+
+        binding.setGoalPager.getChildAt(binding.setGoalPager.currentItem)
     }
 
     fun addPage() {

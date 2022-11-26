@@ -8,4 +8,6 @@
 
     <font android:fontStyle="normal"
         android:font="@font/nexonlv1_bold"/>
+    <font android:fontStyle="normal"
+        android:font="@font/roboto_medium"/>
 </font-family>
