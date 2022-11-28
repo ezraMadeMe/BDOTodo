@@ -9,11 +9,16 @@ import com.ezralee.bdotodo.databinding.ActivityMainBinding
 import com.ezralee.bdotodo.databinding.ActivityMainBinding.inflate
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener,
     BottomNavigationView.OnNavigationItemSelectedListener {
 
-    lateinit var binding:ActivityMainBinding
+    lateinit var binding: ActivityMainBinding
+    var userInfo : UserInfo = UserInfo(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +37,7 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
 
     //선택된 BNV 감지하는 리스너 오버라이딩
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId){
+        return when (item.itemId) {
             R.id.menu_daily -> {
                 binding.mainVP.currentItem = 0
                 true
@@ -50,9 +55,9 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
     }
 
     //ViewPager의 페이지 변화 감지 콜백메서드 오버라이딩
-    inner class ViewPagerPageChangeCallback: ViewPager2.OnPageChangeCallback(){
+    inner class ViewPagerPageChangeCallback : ViewPager2.OnPageChangeCallback() {
         override fun onPageSelected(position: Int) {
-            binding.mainBNV.selectedItemId = when(position){
+            binding.mainBNV.selectedItemId = when (position) {
                 0 -> R.id.menu_daily
                 1 -> R.id.menu_history
                 2 -> R.id.menu_goal

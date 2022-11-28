@@ -1,7 +1,5 @@
 package com.ezralee.bdotodo.history
 
-data class userId constructor(var id: String)
-
 //히스토리
 //바깥 리사이클러 날짜정보
 //data class HistoryDateItem constructor(var date: String)
@@ -18,6 +16,6 @@ data class AddTodoItem constructor(var date: String, var task: String, var count
 
 //목표
 data class GoalPresetItem constructor(var title: String)
-data class GoalListItem constructor(var color: Int, var title: String, var percent: Int, var dday: Int)
-data class GoalListInnerItem constructor(var title: String, var percent: Int)
+data class GoalListItem constructor(var color: Int, var title: String, var percent: Int, var dday: Int, var isExpanded: Boolean)
+//data class GoalListInnerItem constructor(var title: String, var percent: Int)
 data class GoalTaskItem constructor(var task: String, var count: Int)

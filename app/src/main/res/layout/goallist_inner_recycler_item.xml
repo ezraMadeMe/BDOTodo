@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
-    android:paddingLeft="24dp"
-    android:paddingRight="16dp">
+    android:layout_height="wrap_content"
+    android:padding="12dp">
 
     <TextView
         android:id="@+id/goallist_inner_recycler_item_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="소목표"
-        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
         android:maxLines="1"
-        android:ellipsize="end"/>
+        android:ellipsize="end"
+        android:fontFamily="@font/nexonlv1_bold"
+        android:layout_marginBottom="8dp"/>
 
-    <TextView
-        android:id="@+id/goallist_inner_recycler_item_percentage"
-        android:layout_width="wrap_content"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/goallist_inner_recycler"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="100%"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        style="@style/dailyRecyclerTitleStyle"/>
+        android:layout_below="@+id/goallist_inner_recycler_item_title"/>
 
 </RelativeLayout>

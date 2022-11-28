@@ -5,11 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.ezralee.bdotodo.history.GoalListInnerItem
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.GoallistInnerRecyclerItemBinding
+import com.ezralee.bdotodo.history.GoalListItem
 
-class GoallistInnerAdapter(var context: Context, var goallistInnerItem: Array<GoalListInnerItem>): RecyclerView.Adapter<GoallistInnerAdapter.VH>() {
+//소목표 단
+class GoallistInnerAdapter(var context: Context, var items: MutableList<GoalListItem>): RecyclerView.Adapter<GoallistInnerAdapter.VH>() {
 
     inner class VH(itemview: View) : RecyclerView.ViewHolder(itemview){
         val binding: GoallistInnerRecyclerItemBinding = GoallistInnerRecyclerItemBinding.bind(itemview)
@@ -20,12 +21,12 @@ class GoallistInnerAdapter(var context: Context, var goallistInnerItem: Array<Go
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        holder.binding.goallistInnerRecyclerItemTitle.text = goallistInnerItem[position].title
-        holder.binding.goallistInnerRecyclerItemPercentage.text = "${goallistInnerItem[position].percent} %"
+        holder.binding.goallistInnerRecyclerItemTitle.text = items[position].title
+        holder.binding.goallistInnerRecycler.adapter = GoallistInnerInnerAdapter(context,items)
     }
 
     override fun getItemCount(): Int {
-        return goallistInnerItem.size
+        return items.size
     }
 
 

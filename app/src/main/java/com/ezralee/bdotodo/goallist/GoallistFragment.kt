@@ -9,15 +9,17 @@ import androidx.fragment.app.Fragment
 import com.ezralee.bdotodo.history.GoalListItem
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.FragmentGoallistBinding
+import com.google.firebase.firestore.FirebaseFirestore
 
+//대목표 단
 class GoallistFragment : Fragment() {
     val binding: FragmentGoallistBinding by lazy { FragmentGoallistBinding.inflate(layoutInflater) }
-    var items: Array<GoalListItem> = arrayOf(
-        GoalListItem(R.color.colorPicker01,"오도어의 정령수",20, 23),
-        GoalListItem(R.color.colorPicker01,"오도어의 정령수",20, 23),
-        GoalListItem(R.color.colorPicker01,"오도어의 정령수",20, 23),
-        GoalListItem(R.color.colorPicker01,"오도어의 정령수",20, 23),
-        GoalListItem(R.color.colorPicker01,"오도어의 정령수",20, 23)
+    var items: MutableList<GoalListItem> = mutableListOf(
+        GoalListItem(R.color.colorPicker01,"오도어의 정령수",20, 23,false),
+        GoalListItem(R.color.colorPicker01,"오도어의 정령수",20, 23,false),
+        GoalListItem(R.color.colorPicker01,"오도어의 정령수",20, 23,false),
+        GoalListItem(R.color.colorPicker01,"오도어의 정령수",20, 23,false),
+        GoalListItem(R.color.colorPicker01,"오도어의 정령수",20, 23,false)
     )
 
     override fun onCreateView(
@@ -62,7 +64,6 @@ class GoallistFragment : Fragment() {
         binding.layoutPresetFAB.setOnClickListener {
             startActivity(Intent(activity, GoalPresetActivity::class.java))
         }
-
     }
 
     override fun onDestroyView() {
