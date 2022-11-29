@@ -29,7 +29,7 @@ class KakaoLogin : Application() {
 }
 
 class FirebaseUtil {
-    private val dbs: CollectionReference =
+    private val USER_DB: CollectionReference =
         FirebaseFirestore.getInstance().collection("userData")
 
     fun getCollection(docKey: String, colKey: String): CollectionReference {
@@ -41,11 +41,11 @@ class FirebaseUtil {
     }
 
     fun getDocument(key: String): DocumentReference {
-        return dbs.document(key)
+        return USER_DB.document(key)
     }
 
     fun setDocument(key: String) {
-        dbs.document(key)
+        USER_DB.document(key)
     }
 }
 
