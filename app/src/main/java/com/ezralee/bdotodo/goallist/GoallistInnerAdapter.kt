@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.GoallistInnerRecyclerItemBinding
-import com.ezralee.bdotodo.history.GoalListItem
+import com.ezralee.bdotodo.main.GoalListItem
 
 //소목표 단
 class GoallistInnerAdapter(var context: Context, var items: MutableList<GoalListItem>): RecyclerView.Adapter<GoallistInnerAdapter.VH>() {

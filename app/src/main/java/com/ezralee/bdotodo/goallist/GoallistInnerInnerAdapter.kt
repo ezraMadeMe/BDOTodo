@@ -8,17 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.GoallistInnerInnerRecyclerItemBinding
-import com.ezralee.bdotodo.history.GoalListItem
-import com.ezralee.bdotodo.main.UserInfo
+import com.ezralee.bdotodo.main.GoalListItem
 
 class GoallistInnerInnerAdapter(var context: Context, var items: MutableList<GoalListItem>) : RecyclerView.Adapter<GoallistInnerInnerAdapter.VH>() {
-
-    val pref: UserInfo by lazy { UserInfo(context) }
 
     inner class VH(itemView: View) : ViewHolder(itemView){
         val binding: GoallistInnerInnerRecyclerItemBinding = GoallistInnerInnerRecyclerItemBinding.bind(itemView)
         init {
-            pref.UserId()
+
         }
     }
 

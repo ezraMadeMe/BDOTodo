@@ -1,26 +1,43 @@
 package com.ezralee.bdotodo.goallist
 
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.ezralee.bdotodo.R
-import com.ezralee.bdotodo.history.GoalPresetItem
 import com.ezralee.bdotodo.databinding.ActivityGoalPresetBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FirebaseFirestore
 
-class GoalPresetActivity: AppCompatActivity(),
+class GoalPresetActivity : AppCompatActivity(),
     BottomNavigationView.OnNavigationItemSelectedListener {
 
-    val binding: ActivityGoalPresetBinding by lazy { ActivityGoalPresetBinding.inflate(layoutInflater) }
+    val binding: ActivityGoalPresetBinding by lazy {
+        ActivityGoalPresetBinding.inflate(
+            layoutInflater
+        )
+    }
+    private val goalPreset: CollectionReference =
+        FirebaseFirestore.getInstance().collection("goalPreset")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        goalPreset.get()
+            .addOnSuccessListener { result ->
+                for (document in result){
+
+                }
+            }
+            .addOnFailureListener {
+
+            }
+
         binding.presetBNV.setOnNavigationItemSelectedListener(this)
-        binding.presetVP.adapter = GoalPresetViewPagerAdapter(supportFragmentManager,lifecycle)
+        binding.presetVP.adapter = GoalPresetViewPagerAdapter(supportFragmentManager, lifecycle)
         binding.presetVP.registerOnPageChangeCallback(ViewPagerPageChangeCallback())
 
         binding.close.setOnClickListener {
@@ -31,7 +48,7 @@ class GoalPresetActivity: AppCompatActivity(),
 
     //선택된 BNV 감지하는 리스너 오버라이딩
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId){
+        return when (item.itemId) {
             R.id.menu_treasure -> {
                 binding.presetVP.currentItem = 0
                 true
@@ -49,9 +66,9 @@ class GoalPresetActivity: AppCompatActivity(),
     }
 
     //ViewPager의 페이지 변화 감지 콜백메서드 오버라이딩
-    inner class ViewPagerPageChangeCallback: ViewPager2.OnPageChangeCallback(){
+    inner class ViewPagerPageChangeCallback : ViewPager2.OnPageChangeCallback() {
         override fun onPageSelected(position: Int) {
-            binding.presetBNV.selectedItemId = when(position){
+            binding.presetBNV.selectedItemId = when (position) {
                 0 -> R.id.menu_treasure
                 1 -> R.id.menu_lifeskill
                 2 -> R.id.menu_gear

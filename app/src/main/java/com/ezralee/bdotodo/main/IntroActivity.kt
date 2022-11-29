@@ -16,28 +16,20 @@ import com.kakao.sdk.user.UserApiClient
 import java.text.SimpleDateFormat
 import java.util.*
 
-class IntroActivity: AppCompatActivity() {
+class IntroActivity : AppCompatActivity() {
     val binding: ActivityIntroBinding by lazy { ActivityIntroBinding.inflate(layoutInflater) }
-    //var pref: SharedPreferences = getSharedPreferences("isFirst", Activity.MODE_PRIVATE)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-//        if (!pref.getBoolean("isFirst",false)){
-//            var editor: SharedPreferences.Editor = pref.edit()
-//            editor.putBoolean("isFirst", true)
-//            editor.commit()
-//
-//            val intent = Intent(this, LoginActivity::class.java)
-//            startActivity(intent)
-//
-//        }else{
-//            val intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
-//        }
-//
-//        Toast.makeText(this, pref.getBoolean("isFirst",false).toString(), Toast.LENGTH_SHORT).show()
-
+        if (KakaoLogin.prefs.getString("userId","").equals("")) {
+            //Log.i("isFirst",KakaoLogin.prefs.getString("userId",""))
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        } else {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
     }//onCreate
 }

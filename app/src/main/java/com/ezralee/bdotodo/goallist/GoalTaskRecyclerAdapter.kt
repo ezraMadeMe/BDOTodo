@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.SetGoal2RecyclerItemBinding
-import com.ezralee.bdotodo.history.GoalTaskItem
+import com.ezralee.bdotodo.main.TaskItem
 
-class GoalTaskRecyclerAdapter(var context: Context, var items: MutableList<GoalTaskItem>) :
+class GoalTaskRecyclerAdapter(var context: Context, var items: MutableList<TaskItem>) :
     RecyclerView.Adapter<GoalTaskRecyclerAdapter.VH>() {
 
     inner class VH(itemView: View) : ViewHolder(itemView) {
@@ -29,7 +29,7 @@ class GoalTaskRecyclerAdapter(var context: Context, var items: MutableList<GoalT
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         holder.binding.addTask.setOnClickListener {
-            items.add(GoalTaskItem("", 0))
+            items.add(TaskItem("", 100,14))
         }
         holder.binding.deleteTask.setOnClickListener {
             items.removeAt(position)

@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.ezralee.bdotodo.history.DailyTodoItem
+import com.ezralee.bdotodo.main.DailyTodoItem
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.FragmentDaliyBinding
 import com.prolificinteractive.materialcalendarview.CalendarDay

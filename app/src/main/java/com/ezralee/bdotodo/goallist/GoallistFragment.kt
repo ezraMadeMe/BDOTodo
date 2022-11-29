@@ -6,10 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.ezralee.bdotodo.history.GoalListItem
+import com.ezralee.bdotodo.main.GoalListItem
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.FragmentGoallistBinding
-import com.google.firebase.firestore.FirebaseFirestore
 
 //대목표 단
 class GoallistFragment : Fragment() {

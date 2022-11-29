@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.ezralee.bdotodo.history.AddTodoItem
+import com.ezralee.bdotodo.main.AddTodoItem
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.AddTodoRecyclerItemBinding
 

@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
     BottomNavigationView.OnNavigationItemSelectedListener {
 
     lateinit var binding: ActivityMainBinding
-    var userInfo : UserInfo = UserInfo(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

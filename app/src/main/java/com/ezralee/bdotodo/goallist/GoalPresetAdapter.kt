@@ -6,9 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.ezralee.bdotodo.history.GoalPresetItem
+import com.ezralee.bdotodo.main.GoalPresetItem
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.ActivityGoalPresetItemBinding
+import com.ezralee.bdotodo.main.KakaoLogin
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FirebaseFirestore
 
 class GoalPresetAdapter(var context: Context, var items: MutableList<GoalPresetItem>):Adapter<GoalPresetAdapter.VH>() {
 

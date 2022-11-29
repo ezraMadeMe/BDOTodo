@@ -1,13 +1,12 @@
 package com.ezralee.bdotodo.goallist
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.ezralee.bdotodo.databinding.FragmentPresetListBinding
-import com.ezralee.bdotodo.history.GoalPresetItem
+import com.ezralee.bdotodo.main.GoalPresetItem
 
 class GoalPresetListFragment(): Fragment() {
     var items: MutableList<GoalPresetItem> = mutableListOf(

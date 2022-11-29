@@ -1,22 +1,16 @@
 package com.ezralee.bdotodo.goallist
 
 import android.content.Context
-import android.util.SparseBooleanArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.Transformation
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
-import androidx.core.view.get
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.ezralee.bdotodo.history.GoalListInnerItem
-import com.ezralee.bdotodo.history.GoalListItem
+import com.ezralee.bdotodo.main.GoalListItem
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.GoallistRecyclerItemBinding
-import kotlin.math.exp
 
 class GoallistAdapter(var context: Context, var items: MutableList<GoalListItem>) :
     RecyclerView.Adapter<GoallistAdapter.VH>() {
