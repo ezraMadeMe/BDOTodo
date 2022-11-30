@@ -15,11 +15,6 @@ class GoalTaskRecyclerAdapter(var context: Context, var items: MutableList<TaskI
 
     inner class VH(itemView: View) : ViewHolder(itemView) {
         val binding: SetGoal2RecyclerItemBinding = SetGoal2RecyclerItemBinding.bind(itemView)
-
-        init {
-            binding.deleteTask.visibility = View.INVISIBLE
-            binding.andOrText.visibility = View.INVISIBLE
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {

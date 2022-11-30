@@ -17,13 +17,10 @@ import java.util.*
 class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener,
     BottomNavigationView.OnNavigationItemSelectedListener {
 
-    lateinit var binding: ActivityMainBinding
+    val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_main)
-
-        binding = inflate(layoutInflater)
         setContentView(binding.root)
 
         //선택된 BNV 반응

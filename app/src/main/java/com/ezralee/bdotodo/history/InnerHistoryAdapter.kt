@@ -13,13 +13,8 @@ import com.ezralee.bdotodo.main.HistoryItem
 import java.text.SimpleDateFormat
 import java.util.*
 
-class InnerHistoryAdapter(val context: Context, var historyInnerItems: Array<HistoryItem>) :
+class InnerHistoryAdapter(val context: Context, var historyInnerItems: MutableList<HistoryItem>) :
     RecyclerView.Adapter<InnerHistoryAdapter.VH>() {
-
-    val now = System.currentTimeMillis()
-    val date = Date(now)
-    val sdf = SimpleDateFormat("yyyy/MM/dd")
-    val createdDate = sdf.format(date)
 
     inner class VH(itemview: View) : RecyclerView.ViewHolder(itemview){
         val binding: HistoryInnerRecyclerItemBinding = HistoryInnerRecyclerItemBinding.bind(itemview)
@@ -43,7 +38,6 @@ class InnerHistoryAdapter(val context: Context, var historyInnerItems: Array<His
         //카테고리
 
         holder.itemView.setOnClickListener {
-
             var intent = Intent(context,ShowHistoryDetailActivity::class.java)
             intent.putExtra("title",historyInnerItems[position].title)
             intent.putExtra("date", historyInnerItems[position].date)
@@ -51,17 +45,7 @@ class InnerHistoryAdapter(val context: Context, var historyInnerItems: Array<His
             intent.putExtra("image",historyInnerItems[position].image)
             intent.putExtra("memo",historyInnerItems[position].memo)
             context.startActivity(intent)
-
-//            var showHistoryDetailActivity = ShowHistoryDetailActivity()
-//            var bundle = Bundle()
-//            bundle.putString("title",historyInnerItems[position].title)
-//            bundle.putString("date", historyInnerItems[position].date)
-//            bundle.putString("category",historyInnerItems[position].category)
-//            bundle.putInt("image",historyInnerItems[position].image)
-//            bundle.putString("memo",historyInnerItems[position].memo)
-//            showHistoryDetailActivity.arguments = bundle
         }
-
     }
 
     override fun getItemCount(): Int {

@@ -10,7 +10,7 @@ import com.ezralee.bdotodo.main.HistoryItem
 import java.text.SimpleDateFormat
 import java.util.*
 
-class HistoryAdapter(var context: Context, var historyItems: Array<HistoryItem>) : RecyclerView.Adapter<HistoryAdapter.VH>(){
+class HistoryAdapter(var context: Context, var historyItems: MutableList<HistoryItem>) : RecyclerView.Adapter<HistoryAdapter.VH>(){
 
     val now = System.currentTimeMillis()
     val date = Date(now)
@@ -42,6 +42,4 @@ class HistoryAdapter(var context: Context, var historyItems: Array<HistoryItem>)
     override fun getItemCount(): Int {
         return historyItems.size
     }
-
-
 }

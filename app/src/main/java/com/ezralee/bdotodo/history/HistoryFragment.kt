@@ -12,29 +12,15 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class HistoryFragment : Fragment() {
-    var _binding: FragmentHistoryBinding? = null
-    val binding get() = _binding!!
-
-    val now = System.currentTimeMillis()
-    val date = Date(now)
-    val sdf = SimpleDateFormat("yyyy/MM/dd")
-    val createdDate = sdf.format(date)
-
-//    var historyItems: Array<HistoryItem> = arrayOf(
-//        HistoryItem("앱 생성일",createdDate,"카테고리11", R.drawable.img_sample,"메모메모메모")
-//    )
+    val binding: FragmentHistoryBinding by lazy { FragmentHistoryBinding.inflate(layoutInflater) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentHistoryBinding.inflate(inflater, container, false)
-        val view = binding.root
 
-        //binding.historyRecycler.adapter = HistoryAdapter(requireContext(),historyItems)
-
-        return view
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,10 +33,4 @@ class HistoryFragment : Fragment() {
 
         }
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
 }

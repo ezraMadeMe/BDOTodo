@@ -7,10 +7,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 
-class GoalViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle, var context: Context) : FragmentStateAdapter(fragmentManager, lifecycle) {
+class GoalViewPagerAdapter(var fragmentManager: FragmentManager, lifecycle: Lifecycle, var context: Context) : FragmentStateAdapter(fragmentManager, lifecycle) {
 
-    override fun getItemCount(): Int = (context as SetGoalActivity).items.size
+    override fun getItemCount(): Int = fragmentManager.fragments.size
 
     override fun createFragment(position: Int): Fragment {
 
@@ -19,10 +20,4 @@ class GoalViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycl
             else -> SetGoalFragment2()
         }
     }
-
-
-//    fun addItem(){
-//        items.add(SetGoalFragment2())
-//        notifyDataSetChanged()
-//    }
 }

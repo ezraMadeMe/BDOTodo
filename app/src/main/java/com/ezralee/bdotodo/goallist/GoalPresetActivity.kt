@@ -3,38 +3,27 @@ package com.ezralee.bdotodo.goallist
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.ActivityGoalPresetBinding
+import com.google.android.gms.tasks.Task
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QueryDocumentSnapshot
+import com.google.firebase.firestore.QuerySnapshot
 
 class GoalPresetActivity : AppCompatActivity(),
     BottomNavigationView.OnNavigationItemSelectedListener {
 
-    val binding: ActivityGoalPresetBinding by lazy {
-        ActivityGoalPresetBinding.inflate(
-            layoutInflater
-        )
-    }
-    private val goalPreset: CollectionReference =
-        FirebaseFirestore.getInstance().collection("goalPreset")
+    val binding: ActivityGoalPresetBinding by lazy { ActivityGoalPresetBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-        goalPreset.get()
-            .addOnSuccessListener { result ->
-                for (document in result){
-
-                }
-            }
-            .addOnFailureListener {
-
-            }
 
         binding.presetBNV.setOnNavigationItemSelectedListener(this)
         binding.presetVP.adapter = GoalPresetViewPagerAdapter(supportFragmentManager, lifecycle)

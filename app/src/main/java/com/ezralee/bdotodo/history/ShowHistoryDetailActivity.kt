@@ -14,11 +14,11 @@ import com.ezralee.bdotodo.databinding.ActivityShowHistoryBinding
 
 class ShowHistoryDetailActivity: AppCompatActivity() {
 
-    lateinit var binding: ActivityShowHistoryBinding
+    val binding: ActivityShowHistoryBinding by lazy { ActivityShowHistoryBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityShowHistoryBinding.inflate(layoutInflater)
+
         setContentView(binding.root)
 
         var intent = Intent()

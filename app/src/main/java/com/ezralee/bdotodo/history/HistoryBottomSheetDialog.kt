@@ -9,17 +9,15 @@ import com.ezralee.bdotodo.databinding.BottomSheetHistoryBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class HistoryBottomSheetDialog : BottomSheetDialogFragment() {
-    var _binding: BottomSheetHistoryBinding? = null
-    val binding get() = _binding!!
+    val binding: BottomSheetHistoryBinding by lazy { BottomSheetHistoryBinding.inflate(layoutInflater) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = BottomSheetHistoryBinding.inflate(inflater,container,false)
-        var view = binding.root
-        return view
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -31,10 +29,5 @@ class HistoryBottomSheetDialog : BottomSheetDialogFragment() {
         //선택한 날짜로 리사이클러의 포커스 이동
         binding.historyDate.setOnClickListener {  }
 
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

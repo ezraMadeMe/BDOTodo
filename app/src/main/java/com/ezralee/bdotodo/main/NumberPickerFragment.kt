@@ -11,19 +11,13 @@ import androidx.fragment.app.Fragment
 import com.ezralee.bdotodo.databinding.FragmentNumberPickerBinding
 
 class NumberPickerFragment: DialogFragment() {
-    var _binding: FragmentNumberPickerBinding? = null
-    val binding get() = _binding!!
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    val binding: FragmentNumberPickerBinding by lazy { FragmentNumberPickerBinding.inflate(layoutInflater) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentNumberPickerBinding.inflate(inflater,container,false)
         dialog?.window?.setLayout(WindowManager.LayoutParams.WRAP_CONTENT,WindowManager.LayoutParams.WRAP_CONTENT)
 
         return binding.root
@@ -41,12 +35,4 @@ class NumberPickerFragment: DialogFragment() {
             //선택한 숫자를 task 개수 textview에 설정
         }
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
-
-
 }

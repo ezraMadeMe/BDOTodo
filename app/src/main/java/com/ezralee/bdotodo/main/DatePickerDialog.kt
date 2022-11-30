@@ -13,12 +13,7 @@ import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.FragmentDatePickerBinding
 
 class DatePickerDialog: DialogFragment() {
-    var _binding: FragmentDatePickerBinding? = null
-    val binding get() = _binding!!
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    val binding: FragmentDatePickerBinding by lazy { FragmentDatePickerBinding.inflate(layoutInflater) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,10 +21,8 @@ class DatePickerDialog: DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentDatePickerBinding.inflate(inflater, container, false)
         binding.datePicker.setOnFocusChangeListener { view, b ->
             view.setBackgroundColor(resources.getColor(R.color.colorPrimaryVariant))
-
         }
 
         return binding.root
@@ -41,14 +34,8 @@ class DatePickerDialog: DialogFragment() {
         binding.datePicker.setOnDateChangedListener { datePicker, i, i2, i3 ->
             Toast.makeText(requireContext(), "$i/$i2/$i3", Toast.LENGTH_SHORT).show()
             var intent = Intent().putExtra("date","$i/$i2/$i3")
-            startActivity(intent)
+                //setResult(2, intent)
             dismiss()
         }
     }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
-
 }

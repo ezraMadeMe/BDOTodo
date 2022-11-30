@@ -20,26 +20,13 @@ class ColorPickerFragment : DialogFragment() {
         R.color.colorPicker08,
     )
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        binding.colorPickerRecycler.adapter = ColorPickerAdapter(requireContext())
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding.colorPickerRecycler.adapter = ColorPickerAdapter(requireContext(),items)
 
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
-
     }
 }

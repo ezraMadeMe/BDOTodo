@@ -9,18 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.ColorPickerItemBinding
 
-class ColorPickerAdapter(var context: Context) : RecyclerView.Adapter<ColorPickerAdapter.VH>() {
-
-    var items: MutableList<Int> = mutableListOf(
-        R.color.colorPicker01,
-        R.color.colorPicker02,
-        R.color.colorPicker03,
-        R.color.colorPicker04,
-        R.color.colorPicker05,
-        R.color.colorPicker06,
-        R.color.colorPicker07,
-        R.color.colorPicker08,
-    )
+class ColorPickerAdapter(var context: Context, var items: MutableList<Int>) : RecyclerView.Adapter<ColorPickerAdapter.VH>() {
 
     inner class VH(itemView: View) : RecyclerView.ViewHolder(itemView){
         var binding: ColorPickerItemBinding = ColorPickerItemBinding.bind(itemView)

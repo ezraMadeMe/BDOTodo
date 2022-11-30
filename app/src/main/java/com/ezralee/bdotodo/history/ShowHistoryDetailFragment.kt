@@ -12,22 +12,16 @@ import com.ezralee.bdotodo.databinding.ActivityShowHistoryBinding
 
 class ShowHistoryDetailFragment: DialogFragment() {
 
-    lateinit var binding: ActivityShowHistoryBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setStyle(STYLE_NO_TITLE, R.style.history_dialog)
-
-        isCancelable = true
-    }
+    val binding: ActivityShowHistoryBinding by lazy { ActivityShowHistoryBinding.inflate(layoutInflater) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setStyle(STYLE_NO_TITLE, R.style.history_dialog)
 
-        binding = ActivityShowHistoryBinding.inflate(inflater,container,false)
+        isCancelable = true
 
         return binding.root
     }

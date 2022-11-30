@@ -22,10 +22,8 @@ class SetGoalFragment2: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var view = FragmentSetGoal2Binding.inflate(inflater, container, false)
-
         binding.taskRecycler.adapter = GoalTaskRecyclerAdapter(requireContext(),items)
-        return view.root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,6 +44,5 @@ class SetGoalFragment2: Fragment() {
         binding.deleteDetailGoalPage.setOnClickListener {
             (activity as SetGoalActivity).deletePage()
         }
-
     }
 }
