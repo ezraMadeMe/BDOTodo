@@ -14,7 +14,7 @@ class KakaoLogin : Application() {
     companion object {
         lateinit var prefs: PreferenceUtil
         lateinit var USER_DB: FirebaseUtil
-        lateinit var USER_ID: String
+        val USER_ID: String by lazy { prefs.getString("userInfo","") }
     }
 
     override fun onCreate() {
@@ -22,9 +22,7 @@ class KakaoLogin : Application() {
         //카카오SDK 초기화
         KakaoSdk.init(this, "3d3bd2ed347c5b04c668e03c479785f3")
 
-        prefs = PreferenceUtil(applicationContext)
         USER_DB = FirebaseUtil()
-        USER_ID = prefs.getString("userInfo", "null")
     }
 }
 

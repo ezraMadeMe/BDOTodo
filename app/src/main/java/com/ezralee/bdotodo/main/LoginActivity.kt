@@ -48,8 +48,8 @@ class LoginActivity : AppCompatActivity() {
                 )
 
                 //첫 히스토리 생성
-                KakaoLogin.USER_DB.setCollection(KakaoLogin.USER_ID,"history")
-                var collection = KakaoLogin.USER_DB.getCollection(KakaoLogin.USER_ID,"history")
+                //KakaoLogin.USER_DB.setCollection(KakaoLogin.USER_ID,"history")
+                //var collection = KakaoLogin.USER_DB.getCollection(KakaoLogin.USER_ID,"history")
                 //collection.document(firstHistory[title]!!).set(firstHistory)
 
                 //로그인 성공 시 메인액티비티로 intent
@@ -83,7 +83,7 @@ class LoginActivity : AppCompatActivity() {
                 //prefs에 유저 아이디 저장
                 KakaoLogin.prefs.setString("userInfo", id)
                 //prefs에 저장된 아이디를 변수에 저장
-                KakaoLogin.USER_ID = KakaoLogin.prefs.getString("userInfo","null")
+                //KakaoLogin.USER_ID = KakaoLogin.prefs.getString("userInfo","null")
                 //유저 아이디로 된 최상위 DB 문서 생성
                 KakaoLogin.USER_DB.setDocument(id)
 
