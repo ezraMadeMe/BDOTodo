@@ -9,7 +9,8 @@ import java.util.*
 //안쪽 리사이클러 미리보기 정보(제목/이미지)
 //data class HistoryItem constructor(var title: String, var image: Int)
 //히스토리 초기 세팅 시 필요한 종합 정보
-data class HistoryItem constructor(var title: String, var date: String, var category: String, var image: String, var memo: String)
+data class HistoryItem constructor(var title: String, var date: String, var category: String, var memo: String)
+data class HistoryImage constructor(var title: String, var image: String)
 
 //데일리
 //
@@ -23,21 +24,3 @@ data class GoalListItem constructor(var color: Int, var title: String, var perce
 data class GoalItem constructor(var goal: String, var color: String, var start: String, var end: String, var category: String, var memo: String, var andor: Boolean, var planItems: MutableList<PlanItem>)
 data class PlanItem constructor(var plan: String, var start: String, var end: String, var taskItems: MutableList<TaskItem>)
 data class TaskItem constructor(var task: String, var total: Int, var count: Int)
-
-class Info{
-
-    companion object{
-        val now by lazy { System.currentTimeMillis() }
-        lateinit var now2: Date
-        lateinit var sdf: SimpleDateFormat
-        lateinit var date: String
-    }
-
-    //오늘 날짜 가져오기
-    fun getDate(): String{
-        now2 = Date(now)
-        sdf = SimpleDateFormat("yyyy/MM/dd")
-        date = sdf.format(now2)
-        return date
-    }
-}

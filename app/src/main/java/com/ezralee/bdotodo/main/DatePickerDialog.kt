@@ -12,8 +12,12 @@ import androidx.fragment.app.DialogFragment
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.FragmentDatePickerBinding
 
-class DatePickerDialog: DialogFragment() {
-    val binding: FragmentDatePickerBinding by lazy { FragmentDatePickerBinding.inflate(layoutInflater) }
+class DatePickerDialog : DialogFragment() {
+    val binding: FragmentDatePickerBinding by lazy {
+        FragmentDatePickerBinding.inflate(
+            layoutInflater
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,7 +26,7 @@ class DatePickerDialog: DialogFragment() {
     ): View? {
 
         binding.datePicker.setOnFocusChangeListener { view, b ->
-            view.setBackgroundColor(resources.getColor(R.color.colorPrimaryVariant))
+            view.setBackgroundColor(resources.getColor(R.color.colorOnSecondary))
         }
 
         return binding.root
@@ -33,8 +37,8 @@ class DatePickerDialog: DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.datePicker.setOnDateChangedListener { datePicker, i, i2, i3 ->
             Toast.makeText(requireContext(), "$i/$i2/$i3", Toast.LENGTH_SHORT).show()
-            var intent = Intent().putExtra("date","$i/$i2/$i3")
-                //setResult(2, intent)
+            var intent = Intent().putExtra("date", "$i/$i2/$i3")
+            startActivity(intent)
             dismiss()
         }
     }

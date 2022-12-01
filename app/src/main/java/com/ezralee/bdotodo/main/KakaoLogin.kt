@@ -7,6 +7,19 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.kakao.sdk.common.KakaoSdk
+import okhttp3.MultipartBody
+import retrofit2.Call
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
+import retrofit2.http.GET
+import retrofit2.http.Multipart
+import retrofit2.http.POST
+import retrofit2.http.Part
+import retrofit2.http.PartMap
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class KakaoLogin : Application() {
 
@@ -14,7 +27,7 @@ class KakaoLogin : Application() {
     companion object {
         lateinit var prefs: PreferenceUtil
         lateinit var USER_DB: FirebaseUtil
-        val USER_ID: String by lazy { prefs.getString("userInfo","") }
+        val USER_ID: String by lazy { prefs.getString("userInfo", "") }
     }
 
     override fun onCreate() {
@@ -57,5 +70,23 @@ class PreferenceUtil(context: Context) {
 
     fun setString(key: String, str: String) {
         prefs.edit().putString(key, str).apply()
+    }
+}
+
+class Info {
+
+    companion object {
+        val now by lazy { System.currentTimeMillis() }
+        lateinit var now2: Date
+        lateinit var sdf: SimpleDateFormat
+        lateinit var date: String
+    }
+
+    //오늘 날짜 가져오기
+    fun getDate(): String {
+        now2 = Date(now)
+        sdf = SimpleDateFormat("yyyy/MM/dd")
+        date = sdf.format(now2)
+        return date
     }
 }

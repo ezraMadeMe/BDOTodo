@@ -42,7 +42,6 @@ class InnerHistoryAdapter(val context: Context, var historyInnerItems: MutableLi
             intent.putExtra("title",historyInnerItems[position].title)
             intent.putExtra("date", historyInnerItems[position].date)
             intent.putExtra("category",historyInnerItems[position].category)
-            intent.putExtra("image",historyInnerItems[position].image)
             intent.putExtra("memo",historyInnerItems[position].memo)
             context.startActivity(intent)
         }
