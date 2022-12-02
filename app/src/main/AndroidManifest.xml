@@ -38,6 +38,16 @@
         </activity>
 
         <activity
+            android:name=".history.SetHistoryActivity"
+            android:enabled="true"
+            android:exported="true"
+            android:theme="@style/MyDialogActivity">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name=".goallist.SetGoalActivity"
             android:enabled="true"
             android:exported="true">
@@ -47,7 +57,7 @@
         </activity>
 
         <activity
-            android:name=".history.ShowHistoryDetailActivity"
+            android:name=".history.ShowHistoryActivity"
             android:enabled="true"
             android:exported="true"
             android:theme="@style/MyDialogActivity">

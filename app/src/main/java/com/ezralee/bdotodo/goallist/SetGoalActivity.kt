@@ -23,6 +23,14 @@ class SetGoalActivity : AppCompatActivity() {
 
         binding.setGoalPager.adapter = adapter
         binding.setGoalPager.getChildAt(binding.setGoalPager.currentItem)
+
+//        binding.historyColorPicker.setOnClickListener {
+//            val colorPicker = ColorPickerFragment()
+//            colorPicker.show(parentFragmentManager, "set color")
+//            //컬러피커 색상 변경적용 안됨
+//            //colorPicker.dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+//
+//        }
     }
 
     fun addPage() {

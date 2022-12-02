@@ -7,39 +7,27 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ezralee.bdotodo.databinding.HistoryRecyclerItemBinding
 import com.ezralee.bdotodo.main.HistoryItem
-import java.text.SimpleDateFormat
-import java.util.*
 
-class HistoryAdapter(var context: Context, var historyItems: MutableList<HistoryItem>) : RecyclerView.Adapter<HistoryAdapter.VH>(){
+class HistoryAdapter(var context: Context, var items: MutableList<HistoryItem>) : RecyclerView.Adapter<HistoryAdapter.VH>(){
 
-    val now = System.currentTimeMillis()
-    val date = Date(now)
-    val sdf = SimpleDateFormat("yyyy/MM/dd")
-    val createdDate = sdf.format(date)
-
-    inner class VH(val binding: HistoryRecyclerItemBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(date: HistoryItem) {
-            binding.historyRecyclerDateRight.text = date.date
-            binding.historyRecyclerDateLeft.text = date.date
-        }
-        init {
-            binding.historyRecyclerLeft.visibility = View.INVISIBLE
-        }
+    inner class VH(itemView: View) : RecyclerView.ViewHolder(itemView){
+        val binding: HistoryRecyclerItemBinding = HistoryRecyclerItemBinding.bind(itemView)
     }//inner class VH
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val binding = HistoryRecyclerItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-        return VH(binding)
+        return VH(binding.root)
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        holder.bind(historyItems[position])
-        holder.binding.historyRecyclerDatasRight.adapter = InnerHistoryAdapter(context, historyItems)
-        holder.binding.historyRecyclerDatasLeft.adapter = InnerHistoryAdapter(context, historyItems)
-        holder.binding.historyRecyclerDateRight.text = historyItems[position].date
+
+        holder.binding.historyRecyclerDatasRight.adapter = InnerHistoryAdapter(context, items)
+        holder.binding.historyRecyclerDatasLeft.adapter = InnerHistoryAdapter(context, items)
+        holder.binding.historyRecyclerDateLeft.text = items[position].date
+        holder.binding.historyRecyclerDateRight.text = items[position].date
     }
 
     override fun getItemCount(): Int {
-        return historyItems.size
+        return items.size
     }
 }

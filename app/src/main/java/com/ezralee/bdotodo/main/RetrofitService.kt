@@ -16,5 +16,5 @@ interface RetrofitService {
     ): Call<String>
 
     @GET("bdotodo/loadHistoryDB.php")
-    fun loadHistoryFromServer(): Call<ArrayList<HistoryItem>>
+    fun loadHistoryFromServer(): Call<MutableList<HistoryItem>>
 }

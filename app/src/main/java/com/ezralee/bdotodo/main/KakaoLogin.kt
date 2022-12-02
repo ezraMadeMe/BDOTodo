@@ -77,16 +77,8 @@ class Info {
 
     companion object {
         val now by lazy { System.currentTimeMillis() }
-        lateinit var now2: Date
-        lateinit var sdf: SimpleDateFormat
-        lateinit var date: String
-    }
-
-    //오늘 날짜 가져오기
-    fun getDate(): String {
-        now2 = Date(now)
-        sdf = SimpleDateFormat("yyyy/MM/dd")
-        date = sdf.format(now2)
-        return date
+        val now2: Date by lazy { Date(now) }
+        val sdf: SimpleDateFormat by lazy { SimpleDateFormat("yyyy/MM/dd") }
+        var date: String = sdf.format(now2)
     }
 }

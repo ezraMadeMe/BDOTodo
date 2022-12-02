@@ -1,14 +1,25 @@
 package com.ezralee.bdotodo.main
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.ActivityLoginBinding
+import com.ezralee.bdotodo.history.SetHistoryActivity
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -30,28 +41,12 @@ class LoginActivity : AppCompatActivity() {
     //카카오 로그인
     fun clickedKakaoLogin() {
         val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
-            Log.i("choco",token.toString())
+            Log.i("choco", token.toString())
             if (token != null) {
                 //유저 정보를 가져와 DB,SharedPreference 생성
                 loadUserInfo()
-
-                //오늘 날짜
-                var sdf = SimpleDateFormat("yyyy/MM/dd")
-                var timeStamp = sdf.format(Date())
-
                 //유저의 최초 히스토리 DB 생성
-                var firstHistory: MutableMap<String, String> = mutableMapOf(
-                    "title" to "앱 생성일",
-                    "date" to timeStamp,
-                    "category" to "히스토리",
-                    "memo" to "이것만 하고 자야지 와 함께 검창의 세계로"
-                )
-
-                //첫 히스토리 생성
-                //KakaoLogin.USER_DB.setCollection(KakaoLogin.USER_ID,"history")
-                //var collection = KakaoLogin.USER_DB.getCollection(KakaoLogin.USER_ID,"history")
-                //collection.document(firstHistory[title]!!).set(firstHistory)
-
+                postFirstHistory()
                 //로그인 성공 시 메인액티비티로 intent
                 var intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
@@ -70,6 +65,44 @@ class LoginActivity : AppCompatActivity() {
 
         //return UserData(UserInfo.USER_ID, UserInfo.USER_DB)
     }//카카오 로그인
+
+    fun postFirstHistory() {
+        val retrofit = RetrofitHelper().getRetrofitInstance()
+        val retrofitService = retrofit.create(RetrofitService::class.java)
+        var imgPath = R.drawable.img_sample
+
+        var filePart: MultipartBody.Part? = null
+
+        if (imgPath != null) {
+            var file = File(imgPath.toString())
+            var requestBody = RequestBody.create(MediaType.parse("image/*"), file)
+            filePart = MultipartBody.Part.createFormData("img", file.name, requestBody)
+        }
+
+        var dataPart = HashMap<String, String>()
+        dataPart.put("userId", KakaoLogin.USER_ID)
+        dataPart.put("title", "앱 생성일")
+        dataPart.put("date", Info.date)
+        dataPart.put("category", "히스토리")
+        dataPart.put("memo", "이것만 하고 자야지 와 함께 검창의 세계로")
+
+        val call: Call<String> = retrofitService.postHistoryToServer(dataPart, filePart!!)
+        call.enqueue(object : Callback<String> {
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                var result: String? = response.body()
+                Toast.makeText(this@LoginActivity, "저장 성공", Toast.LENGTH_SHORT).show()
+
+            }
+
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                //Toast.makeText(this@SetHistoryActivity, ""+t.toString(), Toast.LENGTH_SHORT).show()
+                AlertDialog.Builder(this@LoginActivity).setMessage(t.message).show()
+            }
+
+        })
+
+        //"image" to R.drawable.img_sample
+    }
 
     fun loadUserInfo() {
         UserApiClient.instance.me { user, error ->

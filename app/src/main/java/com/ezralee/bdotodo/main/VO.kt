@@ -9,7 +9,7 @@ import java.util.*
 //안쪽 리사이클러 미리보기 정보(제목/이미지)
 //data class HistoryItem constructor(var title: String, var image: Int)
 //히스토리 초기 세팅 시 필요한 종합 정보
-data class HistoryItem constructor(var title: String, var date: String, var category: String, var memo: String)
+data class HistoryItem constructor(var userId: String, var title: String, var date: String, var category: String, var memo: String, var image: String)
 data class HistoryImage constructor(var title: String, var image: String)
 
 //데일리

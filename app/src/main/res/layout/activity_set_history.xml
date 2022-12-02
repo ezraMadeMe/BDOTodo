@@ -150,7 +150,7 @@
             <ImageView
                 android:id="@+id/history_image"
                 android:layout_width="240dp"
-                android:layout_height="wrap_content"
+                android:layout_height="140dp"
                 android:layout_gravity="center"
                 android:adjustViewBounds="true"
                 android:scaleType="centerInside"
@@ -208,8 +208,7 @@
             android:overScrollMode="ifContentScrolls"
             android:layout_marginHorizontal="4dp"
             android:background="@null"
-            android:hint="히스토리 제목 입력"
-            android:text="기존 히스토리 메모"
+            android:hint="히스토리 메모"
             android:textColor="@color/colorOnSecondary"
             android:textColorHint="@color/colorOnSecondary"
             android:textCursorDrawable="@color/colorPrimaryVariant"/>
