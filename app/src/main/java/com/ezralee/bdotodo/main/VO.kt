@@ -10,7 +10,6 @@ import java.util.*
 //data class HistoryItem constructor(var title: String, var image: Int)
 //히스토리 초기 세팅 시 필요한 종합 정보
 data class HistoryItem constructor(var userId: String, var title: String, var date: String, var category: String, var memo: String, var image: String)
-data class HistoryImage constructor(var title: String, var image: String)
 
 //데일리
 //
@@ -18,7 +17,6 @@ data class DailyTodoItem constructor(var color: Int, var todo: String, var title
 data class AddTodoItem constructor(var date: String, var task: String, var count: Int)
 
 //목표
-data class GoalPresetItem constructor(var title: String)
 data class GoalListItem constructor(var color: Int, var title: String, var percent: Int, var dday: Int, var isExpanded: Boolean)
 
 data class GoalItem constructor(var goal: String, var color: String, var start: String, var end: String, var category: String, var memo: String, var andor: Boolean, var planItems: MutableList<PlanItem>)

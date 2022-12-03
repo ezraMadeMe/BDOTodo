@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.ezralee.bdotodo.databinding.FragmentHistoryBinding
 import com.ezralee.bdotodo.main.HistoryItem
 import com.ezralee.bdotodo.main.RetrofitHelper
@@ -16,7 +17,6 @@ import okio.Timeout
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.collections.ArrayList
 
 class HistoryFragment : Fragment() {
     val binding: FragmentHistoryBinding by lazy { FragmentHistoryBinding.inflate(layoutInflater) }
@@ -35,7 +35,11 @@ class HistoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.historyRecycler.adapter = HistoryAdapter(requireContext(),items)
-        loadData()
+
+        binding.swipeRefresh.setOnRefreshListener {
+            loadData()
+            binding.swipeRefresh.isRefreshing = false
+        }
 
         binding.historyBtn.setOnClickListener {
             val intent = Intent(activity,SetHistoryActivity::class.java)
@@ -61,9 +65,7 @@ class HistoryFragment : Fragment() {
                 var responseItems: MutableList<HistoryItem> = response.body()!!
                 Toast.makeText(activity, ""+items.size, Toast.LENGTH_SHORT).show()
                 for (item : HistoryItem in responseItems){
-                    var i = 0
                     items.add(0,item)
-                    //ConcurrentModificationException 오류
                     binding.historyRecycler.adapter?.notifyItemInserted(0)
                 }
             }

@@ -11,6 +11,11 @@
         android:background="@color/colorSecondary"
         android:layout_centerInParent="true"/>
 
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/swipe_refresh">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/history_recycler"
         android:layout_width="match_parent"
@@ -19,6 +24,8 @@
         android:orientation="vertical"
         app:reverseLayout="true"
         app:stackFromEnd="true"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/history_btn"

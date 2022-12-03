@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.text.Editable
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -39,9 +40,11 @@ import java.util.*
 import kotlin.collections.HashMap
 
 class SetHistoryActivity : AppCompatActivity() {
-    val binding: ActivitySetHistoryBinding by lazy { ActivitySetHistoryBinding.inflate(layoutInflater) }
-
-    //lateinit var item: HistoryItem
+    val binding: ActivitySetHistoryBinding by lazy {
+        ActivitySetHistoryBinding.inflate(
+            layoutInflater
+        )
+    }
     lateinit var imgPath: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,12 +52,23 @@ class SetHistoryActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.historyDateEdit.text = Info.date
+
+        var intent = intent
+        if (intent != null){
+            binding.historyTitleEdit.setText(intent.getStringExtra("title"))
+            binding.historyDateEdit.text = intent.getStringExtra("date")
+            //binding.historyCategory.text = intent.getStringExtra("category")
+            binding.historyMemoEdit.setText(intent.getStringExtra("memo"))
+            //이미지 로드 안됨
+            Glide.with(this@SetHistoryActivity).load(intent.getStringExtra("image")).into(binding.historyImage)
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onStart() {
         super.onStart()
 
+        //창을 띄울 때 오늘 날짜로 기본 설정이 안됨
         binding.historyDateEdit.setOnClickListener {
             val datePickerDialog = DatePickerDialog()
             datePickerDialog.show(supportFragmentManager, "date")
@@ -89,7 +103,8 @@ class SetHistoryActivity : AppCompatActivity() {
                 // 권한 요청 하기(requestPermissions) -> 갤러리 접근(onRequestPermissionResult)
                 else -> {
                     requestPermissions(
-                        arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), 1000)
+                        arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE), 1000
+                    )
                 }
             }
         }
@@ -123,47 +138,34 @@ class SetHistoryActivity : AppCompatActivity() {
         var category = binding.historyCategory.selectedItem.toString()
         var memo = binding.historyMemoEdit.text.toString()
 
-        if (title != null && date != null && category != null) {
-            val retrofit = RetrofitHelper().getRetrofitInstance()
-            val retrofitService = retrofit.create(RetrofitService::class.java)
-            var filePart: MultipartBody.Part? = null
+        val retrofit = RetrofitHelper().getRetrofitInstance()
+        val retrofitService = retrofit.create(RetrofitService::class.java)
+        var filePart: MultipartBody.Part? = null
 
-            if (imgPath != null) {
-                var file = File(imgPath)
-                var requestBody = RequestBody.create(MediaType.parse("image/*"), file)
-                filePart = MultipartBody.Part.createFormData("img", file.name, requestBody)
-            }
-
-            var dataPart = HashMap<String, String>()
-            dataPart.put("userId", userId)
-            dataPart.put("title", title)
-            dataPart.put("date", date)
-            dataPart.put("category", category)
-            dataPart.put("memo", memo)
-
-            val call: Call<String> = retrofitService.postHistoryToServer(dataPart, filePart!!)
-            call.enqueue(object : Callback<String> {
-                override fun onResponse(call: Call<String>, response: Response<String>) {
-                    Toast.makeText(this@SetHistoryActivity, "저장 성공", Toast.LENGTH_SHORT).show()
-
-                }
-
-                override fun onFailure(call: Call<String>, t: Throwable) {
-                    AlertDialog.Builder(this@SetHistoryActivity).setMessage(t.message).show()
-                }
-            })
-        } else {
-            var s =""
-            when {
-                title == null
-                -> s+="제목"
-                date == null
-                -> s+="날짜"
-                category == null
-                -> s+="카테고리"
-            }
-            Toast.makeText(this@SetHistoryActivity, "$s 를 입력해 주세요", Toast.LENGTH_SHORT).show()
+        if (imgPath != null) {
+            var file = File(imgPath)
+            var requestBody = RequestBody.create(MediaType.parse("image/*"), file)
+            filePart = MultipartBody.Part.createFormData("img", file.name, requestBody)
         }
+
+        var dataPart = hashMapOf<String, String>()
+        dataPart.put("userId", userId)
+        dataPart.put("title", title)
+        dataPart.put("date", date)
+        dataPart.put("category", category)
+        dataPart.put("memo", memo)
+
+        val call: Call<String> = retrofitService.postHistoryToServer(dataPart, filePart!!)
+        call.enqueue(object : Callback<String> {
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                Toast.makeText(this@SetHistoryActivity, "저장 성공", Toast.LENGTH_SHORT).show()
+
+            }
+
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                AlertDialog.Builder(this@SetHistoryActivity).setMessage(t.message).show()
+            }
+        })
     }
 
     //갤러리 앱 실행하여 선택한 결과 받아오기

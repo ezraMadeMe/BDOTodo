@@ -8,6 +8,8 @@
         android:id="@+id/inner_recycler_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/nexonlv1_bold"
+        android:textSize="20sp"
         android:text="히스토리 제목"/>
 
     <ImageView

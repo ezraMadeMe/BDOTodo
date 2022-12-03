@@ -6,20 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.ezralee.bdotodo.main.GoalListItem
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.FragmentGoallistBinding
+import com.ezralee.bdotodo.main.*
 
 //대목표 단
 class GoallistFragment : Fragment() {
     val binding: FragmentGoallistBinding by lazy { FragmentGoallistBinding.inflate(layoutInflater) }
-    var items: MutableList<GoalListItem> = mutableListOf(
-        GoalListItem(R.color.colorPicker01,"오도어의 정령수",20, 23,false),
-        GoalListItem(R.color.colorPicker01,"오도어의 정령수",20, 23,false),
-        GoalListItem(R.color.colorPicker01,"오도어의 정령수",20, 23,false),
-        GoalListItem(R.color.colorPicker01,"오도어의 정령수",20, 23,false),
-        GoalListItem(R.color.colorPicker01,"오도어의 정령수",20, 23,false)
-    )
+    var goalItems: MutableList<GoalItem> = mutableListOf()
+    var planItems: MutableList<PlanItem> = mutableListOf()
+    var taskItems: MutableList<TaskItem> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,7 +25,7 @@ class GoallistFragment : Fragment() {
 
         binding.layoutPresetFAB.visibility = View.GONE
         binding.layoutMyselfFAB.visibility = View.GONE
-        binding.finalGoalRecycler.adapter = GoallistAdapter(requireContext(),items)
+        binding.finalGoalRecycler.adapter = GoallistAdapter(requireContext(),goalItems,planItems,taskItems)
 
         return binding.root
     }

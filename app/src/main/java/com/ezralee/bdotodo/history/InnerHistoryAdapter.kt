@@ -24,8 +24,13 @@ class InnerHistoryAdapter(val context: Context, var items: MutableList<HistoryIt
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
+        //날짜별로 각 날짜에 속한 히스토리만 출력되어야 함
+
+        //이미지 연결 -  DB안에는 이미지의 경로 주소만 있음. 즉, 서버컴퓨터 도메인 주소가 없음.
+        var imgUrl="http://ezra2022.dothome.co.kr/bdotodo/" + items[position].image
+
         holder.binding.innerRecyclerTitle.text = items[position].title
-        Glide.with(context).load(items[position]).error(R.drawable.ic_baseline_create_24).into(holder.binding.innerRecyclerImage)
+        Glide.with(context).load(imgUrl).into(holder.binding.innerRecyclerImage)
         //카테고리
 
         holder.itemView.setOnClickListener {
@@ -34,6 +39,7 @@ class InnerHistoryAdapter(val context: Context, var items: MutableList<HistoryIt
             intent.putExtra("date", items[position].date)
             intent.putExtra("category",items[position].category)
             intent.putExtra("memo",items[position].memo)
+            intent.putExtra("image",imgUrl)
             context.startActivity(intent)
         }
     }

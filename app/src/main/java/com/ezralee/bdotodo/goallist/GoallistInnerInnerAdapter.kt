@@ -9,14 +9,12 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.GoallistInnerInnerRecyclerItemBinding
 import com.ezralee.bdotodo.main.GoalListItem
+import com.ezralee.bdotodo.main.TaskItem
 
-class GoallistInnerInnerAdapter(var context: Context, var items: MutableList<GoalListItem>) : RecyclerView.Adapter<GoallistInnerInnerAdapter.VH>() {
+class GoallistInnerInnerAdapter(var context: Context, var items: MutableList<TaskItem>) : RecyclerView.Adapter<GoallistInnerInnerAdapter.VH>() {
 
     inner class VH(itemView: View) : ViewHolder(itemView){
         val binding: GoallistInnerInnerRecyclerItemBinding = GoallistInnerInnerRecyclerItemBinding.bind(itemView)
-        init {
-
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
@@ -24,8 +22,8 @@ class GoallistInnerInnerAdapter(var context: Context, var items: MutableList<Goa
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        holder.binding.goallistInnerInnerTask.text = items[position].title
-        holder.binding.goallistInnerInnerPercentage.text = "${items[position].percent}+%"
+        holder.binding.goallistInnerInnerTask.text = items[position].task
+        holder.binding.goallistInnerInnerPercentage.text = "${(items[position].count)/items[position].total}+%"
     }
 
     override fun getItemCount(): Int {

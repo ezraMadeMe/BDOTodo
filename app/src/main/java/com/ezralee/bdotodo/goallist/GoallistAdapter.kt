@@ -1,6 +1,7 @@
 package com.ezralee.bdotodo.goallist
 
 import android.content.Context
+import android.graphics.Color.parseColor
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +12,14 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.ezralee.bdotodo.main.GoalListItem
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.GoallistRecyclerItemBinding
+import com.ezralee.bdotodo.main.GoalItem
+import com.ezralee.bdotodo.main.PlanItem
+import com.ezralee.bdotodo.main.TaskItem
+import com.google.android.gms.tasks.Task
+import java.text.SimpleDateFormat
+import java.util.*
 
-class GoallistAdapter(var context: Context, var items: MutableList<GoalListItem>) :
+class GoallistAdapter(var context: Context, var items: MutableList<GoalItem>, var planItems: MutableList<PlanItem>, var taskItems: MutableList<TaskItem>) :
     RecyclerView.Adapter<GoallistAdapter.VH>() {
 
     inner class VH(itemView: View) : ViewHolder(itemView) {
@@ -22,8 +29,8 @@ class GoallistAdapter(var context: Context, var items: MutableList<GoalListItem>
                 var item = items[adapterPosition]
                 //item.isExpanded = false
 
-                val show = toggleLayout(!item.isExpanded, it, binding.goallistDetailRecycler)
-                item.isExpanded = show
+                //val show = toggleLayout(!item.isExpanded, it, binding.goallistDetailRecycler)
+                //item.isExpanded = show
             }
         }
 
@@ -46,17 +53,54 @@ class GoallistAdapter(var context: Context, var items: MutableList<GoalListItem>
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        holder.binding.goallistDetailRecycler.adapter = GoallistInnerAdapter(context,items)
+        holder.binding.goallistDetailRecycler.adapter = GoallistInnerAdapter(context,planItems, taskItems)
 
-        holder.binding.dailyRecyclerItemTitle.text = items[position].title
-        holder.binding.dailyRecyclerItemCiv.circleBackgroundColor = items[position].color
-        holder.binding.dailyRecyclerItemDday.text = "D-${items[position].dday}"
-        holder.binding.dailyRecyclerItemPercentage.text = "${items[position].percent}%"
+        holder.binding.dailyRecyclerItemTitle.text = items[position].goal
+        holder.binding.dailyRecyclerItemCiv.circleBackgroundColor = parseColor(items[position].color)
+        holder.binding.dailyRecyclerItemDday.text = ddayCount(items[position].start, items[position].end)
+        holder.binding.dailyRecyclerItemPercentage.text = "${percentCount(taskItems)}%"
     }
 
     override fun getItemCount(): Int {
         return items.size
     }
+}
+
+fun percentCount(taskItems: MutableList<TaskItem>): Int{
+    var total : Int = 0
+    var count : Int = 0
+
+    for (item in taskItems){
+        total = taskItems[0].total
+        count = taskItems[0].count
+        total += total
+        count += count
+    }
+
+    var percent = count/total
+    return percent
+}
+
+fun ddayCount(start: String, end: String): String{
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+
+    val startDate = dateFormat.parse(start).time
+    val endDate = dateFormat.parse(end).time
+    val today = Calendar.getInstance().apply {
+        set(Calendar.HOUR_OF_DAY, 0)
+        set(Calendar.MINUTE, 0)
+        set(Calendar.SECOND, 0)
+        set(Calendar.MILLISECOND, 0)
+    }.time.time
+
+//    if (start == null){
+//        return "${(endDate - today) / (24 * 60 * 60 * 1000)}"
+//    }else if (end == null){
+//        return "${(today - startDate) / (24 * 60 * 60 * 1000)}"
+//    }else{
+//        return "${(endDate - startDate) / (24 * 60 * 60 * 1000)}"
+//    }
+    return "${(endDate - today) / (24 * 60 * 60 * 1000)}"
 }
 
 class ToggleAnimation{
