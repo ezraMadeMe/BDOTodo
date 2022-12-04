@@ -1,18 +1,12 @@
 package com.ezralee.bdotodo.history
 
-import android.app.Activity.RESULT_CANCELED
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.text.Editable
-import android.util.AttributeSet
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultCallback
@@ -22,7 +16,6 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.DialogFragment
 import androidx.loader.content.CursorLoader
 import com.bumptech.glide.Glide
 import com.ezralee.bdotodo.R
@@ -35,9 +28,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
-import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.HashMap
 
 class SetHistoryActivity : AppCompatActivity() {
     val binding: ActivitySetHistoryBinding by lazy {
@@ -55,6 +46,8 @@ class SetHistoryActivity : AppCompatActivity() {
 
         var intent = intent
         if (intent != null){
+            binding.historyStatusbar.text = "히스토리 수정"
+
             binding.historyTitleEdit.setText(intent.getStringExtra("title"))
             binding.historyDateEdit.text = intent.getStringExtra("date")
             //binding.historyCategory.text = intent.getStringExtra("category")
@@ -131,7 +124,6 @@ class SetHistoryActivity : AppCompatActivity() {
     }
 
     fun historyRetrofit() {
-
         var userId = KakaoLogin.USER_ID
         var title = binding.historyTitleEdit.text.toString()
         var date = binding.historyDateEdit.text.toString()
@@ -158,15 +150,25 @@ class SetHistoryActivity : AppCompatActivity() {
         val call: Call<String> = retrofitService.postHistoryToServer(dataPart, filePart!!)
         call.enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {
-                Toast.makeText(this@SetHistoryActivity, "저장 성공", Toast.LENGTH_SHORT).show()
+                var result = response.body()
+                if (response.isSuccessful){
+                    Log.i("response####",result.toString())
+                }else{
+                    Log.i("failure####",result.toString())
+                }
+                Log.i("userId####",userId)
+                Log.i("title####",title)
+                Log.i("date####",date)
+                Log.i("category####",category)
+                Log.i("memo####",memo)
 
+                finish()
             }
-
             override fun onFailure(call: Call<String>, t: Throwable) {
                 AlertDialog.Builder(this@SetHistoryActivity).setMessage(t.message).show()
             }
-        })
-    }
+        })//////enqueue
+    }///////historyRetrofit
 
     //갤러리 앱 실행하여 선택한 결과 받아오기
     val resultLauncher: ActivityResultLauncher<Intent> = registerForActivityResult(

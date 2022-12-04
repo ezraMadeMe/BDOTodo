@@ -87,6 +87,7 @@ class LoginActivity : AppCompatActivity() {
         dataPart.put("memo", "이것만 하고 자야지 와 함께 검창의 세계로")
 
         val call: Call<String> = retrofitService.postHistoryToServer(dataPart, filePart!!)
+//        val call: Call<String> = retrofitService.postHistoryToServer(dataPart)
         call.enqueue(object : Callback<String> {
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 var result: String? = response.body()

@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.bumptech.glide.Glide
 import com.ezralee.bdotodo.databinding.FragmentHistoryBinding
 import com.ezralee.bdotodo.main.HistoryItem
+import com.ezralee.bdotodo.main.KakaoLogin
 import com.ezralee.bdotodo.main.RetrofitHelper
 import com.ezralee.bdotodo.main.RetrofitService
 import okhttp3.Request
@@ -33,8 +33,9 @@ class HistoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        //setHistoryRetrofit()
         binding.historyRecycler.adapter = HistoryAdapter(requireContext(),items)
+        loadData()
 
         binding.swipeRefresh.setOnRefreshListener {
             loadData()
@@ -47,11 +48,31 @@ class HistoryFragment : Fragment() {
         }
     }
 
+    fun setHistoryRetrofit(){
+        var userId = KakaoLogin.USER_ID
+
+        val retrofit = RetrofitHelper().getRetrofitInstance()
+        val retrofitService = retrofit.create(RetrofitService::class.java)
+
+        val call: Call<String> = retrofitService.getHistoryFromServer(userId)
+        call.enqueue(object : Callback<String>{
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+    }
+
     fun loadData(){
         val retrofit = RetrofitHelper().getRetrofitInstance()
         val retrofitService = retrofit.create(RetrofitService::class.java)
 
-        var call : Call<MutableList<HistoryItem>> = retrofitService.loadHistoryFromServer()
+        var call : Call<MutableList<HistoryItem>> = retrofitService.loadHistoryDateFromServer()
         call.enqueue(object : Call<MutableList<HistoryItem>>, Callback<MutableList<HistoryItem>> {
 
             override fun onResponse(
@@ -105,5 +126,7 @@ class HistoryFragment : Fragment() {
                 TODO("Not yet implemented")
             }
         })
+
+
     }
 }
