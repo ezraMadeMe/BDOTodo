@@ -93,13 +93,20 @@
 <!--            </intent-filter>-->
         </activity>
 
+        <activity android:name=".main.ColorPickerActivity"
+            android:exported="false"
+            android:theme="@style/MyColorPicker">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </activity>
+
         <!-- Kakao 인증 토큰을 받는 리다이렉션 액티비티 등록 -->
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 

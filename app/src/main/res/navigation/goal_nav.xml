@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/goal_nav"
+    app:startDestination="@id/setGoalFragment1">
+
+    <fragment
+        android:id="@+id/setGoalFragment1"
+        android:name="com.ezralee.bdotodo.goallist.SetGoalFragment1"
+        android:label="SetGoalFragment1" />
+    <fragment
+        android:id="@+id/setGoalFragment2"
+        android:name="com.ezralee.bdotodo.goallist.SetGoalFragment2"
+        android:label="SetGoalFragment2" />
+    <activity
+        android:id="@+id/setGoalActivity"
+        android:name="com.ezralee.bdotodo.goallist.SetGoalActivity"
+        android:label="SetGoalActivity" />
+</navigation>

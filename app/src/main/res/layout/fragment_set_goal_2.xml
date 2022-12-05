@@ -41,7 +41,7 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/history_title_edit"
+                android:id="@+id/plan_title_edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="4dp"
@@ -79,7 +79,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/goal_start_date"
+                    android:id="@+id/plan_start_date"
                     style="@style/history_dialog_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -109,7 +109,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/goal_end_date"
+                    android:id="@+id/plan_end_date"
                     style="@style/history_dialog_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -220,7 +220,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/task_recycler"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 

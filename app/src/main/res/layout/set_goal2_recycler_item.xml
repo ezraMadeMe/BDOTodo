@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/and_or_text"
+        android:id="@+id/and_or"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="그리고"
@@ -23,7 +23,7 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/goal_task_name"
+            android:id="@+id/task"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="4dp"
@@ -46,7 +46,7 @@
             android:textSize="24sp" />
 
         <EditText
-            android:id="@+id/goal_task_total"
+            android:id="@+id/total"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="4dp"

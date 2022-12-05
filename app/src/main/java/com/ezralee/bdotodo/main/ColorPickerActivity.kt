@@ -1,12 +1,15 @@
 package com.ezralee.bdotodo.main
 
+import android.content.Context
 import android.os.Bundle
+import android.util.AttributeSet
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.FragmentColorPickerBinding
 
-class ColorPickerFragment : DialogFragment() {
+class ColorPickerActivity : AppCompatActivity() {
     val binding: FragmentColorPickerBinding by lazy { FragmentColorPickerBinding.inflate(layoutInflater) }
 
     var items: MutableList<Int> = mutableListOf(
@@ -20,13 +23,16 @@ class ColorPickerFragment : DialogFragment() {
         R.color.colorPicker08,
     )
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding.colorPickerRecycler.adapter = ColorPickerAdapter(requireContext(),items)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(binding.root)
+    }
 
-        return binding.root
+    override fun onResume() {
+        super.onResume()
+        binding.colorPickerRecycler.adapter = ColorPickerAdapter(this@ColorPickerActivity,items)
+        binding.colorPickerRecycler.setOnClickListener {
+            this@ColorPickerActivity.finish()
+        }
     }
 }

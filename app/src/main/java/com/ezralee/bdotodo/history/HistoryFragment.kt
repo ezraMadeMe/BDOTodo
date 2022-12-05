@@ -2,6 +2,7 @@ package com.ezralee.bdotodo.history
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +22,7 @@ import retrofit2.Response
 class HistoryFragment : Fragment() {
     val binding: FragmentHistoryBinding by lazy { FragmentHistoryBinding.inflate(layoutInflater) }
     var items: MutableList<HistoryItem> = mutableListOf()
+    //var items: Array<HashMap<String, String>> = arrayOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,37 +50,20 @@ class HistoryFragment : Fragment() {
         }
     }
 
-    fun setHistoryRetrofit(){
-        var userId = KakaoLogin.USER_ID
-
-        val retrofit = RetrofitHelper().getRetrofitInstance()
-        val retrofitService = retrofit.create(RetrofitService::class.java)
-
-        val call: Call<String> = retrofitService.getHistoryFromServer(userId)
-        call.enqueue(object : Callback<String>{
-            override fun onResponse(call: Call<String>, response: Response<String>) {
-                TODO("Not yet implemented")
-            }
-
-            override fun onFailure(call: Call<String>, t: Throwable) {
-                TODO("Not yet implemented")
-            }
-
-        })
-
-    }
-
+    //날짜별로 데이터를 묶어오는 거.... GET으로 userId 전송이 안됨...
     fun loadData(){
         val retrofit = RetrofitHelper().getRetrofitInstance()
         val retrofitService = retrofit.create(RetrofitService::class.java)
+        var call : Call<MutableList<HistoryItem>> = retrofitService.loadHistoryDateFromServer(KakaoLogin.USER_ID)
 
-        var call : Call<MutableList<HistoryItem>> = retrofitService.loadHistoryDateFromServer()
         call.enqueue(object : Call<MutableList<HistoryItem>>, Callback<MutableList<HistoryItem>> {
-
             override fun onResponse(
                 call: Call<MutableList<HistoryItem>>,
                 response: Response<MutableList<HistoryItem>>
             ) {
+                Log.i("size####",""+items.size)
+                Log.i("title####", items[0].title)
+
                 items.clear()
                 //ConcurrentModificationException 오류
                 binding.historyRecycler.adapter?.notifyDataSetChanged()
@@ -91,7 +76,9 @@ class HistoryFragment : Fragment() {
                 }
             }
             override fun onFailure(call: Call<MutableList<HistoryItem>>, t: Throwable) {
-                Toast.makeText(requireContext(), t.message, Toast.LENGTH_SHORT).show()
+                //Toast.makeText(requireContext(), t.message, Toast.LENGTH_SHORT).show()
+                Log.i("failure####",t.message.toString())
+                Log.i("send####",call.isExecuted.toString())
             }
 
             override fun clone(): Call<MutableList<HistoryItem>> {

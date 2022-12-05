@@ -27,7 +27,7 @@ class DatePickerDialog : DialogFragment() {
             //Toast.makeText(requireContext(), "$i/$i2/$i3", Toast.LENGTH_SHORT).show()
             var month = String.format("%02d",i2+1)
             var day = String.format("%02d",i3)
-            var intent = Intent(activity,SetHistoryActivity::class.java)
+            var intent = Intent()
             intent.putExtra("date","$i/$month/$day")
             startActivityForResult(intent,100)
             dismiss()

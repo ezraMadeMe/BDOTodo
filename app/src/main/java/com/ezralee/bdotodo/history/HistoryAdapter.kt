@@ -17,9 +17,9 @@ class HistoryAdapter(var context: Context, var items: MutableList<HistoryItem>) 
     }//inner class VH
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        val binding =
+        val view =
             HistoryRecyclerItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return VH(binding.root)
+        return VH(view.root)
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
