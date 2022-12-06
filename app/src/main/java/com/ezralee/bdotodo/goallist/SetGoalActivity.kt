@@ -8,11 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.ActivitySetGoalBinding
-import com.ezralee.bdotodo.main.GoalItem
-import com.ezralee.bdotodo.main.KakaoLogin
-import com.ezralee.bdotodo.main.PlanItem
-import com.ezralee.bdotodo.main.TaskItem
+import com.ezralee.bdotodo.main.*
 
 class SetGoalActivity : AppCompatActivity() {
     val binding: ActivitySetGoalBinding by lazy { ActivitySetGoalBinding.inflate(layoutInflater) }
@@ -20,54 +18,15 @@ class SetGoalActivity : AppCompatActivity() {
     var adapter =
         GoalViewPagerAdapter(items, this@SetGoalActivity, supportFragmentManager, lifecycle)
 
-    var goalItems: MutableList<GoalItem> = mutableListOf()
-    var planItems: MutableList<PlanItem> = mutableListOf()
-    var taskItems: MutableList<TaskItem> = mutableListOf()
-
     companion object{
-        //goal
-        const val GOAL = "goal"
-        const val GOALSTART = "goalStart"
-        const val GOALEND = "goalEnd"
-        const val COLOR = "color"
-        const val CATEGORY = "category"
-        const val MEMO = "memo"
-        //plan
-        const val PLAN = "plan"
-        const val PLANSTART = "planStart"
-        const val PLANEND = "planEnd"
-        const val ANDOR = "andor"
-        //task
-        const val TASK = "task"
-        const val TOTAL = "total"
+        var goalItem: GoalItem = SetGoalFragment1().goalData()
+        var planItem: PlanItem = SetGoalFragment2().planData()
+        var taskItem: MutableList<TaskItem> = mutableListOf()
 
-        fun newGoalInstance(gl: String, glS: String, glE: String, clr: String, ctgr: String, mm: String) =
-            SetGoalFragment2().apply {
-                arguments = bundleOf(
-                    GOAL to gl,
-                    GOALSTART to glS,
-                    GOALEND to glE,
-                    COLOR to clr,
-                    CATEGORY to ctgr,
-                    MEMO to mm
-                )
-            }
-
-        fun newTaskInstance(tsk: String, ttl: Int) =
-            SetGoalFragment2().apply {
-                arguments = bundleOf(
-                    TASK to tsk,
-                    TOTAL to ttl
-                )
-            }
-
-        fun findFragment2(fm: FragmentManager, @IdRes id: Int) : SetGoalFragment2? {
-            return fm.findFragmentById(id) as? SetGoalFragment2
-        }
-
-        fun findFragment1(fm: FragmentManager, @IdRes id: Int) : SetGoalFragment1? {
-            return fm.findFragmentById(id) as? SetGoalFragment1
-        }
+        var taskList: TaskList = TaskList(taskItem) //한 소목표 안의 달성방법 리스트
+        var planList: PlanList = PlanList(planItem,taskList) //달성방법을 가진 한 소목표
+        var planUnit: PlanUnit = PlanUnit(mutableListOf(planList)) //소목표들의 집합
+        var goalList: GoalList = GoalList(goalItem,planUnit) //대목표(최종적으로 전달할 데이터)
     }//companion object
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,19 +36,8 @@ class SetGoalActivity : AppCompatActivity() {
         //목표 수정 시 Intent 될 곳
         binding.setGoalPager.adapter = adapter
         binding.setGoalPager.getChildAt(binding.setGoalPager.currentItem)
-        binding.goalDone.setOnClickListener { postGoalRetrofit() }
     }
 
-    override fun onResume() {
-        super.onResume()
-
-    }
-
-    //생성된 goal/plan/task개수만큼 객체 생성
-    fun postGoalRetrofit() {
-        binding.setGoalPager.adapter
-        this.finish()
-    }
 
     //뷰페이저 동적 추가
     fun addPage() {

@@ -19,6 +19,13 @@ data class AddTodoItem constructor(var date: String, var task: String, var count
 //목표
 data class GoalListItem constructor(var color: Int, var title: String, var percent: Int, var dday: Int, var isExpanded: Boolean)
 
-data class GoalItem constructor(var goal: String, var color: String, var start: String, var end: String, var category: String, var memo: String, var andor: Boolean, var planItems: MutableList<PlanItem>)
-data class PlanItem constructor(var plan: String, var start: String, var end: String, var taskItems: MutableList<TaskItem>)
+//입력한 데이터를 1차로 받음
+data class GoalItem constructor(var goal: String, var start: String, var end: String, var color: String, var category: String, var memo: String)
+data class PlanItem constructor(var plan: String, var start: String, var end: String, var andor: Boolean)
 data class TaskItem constructor(var task: String, var total: Int, var count: Int)
+
+//입력된 데이터 2차 가공
+data class GoalList constructor(var goal: GoalItem,var plans: PlanUnit)
+data class PlanUnit constructor(var plans: MutableList<PlanList>)
+data class PlanList constructor(var plan: PlanItem, var taskList: TaskList)
+data class TaskList constructor(var tasks: MutableList<TaskItem>)

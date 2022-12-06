@@ -1,9 +1,6 @@
 package com.ezralee.bdotodo.goallist
 
 import android.content.Context
-import android.content.Intent
-import android.os.Bundle
-import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,27 +10,19 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.SetGoal2RecyclerItemBinding
+import com.ezralee.bdotodo.main.GoalItem
+import com.ezralee.bdotodo.main.PlanItem
 import com.ezralee.bdotodo.main.TaskItem
-import kotlinx.android.synthetic.main.set_goal2_recycler_item.view.*
+import com.ezralee.bdotodo.main.TaskList
 
 class GoalTaskRecyclerAdapter(var context: Context, var taskItems: MutableList<TaskItem>) :
     RecyclerView.Adapter<GoalTaskRecyclerAdapter.VH>() {
-
-    companion object{
-        fun newTaskInstance(tsk: String, ttl: Int) =
-            SetGoalFragment2().apply {
-                arguments = bundleOf(
-                    SetGoalActivity.TASK to tsk,
-                    SetGoalActivity.TOTAL to ttl
-                )
-            }
-    }
+    lateinit var task: String
+    var total: Int = 0
 
     inner class VH(itemView: View) : ViewHolder(itemView) {
         val binding: SetGoal2RecyclerItemBinding = SetGoal2RecyclerItemBinding.bind(itemView)
         init {
-            binding.task.setText("달성 방법")
-            binding.total.setText("갯수")
             binding.andOr.visibility = View.INVISIBLE
         }
     }
@@ -43,14 +32,15 @@ class GoalTaskRecyclerAdapter(var context: Context, var taskItems: MutableList<T
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-
-        var task = taskItems[position].task
-        var total = taskItems[position].total
-
-        newTaskInstance(task, total)
-
         holder.binding.task.setText(taskItems[position].task)
         holder.binding.total.setText(taskItems[position].total.toString())
+
+        //Task 데이터 추가
+        task = holder.binding.task.text.toString()
+        total = Integer.parseInt(holder.binding.total.text.toString())
+
+        var item = MyGoalFragment.getTaskData(task,total,0)
+        SetGoalActivity.taskList.tasks.add(item)
 
         holder.binding.addTask.setOnClickListener {
             addTask()
@@ -79,6 +69,4 @@ class GoalTaskRecyclerAdapter(var context: Context, var taskItems: MutableList<T
             Toast.makeText(context, taskItems.size.toString(), Toast.LENGTH_SHORT).show()
         }
     }
-
-
 }

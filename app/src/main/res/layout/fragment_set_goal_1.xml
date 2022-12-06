@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@null">
+    android:background="@null"
+    android:id="@+id/set_goal1_root">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,7 +36,7 @@
                 android:textCursorDrawable="@color/colorPrimaryVariant" />
 
             <ImageView
-                android:id="@+id/history_color_picker"
+                android:id="@+id/goal_color_picker"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_gravity="right"
@@ -146,7 +147,7 @@
         <EditText
             android:id="@+id/history_memo_edit"
             android:layout_width="match_parent"
-            android:layout_height="370dp"
+            android:layout_height="330dp"
             android:layout_marginHorizontal="4dp"
             android:background="@null"
             android:hint="히스토리 제목 입력"
@@ -157,6 +158,36 @@
             android:textColor="@color/colorOnSecondary"
             android:textColorHint="@color/colorOnSecondary"
             android:textCursorDrawable="@color/colorPrimaryVariant" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="60dp"
+        android:orientation="horizontal"
+        android:layout_marginBottom="40dp">
+
+        <Button
+            android:id="@+id/goal_done"
+            style="@style/button_basic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="완료" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/goal_cancel"
+            style="@style/button_basic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="취소" />
 
     </LinearLayout>
 
