@@ -11,31 +11,43 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.DialogFragment
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.FragmentDatePickerBinding
+import com.ezralee.bdotodo.goallist.SetGoalFragment1
 import com.ezralee.bdotodo.history.SetHistoryActivity
 
 class DatePickerDialog : DialogFragment() {
+    lateinit var binding: FragmentDatePickerBinding
 
-    //lateinit var binding: FragmentDatePickerBinding
-//    private var _binding:FragmentDatePickerBinding? = null
-//    val binding get() = _binding!!
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding = FragmentDatePickerBinding.inflate(inflater, container, false)
+
+        return binding.root
+    }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val binding = FragmentDatePickerBinding.inflate(inflater, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         binding.datePicker.setOnDateChangedListener { datePicker, i, i2, i3 ->
-            //Toast.makeText(requireContext(), "$i/$i2/$i3", Toast.LENGTH_SHORT).show()
+
             var month = String.format("%02d",i2+1)
             var day = String.format("%02d",i3)
-            var intent = Intent()
-            intent.putExtra("date","$i/$month/$day")
-            startActivityForResult(intent,100)
+
+            var frag1 = SetGoalFragment1()
+            parentFragmentManager.beginTransaction().replace(R.id.set_goal1_root,frag1).commit()
+
+            var bundle = Bundle()
+            bundle.putString("date","$i/$month/$day")
+            frag1.arguments = bundle
+
+            Toast.makeText(requireContext(), "$i/$month/$day", Toast.LENGTH_SHORT).show()
+//            var intent = Intent()
+//            intent.putExtra("date","$i/$month/$day")
+//            startActivityForResult(intent,100)
             dismiss()
         }
 
         binding.datePicker.setOnFocusChangeListener { view, b ->
             view.setBackgroundColor(resources.getColor(R.color.colorOnSecondary))
         }
-        return binding.root
     }
 }

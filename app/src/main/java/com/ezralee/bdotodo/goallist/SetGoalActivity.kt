@@ -1,7 +1,9 @@
 package com.ezralee.bdotodo.goallist
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.Toast
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
@@ -15,27 +17,24 @@ import com.ezralee.bdotodo.main.*
 class SetGoalActivity : AppCompatActivity() {
     val binding: ActivitySetGoalBinding by lazy { ActivitySetGoalBinding.inflate(layoutInflater) }
     var items: MutableList<Fragment> = mutableListOf(SetGoalFragment1(), SetGoalFragment2())
-    var adapter =
-        GoalViewPagerAdapter(items, this@SetGoalActivity, supportFragmentManager, lifecycle)
-
-    companion object{
-        var goalItem: GoalItem = SetGoalFragment1().goalData()
-        var planItem: PlanItem = SetGoalFragment2().planData()
-        var taskItem: MutableList<TaskItem> = mutableListOf()
-
-        var taskList: TaskList = TaskList(taskItem) //한 소목표 안의 달성방법 리스트
-        var planList: PlanList = PlanList(planItem,taskList) //달성방법을 가진 한 소목표
-        var planUnit: PlanUnit = PlanUnit(mutableListOf(planList)) //소목표들의 집합
-        var goalList: GoalList = GoalList(goalItem,planUnit) //대목표(최종적으로 전달할 데이터)
-    }//companion object
+    lateinit var newTaskList: TaskList
+    lateinit var newPlan: PlanItem
+    lateinit var newPlanList: PlanList
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         //목표 수정 시 Intent 될 곳
-        binding.setGoalPager.adapter = adapter
+        binding.setGoalPager.adapter = GoalViewPagerAdapter(items, this@SetGoalActivity, supportFragmentManager, lifecycle)
         binding.setGoalPager.getChildAt(binding.setGoalPager.currentItem)
+
+        //소목표 fragment가 추가될 때마다 데이터 추가시키기
+        newTaskList = MyGoalFragment.getTaskList(MyGoalFragment.taskItem)
+        newPlan = MyGoalFragment.planItem
+        newPlanList = MyGoalFragment.getPlanList(newPlan,newTaskList)
+        MyGoalFragment.planUnit = MyGoalFragment.getPlanUnit(newPlanList)
+        Toast.makeText(this@SetGoalActivity,""+MyGoalFragment.planList.taskList.tasks.size, Toast.LENGTH_SHORT).show()
     }
 
 
@@ -45,6 +44,13 @@ class SetGoalActivity : AppCompatActivity() {
         binding.setGoalPager.adapter?.notifyItemInserted(items.size)
         binding.setGoalPager.currentItem = items.lastIndex
         Toast.makeText(this, items.size.toString(), Toast.LENGTH_SHORT).show()
+        //새로운 PlanItem, TaskList, PlanList 생성
+        //소목표 fragment가 추가될 때마다 데이터 추가시키기
+        newTaskList = MyGoalFragment.getTaskList(MyGoalFragment.taskItem)
+        newPlan = MyGoalFragment.planItem
+        newPlanList = MyGoalFragment.getPlanList(newPlan,newTaskList)
+        MyGoalFragment.planUnit = MyGoalFragment.getPlanUnit(newPlanList)
+        Log.i("@@@@PLAN",""+newPlan.plan.length)
     }
 
     //뷰페이저 동적 제거
@@ -55,6 +61,8 @@ class SetGoalActivity : AppCompatActivity() {
             items.removeAt(binding.setGoalPager.currentItem)
             binding.setGoalPager.adapter?.notifyDataSetChanged()
             Toast.makeText(this, items.size.toString(), Toast.LENGTH_SHORT).show()
+            //해당 번째 데이터 지우기
+            MyGoalFragment.planUnit.plans.removeAt(binding.setGoalPager.currentItem-1)
         }
     }
 }

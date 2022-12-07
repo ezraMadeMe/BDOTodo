@@ -1,8 +1,6 @@
 package com.ezralee.bdotodo.goallist
 
-import android.app.Activity.RESULT_OK
 import android.content.Intent
-import android.content.Intent.getIntent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,25 +8,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
-import com.bumptech.glide.Glide
-import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.FragmentSetGoal1Binding
+import com.ezralee.bdotodo.databinding.FragmentSetGoal2Binding
 import com.ezralee.bdotodo.main.*
 
 class SetGoalFragment1 : MyGoalFragment() {
     lateinit var binding: FragmentSetGoal1Binding
-
-    companion object{
-        var items: MutableList<GoalItem> = mutableListOf()
-    }
+    lateinit var newGoalList: GoalList
+    var items: MutableList<GoalItem> = mutableListOf()
+    var newGoalItem: GoalItem = goalData()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentSetGoal1Binding.inflate(inflater, container, false)
+        binding = FragmentSetGoal1Binding.inflate(inflater,container,false)
 
         return binding.root
     }
@@ -43,14 +38,13 @@ class SetGoalFragment1 : MyGoalFragment() {
         if (intentPre != null) {
             //프리셋 및 기존에 설정된 목표데이터를 받아올 인텐트
         }
-
-
         //색상 변경
         binding.goalColorPicker.setOnClickListener {
             var intentColor = Intent(requireContext(),ColorPickerActivity::class.java)
             startActivity(intentColor)
 
-            if (arguments != null){
+            var bundle = requireArguments()
+            if (bundle != null){
                 val color = arguments?.getInt("color")
                 Log.i("get@@@@",color.toString())
                 binding.goalColorPicker.setColorFilter(ContextCompat.getColor(requireContext(), color!!))
@@ -68,24 +62,36 @@ class SetGoalFragment1 : MyGoalFragment() {
         binding.goalStartDate.setOnClickListener {
             val datePickerDialog = DatePickerDialog()
             datePickerDialog.show(parentFragmentManager, "date")
-            var pickedDate = intentPre.getStringExtra("date")
-            binding.goalStartDate.text = pickedDate
+
+            var bundle = requireArguments()
+            if (bundle != null){
+                var pickedDate = bundle.getString("date",Info.date)
+                binding.goalStartDate.text = pickedDate
+            }
         }
 
         //종료일 변경 - 날짜 안보임 어디감..
         binding.goalEndDate.setOnClickListener {
             val datePickerDialog = DatePickerDialog()
             datePickerDialog.show(parentFragmentManager, "date")
-            var pickedDate = intentPre.getStringExtra("date")
-            binding.goalStartDate.text = pickedDate
+
+            var bundle = requireArguments()
+            if (bundle != null){
+                var pickedDate = bundle.getString("date",Info.date)
+                binding.goalStartDate.text = pickedDate
+            }
         }
+
+
 
         binding.goalDone.setOnClickListener {
 
+            //newGoalList = getGoalList(newGoalItem, planUnit)
+            Toast.makeText(requireContext(), ""+newGoalList.goal.goal.length, Toast.LENGTH_SHORT).show()
         }
     }
 
-    open fun goalData(): GoalItem{
+    fun goalData(): GoalItem{
         var gl = binding.historyTitleEdit.text.toString()
         var glS = binding.goalStartDate.text.toString()
         var glE = binding.goalEndDate.text.toString()
@@ -93,10 +99,8 @@ class SetGoalFragment1 : MyGoalFragment() {
         var ctgr = binding.historyCategory.selectedItem.toString()
         var memo = binding.historyMemoEdit.text.toString()
 
-        var item = getGoalData(gl,glS,glE,clr,ctgr,memo)
+        var item = GoalItem(gl,glS,glE,clr,ctgr,memo)
 
-        return item //GoalItem
+        return item
     }
-
-
 }
