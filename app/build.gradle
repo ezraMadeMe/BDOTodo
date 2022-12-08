@@ -5,6 +5,7 @@ plugins {
 }
 
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdk 33
@@ -72,4 +73,17 @@ dependencies {
     implementation 'com.prolificinteractive:material-calendarview:1.4.3'
 
     implementation 'com.github.angads25:toggle:1.1.0' //토글버튼
+
+    // room
+    implementation 'android.arch.persistence.room:runtime:1.1.1'
+    kapt 'android.arch.persistence.room:compiler:1.1.1'
+
+    // livedata
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
+    kapt 'android.arch.lifecycle:compiler:1.1.1'
+
+    // 뷰모델 (ViewModel)
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
+    // 라이브 데이터(LiveData) - 옵저버 패턴 관련 - 데이터의 변경 사항을 알 수 있다.
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.5.1"
 }

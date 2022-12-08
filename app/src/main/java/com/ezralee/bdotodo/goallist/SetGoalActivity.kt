@@ -1,22 +1,22 @@
 package com.ezralee.bdotodo.goallist
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.Toast
-import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.ActivitySetGoalBinding
 import com.ezralee.bdotodo.main.*
 
 class SetGoalActivity : AppCompatActivity() {
     val binding: ActivitySetGoalBinding by lazy { ActivitySetGoalBinding.inflate(layoutInflater) }
-    var items: MutableList<Fragment> = mutableListOf(SetGoalFragment1(), SetGoalFragment2())
+    lateinit var viewModel: SharedSetGoalVM
+
+    var items: MutableList<Fragment> = mutableListOf()
     lateinit var newTaskList: TaskList
     lateinit var newPlan: PlanItem
     lateinit var newPlanList: PlanList
@@ -25,10 +25,31 @@ class SetGoalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        //목표 수정 시 Intent 될 곳
+        //뷰모델
+        viewModel = ViewModelProvider(this).get(SharedSetGoalVM::class.java)
+        //observe를 통해 liveData가 바뀔때마다 체크하는 함수
+        viewModel.selectedData.observe(this, Observer {
+
+        })
+
+        fragmentAdapt()
+        addData()
+
+        binding.goalDone.setOnClickListener{
+            MyVPListener()
+            finish()
+        }
+
+    }
+
+    fun fragmentAdapt(){
+        items.add(SetGoalFragment1())
+        items.add(SetGoalFragment2())
         binding.setGoalPager.adapter = GoalViewPagerAdapter(items, this@SetGoalActivity, supportFragmentManager, lifecycle)
         binding.setGoalPager.getChildAt(binding.setGoalPager.currentItem)
+    }
 
+    fun addData(){
         //소목표 fragment가 추가될 때마다 데이터 추가시키기
         newTaskList = MyGoalFragment.getTaskList(MyGoalFragment.taskItem)
         newPlan = MyGoalFragment.planItem

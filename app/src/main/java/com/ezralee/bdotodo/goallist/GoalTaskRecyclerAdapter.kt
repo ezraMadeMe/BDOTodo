@@ -17,7 +17,7 @@ class GoalTaskRecyclerAdapter(var context: Context, var taskItems: MutableList<T
     RecyclerView.Adapter<GoalTaskRecyclerAdapter.VH>() {
 
     companion object{
-        lateinit var task: String
+        var task: String = ""
         var total: Int = 0
         var count: Int = 0
 
@@ -81,7 +81,7 @@ class GoalTaskRecyclerAdapter(var context: Context, var taskItems: MutableList<T
             this@GoalTaskRecyclerAdapter?.notifyDataSetChanged()
             //Toast.makeText(context, taskItems.size.toString(), Toast.LENGTH_SHORT).show()
             //데이터의 개수 변경
-            newTaskList.tasks.removeAt(position)
+            //newTaskList.tasks.removeAt(position)
             Log.i("@@@@Pos/Size","POS:${position}+SIZE:${taskItems.size}+DATA:${newTaskList.tasks.size}")
         }
     }
