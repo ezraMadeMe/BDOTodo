@@ -36,7 +36,6 @@ class SetGoalActivity : AppCompatActivity() {
         addData()
 
         binding.goalDone.setOnClickListener{
-            MyVPListener()
             finish()
         }
 
