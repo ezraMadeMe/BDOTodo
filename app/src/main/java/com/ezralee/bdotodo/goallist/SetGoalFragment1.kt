@@ -15,7 +15,7 @@ import com.ezralee.bdotodo.main.*
 
 class SetGoalFragment1 : MyGoalFragment() {
     lateinit var binding: FragmentSetGoal1Binding
-    lateinit var newGoalList: GoalList
+//    lateinit var newGoalList: GoalList
     var items: MutableList<GoalItem> = mutableListOf()
 //    var newGoalItem: GoalItem = goalData()
 
@@ -38,8 +38,7 @@ class SetGoalFragment1 : MyGoalFragment() {
 
 
         //newGoalList = getGoalList(newGoalItem, planUnit)
-        Toast.makeText(requireContext(), "" + newGoalList.goal.goal.length, Toast.LENGTH_SHORT)
-            .show()
+        //Toast.makeText(requireContext(), "" + newGoalList.goal.goal.length, Toast.LENGTH_SHORT).show()
 
 
         binding.goalStartDate.text = Info.date
