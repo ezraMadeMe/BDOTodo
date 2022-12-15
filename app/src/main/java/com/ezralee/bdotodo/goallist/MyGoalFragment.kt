@@ -14,6 +14,7 @@ open class MyGoalFragment : Fragment() {
             fragment.arguments = args
             return fragment
         }
+
         var goalItem: GoalItem = GoalItem("",Info.date, Info.date, R.color.colorPicker02.toString(),"","")
         var planItem: PlanItem = PlanItem("",Info.date,Info.date,true)
         var taskItem: TaskItem = TaskItem("",0,0)

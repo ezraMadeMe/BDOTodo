@@ -21,8 +21,8 @@ class GoalTaskRecyclerAdapter(var context: Context, var taskItems: MutableList<T
         var total: Int = 0
         var count: Int = 0
 
-        var newTask = TaskItem(task, total, count)
-        var newTaskList = MyGoalFragment.getTaskList(newTask)
+        var newTask: TaskItem? = null
+        var newTaskList: TaskList? = null
     }
 
     inner class VH(itemView: View) : ViewHolder(itemView) {
@@ -30,7 +30,7 @@ class GoalTaskRecyclerAdapter(var context: Context, var taskItems: MutableList<T
         init {
             binding.andOr.visibility = View.INVISIBLE
             newTask = MyGoalFragment.taskItem
-            newTaskList = MyGoalFragment.getTaskList(newTask)
+//            newTaskList = MyGoalFragment.getTaskList(newTask!!)
         }
     }
 
@@ -45,6 +45,8 @@ class GoalTaskRecyclerAdapter(var context: Context, var taskItems: MutableList<T
         //Task 데이터 추가
         task = taskItems[position].task
         total = taskItems[position].total
+        newTask = TaskItem(task,total,count)
+        newTaskList = MyGoalFragment.getTaskList(newTask!!)
 
         holder.binding.addTask.setOnClickListener {
             addTask(position)

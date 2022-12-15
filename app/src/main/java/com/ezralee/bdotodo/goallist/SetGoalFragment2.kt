@@ -15,6 +15,10 @@ class SetGoalFragment2 : MyGoalFragment() {
     lateinit var binding: FragmentSetGoal2Binding
     var items: MutableList<TaskItem> = mutableListOf(TaskItem("", 0, 0))
 
+    companion object{
+        var planItem: PlanItem? = null
+    }
+
     lateinit var newPlanList: PlanList
     lateinit var newPlanUnit: PlanUnit
 //    var newGoalList: GoalList = getGoalList(SetGoalFragment1.newGoalItem, newPlanUnit)
@@ -52,6 +56,7 @@ class SetGoalFragment2 : MyGoalFragment() {
 
         Log.i("@@@@GOAL", newPlanUnit.plans.size.toString())
 
+        planItem = planData()
     }/////////
 
     fun planData(): PlanItem {

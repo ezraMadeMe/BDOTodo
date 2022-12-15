@@ -14,7 +14,6 @@ import com.ezralee.bdotodo.main.*
 
 class SetGoalActivity : AppCompatActivity() {
     val binding: ActivitySetGoalBinding by lazy { ActivitySetGoalBinding.inflate(layoutInflater) }
-    lateinit var viewModel: SharedSetGoalVM
 
     var items: MutableList<Fragment> = mutableListOf()
     lateinit var newTaskList: TaskList
@@ -25,18 +24,10 @@ class SetGoalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        //뷰모델
-        viewModel = ViewModelProvider(this).get(SharedSetGoalVM::class.java)
-        //observe를 통해 liveData가 바뀔때마다 체크하는 함수
-        viewModel.selectedData.observe(this, Observer {
-
-        })
-
         fragmentAdapt()
         addData()
 
         binding.goalDone.setOnClickListener{
-            MyVPListener()
             finish()
         }
 

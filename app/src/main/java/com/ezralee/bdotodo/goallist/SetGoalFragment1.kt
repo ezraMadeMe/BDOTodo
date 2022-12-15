@@ -19,7 +19,9 @@ class SetGoalFragment1 : MyGoalFragment() {
     var items: MutableList<GoalItem> = mutableListOf()
 //    var newGoalItem: GoalItem = goalData()
 
-    lateinit var viewModel: SharedSetGoalVM
+    companion object{
+        var goalItem: GoalItem? = null
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,14 +34,6 @@ class SetGoalFragment1 : MyGoalFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        //뷰모델
-        viewModel = ViewModelProvider(requireActivity()).get(SharedSetGoalVM::class.java)
-
-
-        //newGoalList = getGoalList(newGoalItem, planUnit)
-        //Toast.makeText(requireContext(), "" + newGoalList.goal.goal.length, Toast.LENGTH_SHORT).show()
-
 
         binding.goalStartDate.text = Info.date
         binding.goalEndDate.text = Info.date
@@ -96,6 +90,8 @@ class SetGoalFragment1 : MyGoalFragment() {
                 binding.goalStartDate.text = pickedDate
             }
         }
+
+        goalItem = goalData()
     }
 
     fun goalData(): GoalItem {
