@@ -36,7 +36,7 @@ class SetGoalFragment2 : MyGoalFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.taskRecycler.adapter = GoalTaskRecyclerAdapter(requireContext(), items)
-        newPlanList = getPlanList(planData(), GoalTaskRecyclerAdapter.newTaskList)
+        newPlanList = getPlanList(planData(), GoalTaskRecyclerAdapter.newTaskList!!)
         newPlanUnit = getPlanUnit(newPlanList)
 
         binding.planStartDate.setOnClickListener {

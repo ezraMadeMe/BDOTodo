@@ -11,10 +11,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.ActivitySetGoalBinding
 import com.ezralee.bdotodo.main.*
+import org.json.JSONObject
 
 class SetGoalActivity : AppCompatActivity() {
     val binding: ActivitySetGoalBinding by lazy { ActivitySetGoalBinding.inflate(layoutInflater) }
-
     var items: MutableList<Fragment> = mutableListOf()
     lateinit var newTaskList: TaskList
     lateinit var newPlan: PlanItem
@@ -27,10 +27,26 @@ class SetGoalActivity : AppCompatActivity() {
         fragmentAdapt()
         addData()
 
+        initButtonListener()
+
         binding.goalDone.setOnClickListener{
             finish()
         }
+    }
 
+    fun initButtonListener() {
+        binding.goalDone.setOnClickListener {
+
+            var info = JSONObject()
+//            info.put("name", name_input.text.toString())
+//            info.put("email", email_input.text.toString())
+//
+//            name_input.text.clear()
+//            email_input.text.clear()
+//
+//            presenter.setInfo(info)
+//            presenter.saveInfo(info)
+        }
     }
 
     fun fragmentAdapt(){

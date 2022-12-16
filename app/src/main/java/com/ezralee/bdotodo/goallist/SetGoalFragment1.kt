@@ -6,21 +6,33 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import com.ezralee.bdotodo.domain.Contract
+import com.ezralee.bdotodo.domain.DataRepository
+import com.ezralee.bdotodo.domain.Presenter
 import com.ezralee.bdotodo.databinding.FragmentSetGoal1Binding
 import com.ezralee.bdotodo.main.*
+import org.json.JSONObject
 
-class SetGoalFragment1 : MyGoalFragment() {
+class SetGoalFragment1 : MyGoalFragment(), Contract.View {
+
     lateinit var binding: FragmentSetGoal1Binding
 //    lateinit var newGoalList: GoalList
     var items: MutableList<GoalItem> = mutableListOf()
 //    var newGoalItem: GoalItem = goalData()
 
+    private var presenter: Presenter
+    private var repository: DataRepository
+
     companion object{
         var goalItem: GoalItem? = null
+    }
+
+    init {
+        repository = DataRepository(this)
+        presenter = Presenter(this@SetGoalFragment1, repository)
+
+        presenter.initInfo()
     }
 
     override fun onCreateView(
@@ -92,6 +104,10 @@ class SetGoalFragment1 : MyGoalFragment() {
         }
 
         goalItem = goalData()
+    }
+
+    override fun showInfo(info: JSONObject) {
+        //여기서는 일단 보류..
     }
 
     fun goalData(): GoalItem {
