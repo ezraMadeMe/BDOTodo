@@ -24,37 +24,17 @@ class SetGoalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        fragmentAdapt()
-        addData()
+        var initItems = mutableListOf<Fragment>(SetGoalFragment1(),SetGoalFragment2())
+        items.addAll(initItems)
 
-        initButtonListener()
-
-        binding.goalDone.setOnClickListener{
-            finish()
-        }
-    }
-
-    fun initButtonListener() {
-        binding.goalDone.setOnClickListener {
-
-            var info = JSONObject()
-//            info.put("name", name_input.text.toString())
-//            info.put("email", email_input.text.toString())
-//
-//            name_input.text.clear()
-//            email_input.text.clear()
-//
-//            presenter.setInfo(info)
-//            presenter.saveInfo(info)
-        }
-    }
-
-    fun fragmentAdapt(){
-        items.add(SetGoalFragment1())
-        items.add(SetGoalFragment2())
         binding.setGoalPager.adapter = GoalViewPagerAdapter(items, this@SetGoalActivity, supportFragmentManager, lifecycle)
         binding.setGoalPager.getChildAt(binding.setGoalPager.currentItem)
+
+        binding.goalDone.setOnClickListener{
+            this@SetGoalActivity.finish()
+        }
     }
+
 
     fun addData(){
         //소목표 fragment가 추가될 때마다 데이터 추가시키기

@@ -25,5 +25,4 @@ ext {
     rxbinding_version = '2.2.0'
     anko_version = '0.10.7'
     glide_version = '4.8.0'
-
 }

@@ -71,7 +71,7 @@ class GoalTaskRecyclerAdapter(var context: Context, var taskItems: MutableList<T
         this@GoalTaskRecyclerAdapter?.notifyItemInserted(taskItems.size)
         //데이터의 개수 변경
         //newTaskList.tasks.add(newTask)
-        Toast.makeText(context, ""+newTaskList.tasks.size, Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, ""+newTaskList?.tasks?.size, Toast.LENGTH_SHORT).show()
     }
 
     fun deleteTask(position: Int){
@@ -84,7 +84,7 @@ class GoalTaskRecyclerAdapter(var context: Context, var taskItems: MutableList<T
             //Toast.makeText(context, taskItems.size.toString(), Toast.LENGTH_SHORT).show()
             //데이터의 개수 변경
             //newTaskList.tasks.removeAt(position)
-            Log.i("@@@@Pos/Size","POS:${position}+SIZE:${taskItems.size}+DATA:${newTaskList.tasks.size}")
+            Log.i("@@@@Pos/Size","POS:${position}+SIZE:${taskItems.size}+DATA:${newTaskList?.tasks?.size}")
         }
     }
 }
