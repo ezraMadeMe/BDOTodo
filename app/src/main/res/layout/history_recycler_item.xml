@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
             name="historyData"
             type="com.ezralee.bdotodo.viewmodel.HistoryData" />
     </data>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_weight="2"
     android:orientation="horizontal">
 
     <LinearLayout
@@ -31,7 +30,8 @@
             app:reverseLayout="true"
             app:stackFromEnd="true"
             android:layout_gravity="right"
-            tools:listitem="@layout/history_inner_recycler_item"/>
+            tools:listitem="@layout/history_inner_recycler_item"
+            />
 
         <View
             android:id="@+id/line_left"
@@ -50,7 +50,7 @@
             android:layout_marginRight="8dp"
             android:text="@{historyData.date}"
             android:textAlignment="viewEnd"
-            android:textSize="20sp" />
+            android:textSize="20sp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -83,7 +83,7 @@
         <TextView
             android:id="@+id/history_recycler_date_right"
             style="@style/dailyRecyclerTitleStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="8dp"
             android:layout_marginLeft="8dp"

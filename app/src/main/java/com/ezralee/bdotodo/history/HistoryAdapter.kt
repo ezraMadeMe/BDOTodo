@@ -4,11 +4,14 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.HistoryRecyclerItemBinding
 import com.ezralee.bdotodo.main.HistoryItem
 import com.ezralee.bdotodo.viewmodel.HistoryData
-import kotlinx.android.synthetic.main.history_inner_recycler_item.view.*
 
 class HistoryAdapter(var context: Context, var items: MutableList<HistoryItem>) :
     RecyclerView.Adapter<HistoryAdapter.VH>() {
@@ -26,9 +29,9 @@ class HistoryAdapter(var context: Context, var items: MutableList<HistoryItem>) 
     }//inner class VH
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        val view =
+        val binding =
             HistoryRecyclerItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return VH(view)
+        return VH(binding)
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
@@ -57,5 +60,13 @@ class HistoryAdapter(var context: Context, var items: MutableList<HistoryItem>) 
 
     override fun getItemCount(): Int {
         return items.size
+    }
+
+    @BindingAdapter("imgUrl")
+    fun loadHistoryImage(view: ImageView, imgUrl: String){
+        Glide.with(view.context)
+            .load(imgUrl)
+            .error(R.drawable.img_sample)
+            .into(view)
     }
 }

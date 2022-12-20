@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import com.ezralee.bdotodo.databinding.FragmentSetGoal1Binding
+import com.ezralee.bdotodo.dialog.ColorPickerActivity
+import com.ezralee.bdotodo.dialog.DatePickerDialog
 import com.ezralee.bdotodo.main.*
 
 class SetGoalFragment1 : MyGoalFragment() {

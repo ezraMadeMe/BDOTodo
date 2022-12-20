@@ -1,9 +1,6 @@
-package com.ezralee.bdotodo.main
+package com.ezralee.bdotodo.dialog
 
 import android.content.Context
-import android.content.Intent
-import android.provider.ContactsContract.Contacts
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +9,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.ColorPickerItemBinding
-import com.ezralee.bdotodo.goallist.SetGoalActivity
-import com.ezralee.bdotodo.goallist.SetGoalFragment1
 
 class ColorPickerAdapter(var context: Context, var items: MutableList<Int>) : RecyclerView.Adapter<ColorPickerAdapter.VH>() {
 

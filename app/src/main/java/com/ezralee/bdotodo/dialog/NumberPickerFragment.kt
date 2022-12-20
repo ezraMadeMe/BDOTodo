@@ -1,4 +1,4 @@
-package com.ezralee.bdotodo.main
+package com.ezralee.bdotodo.dialog
 
 import android.os.Bundle
 import android.view.LayoutInflater

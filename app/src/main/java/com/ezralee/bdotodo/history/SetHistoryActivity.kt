@@ -7,7 +7,6 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
@@ -23,6 +22,7 @@ import androidx.loader.content.CursorLoader
 import com.bumptech.glide.Glide
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.ActivitySetHistoryBinding
+import com.ezralee.bdotodo.dialog.DatePickerDialog
 import com.ezralee.bdotodo.main.*
 import com.ezralee.bdotodo.viewmodel.HistoryVM
 import okhttp3.MediaType

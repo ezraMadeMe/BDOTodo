@@ -1,16 +1,10 @@
-package com.ezralee.bdotodo.main
+package com.ezralee.bdotodo.dialog
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.util.AttributeSet
-import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.DialogFragment
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.FragmentColorPickerBinding
-import com.ezralee.bdotodo.goallist.SetGoalActivity
 import com.ezralee.bdotodo.goallist.SetGoalFragment1
 
 class ColorPickerActivity : AppCompatActivity() {
@@ -34,7 +28,7 @@ class ColorPickerActivity : AppCompatActivity() {
 
         binding.colorPickerRecycler.adapter = adapter
 
-        adapter.setOnItemClickListener(object: ColorPickerAdapter.OnItemClickListener{
+        adapter.setOnItemClickListener(object: ColorPickerAdapter.OnItemClickListener {
             override fun onItemClick(view: View, position: Int) {
 //                var returnIntent = Intent()
 //                returnIntent.putExtra("color", items[position])

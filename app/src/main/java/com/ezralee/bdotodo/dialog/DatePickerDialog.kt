@@ -1,6 +1,5 @@
-package com.ezralee.bdotodo.main
+package com.ezralee.bdotodo.dialog
 
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,7 +11,6 @@ import androidx.fragment.app.DialogFragment
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.FragmentDatePickerBinding
 import com.ezralee.bdotodo.goallist.SetGoalFragment1
-import com.ezralee.bdotodo.history.SetHistoryActivity
 
 class DatePickerDialog : DialogFragment() {
     lateinit var binding: FragmentDatePickerBinding

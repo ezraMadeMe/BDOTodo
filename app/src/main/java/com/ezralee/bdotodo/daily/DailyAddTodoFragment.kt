@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.ezralee.bdotodo.main.AddTodoItem
-import com.ezralee.bdotodo.main.NumberPickerFragment
+import com.ezralee.bdotodo.dialog.NumberPickerFragment
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.FragmentDailyAddTodoBinding
-import com.ezralee.bdotodo.main.DatePickerDialog
+import com.ezralee.bdotodo.dialog.DatePickerDialog
 
 class DailyAddTodoFragment: DialogFragment() {
     var _binding: FragmentDailyAddTodoBinding? = null
