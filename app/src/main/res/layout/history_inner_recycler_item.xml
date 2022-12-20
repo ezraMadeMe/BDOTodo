@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="historyData"
+            type="com.ezralee.bdotodo.viewmodel.HistoryData" />
+    </data>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,7 +16,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/nexonlv1_bold"
         android:textSize="20sp"
-        android:text="히스토리 제목"/>
+        android:text="@{historyData.title}"/>
 
     <ImageView
         android:id="@+id/inner_recycler_image"
@@ -18,8 +24,9 @@
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:scaleType="centerInside"
-        android:src="@drawable/img_sample"
+        android:src="@{historyData.imgUrl}"
         android:layout_below="@+id/inner_recycler_title"
         android:layout_marginVertical="4dp"/>
 
 </RelativeLayout>
+</layout>

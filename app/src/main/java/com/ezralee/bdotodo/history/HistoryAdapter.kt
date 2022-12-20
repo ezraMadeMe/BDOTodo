@@ -7,19 +7,28 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ezralee.bdotodo.databinding.HistoryRecyclerItemBinding
 import com.ezralee.bdotodo.main.HistoryItem
+import com.ezralee.bdotodo.viewmodel.HistoryData
 import kotlinx.android.synthetic.main.history_inner_recycler_item.view.*
 
 class HistoryAdapter(var context: Context, var items: MutableList<HistoryItem>) :
     RecyclerView.Adapter<HistoryAdapter.VH>() {
 
-    inner class VH(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val binding: HistoryRecyclerItemBinding = HistoryRecyclerItemBinding.bind(itemView)
+    inner class VH(private val binding: HistoryRecyclerItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        //val binding: HistoryRecyclerItemBinding = HistoryRecyclerItemBinding.bind(itemView)
+
+        fun bind(item: HistoryData){
+            with(binding){
+                historyData = item
+                executePendingBindings()
+            }
+        }
+
     }//inner class VH
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val view =
             HistoryRecyclerItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return VH(view.root)
+        return VH(view)
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {

@@ -58,6 +58,9 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation 'com.google.firebase:firebase-database-ktx:20.1.0'
+    implementation 'androidx.room:room-common:2.4.3'
+    implementation 'com.google.ar.sceneform:filament-android:1.17.1'
+    implementation 'com.google.mlkit:entity-extraction:16.0.0-beta4'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
@@ -68,6 +71,8 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:31.0.3') //Firebase
     implementation 'com.google.firebase:firebase-firestore-ktx' //Firebase Firestore
     implementation 'com.google.firebase:firebase-auth-ktx' //Firebase Authentication
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-storage-ktx'
     implementation 'com.google.android.gms:play-services-auth:20.4.0' //Google Play Authentication
 
     implementation 'com.prolificinteractive:material-calendarview:1.4.3'

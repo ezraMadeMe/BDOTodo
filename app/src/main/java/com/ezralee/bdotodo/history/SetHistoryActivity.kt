@@ -12,15 +12,19 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.loader.content.CursorLoader
 import com.bumptech.glide.Glide
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.ActivitySetHistoryBinding
 import com.ezralee.bdotodo.main.*
+import com.ezralee.bdotodo.viewmodel.HistoryVM
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -31,6 +35,13 @@ import java.io.File
 import java.util.*
 
 class SetHistoryActivity : AppCompatActivity() {
+    private val viewModel: HistoryVM by viewModels{
+        object : ViewModelProvider.Factory{
+            override fun <T : ViewModel> create(modelClass: Class<T>): T =
+                HistoryVM(application) as T
+        }
+    }
+
     val binding: ActivitySetHistoryBinding by lazy {
         ActivitySetHistoryBinding.inflate(
             layoutInflater
