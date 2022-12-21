@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="goalItem"
+            type="com.ezralee.bdotodo.data.model.GoalItem" />
+        <variable
+            name="viewModel"
+            type="com.ezralee.bdotodo.viewmodel.GoalVM" />
+    </data>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorPrimary">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/set_goal_pager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        app:addOnPageChangeListener="@{viewModel.pageChangeListener}"
+        app:setAdapter="@{viewModel.adapter}"
+        app:setCurrentItem="@{viewModel.currentPosition}" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +35,8 @@
             style="@style/button_basic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="완료" />
+            android:text="완료"
+            android:onClick="@{()->viewModel.createGoal()}"/>
 
         <View
             android:layout_width="0dp"
@@ -36,8 +49,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:text="취소" />
+            android:text="취소"
+            android:onClick="@{()->viewModel.cancel()}"/>
 
     </LinearLayout>
 
 </RelativeLayout>
+</layout>

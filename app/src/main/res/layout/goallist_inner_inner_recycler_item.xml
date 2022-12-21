@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="taskData"
+            type="com.ezralee.bdotodo.data.model.TaskData" />
+    </data>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -8,7 +14,7 @@
         android:id="@+id/goallist_inner_inner_task"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="달성방법"
+        android:text="@{taskData.task}"
         style="@style/dailyRecyclerTitleStyle"
         android:textSize="16sp"/>
 
@@ -16,9 +22,10 @@
         android:id="@+id/goallist_inner_inner_percentage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0/100 (100%)"
+        android:text="@{taskData.total}"
         android:layout_alignParentRight="true"
         style="@style/dailyRecyclerTitleStyle"
         android:textSize="16sp"/>
 
 </RelativeLayout>
+</layout>

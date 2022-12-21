@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="goalItem"
+            type="com.ezralee.bdotodo.data.model.GoalItem" />
+        <variable
+            name="viewModel"
+            type="com.ezralee.bdotodo.viewmodel.GoalVM" />
+    </data>
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@null"
@@ -28,9 +37,9 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:gravity="center_horizontal"
-                android:hint="히스토리 제목 입력"
+                android:hint="목표 입력"
                 android:maxLines="1"
-                android:text="목표 대제목"
+                android:text="@{goalItem.goalData.goal}"
                 android:textColor="@color/colorOnSecondary"
                 android:textColorHint="@color/colorOnSecondary"
                 android:textCursorDrawable="@color/colorPrimaryVariant" />
@@ -41,7 +50,8 @@
                 android:layout_height="24dp"
                 android:layout_gravity="right"
                 android:layout_marginHorizontal="8dp"
-                android:src="@drawable/ic_baseline_circle_24" />
+                android:src="@drawable/ic_baseline_circle_24"
+                android:onClick="@{()->viewModel.colorPick()}"/>
 
         </LinearLayout>
 
@@ -73,7 +83,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nexonlv1_bold"
-                    android:text="2022/11/03"
+                    android:text="@{viewModel.today}"
                     android:textSize="20sp" />
 
                 <View
@@ -103,7 +113,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nexonlv1_bold"
-                    android:text="2022/11/03"
+                    android:text="@{viewModel.today}"
                     android:textSize="20sp" />
 
                 <View
@@ -125,6 +135,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:layout_marginVertical="16dp">
+
             <Spinner
                 android:id="@+id/history_category"
                 android:layout_width="250dp"
@@ -133,7 +144,8 @@
                 android:backgroundTint="@color/colorOnSecondary"
                 android:spinnerMode="dialog"
                 android:entries="@array/category_entry"
-                android:textAlignment="center"/>
+                android:textAlignment="center"
+                android:onItemSelected="@{()->viewModel.setCategory()}"/>
 
         </LinearLayout>
 
@@ -154,42 +166,11 @@
             android:minLines="10"
             android:overScrollMode="ifContentScrolls"
             android:scrollbars="vertical"
-            android:text="기존 히스토리 메모"
+            android:text="@{goalItem.goalData.memo}"
             android:textColor="@color/colorOnSecondary"
             android:textColorHint="@color/colorOnSecondary"
             android:textCursorDrawable="@color/colorPrimaryVariant" />
 
     </LinearLayout>
-
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_alignParentBottom="true"-->
-<!--        android:layout_marginHorizontal="60dp"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:layout_marginBottom="40dp">-->
-
-<!--        <Button-->
-<!--            android:id="@+id/goal_done"-->
-<!--            style="@style/button_basic"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="완료" />-->
-
-<!--        <View-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="0dp"-->
-<!--            android:layout_weight="1" />-->
-
-<!--        <Button-->
-<!--            android:id="@+id/goal_cancel"-->
-<!--            style="@style/button_basic"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="right"-->
-<!--            android:text="취소" />-->
-
-<!--    </LinearLayout>-->
-
-
 </RelativeLayout>
+</layout>

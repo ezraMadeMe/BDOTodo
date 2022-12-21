@@ -1,269 +1,294 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/history_dialog"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="16dp">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="accureItem"
+            type="com.ezralee.bdotodo.data.model.TaskAccureData" />
+
+        <variable
+            name="userGoalData"
+            type="com.ezralee.bdotodo.data.model.UserGoalData" />
+
+        <variable
+            name="viewModel"
+            type="com.ezralee.bdotodo.viewmodel.DailyVM" />
+    </data>
 
     <RelativeLayout
-        android:id="@+id/layout_add_todo_title"
+        style="@style/history_dialog"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/dialog_history_detail"
-        android:padding="4dp">
+        android:layout_height="match_parent"
+        android:layout_margin="16dp">
 
-        <ImageView
-            android:id="@+id/icon"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginHorizontal="4dp"
-            android:src="@drawable/ic_baseline_history_edu_24" />
-
-        <TextView
-            android:id="@+id/add_todo_statusbar"
-            style="@style/dailyRecyclerTitleStyle"
+        <RelativeLayout
+            android:id="@+id/layout_add_todo_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginVertical="8dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="12dp"
-            android:layout_toLeftOf="@+id/close"
-            android:layout_toRightOf="@+id/icon"
-            android:ellipsize="end"
-            android:text="할 일 추가"
-            android:textColor="@color/colorOnPrimary"
-            android:textSize="20dp" />
+            android:background="@drawable/dialog_history_detail"
+            android:padding="4dp">
 
-        <ImageView
-            android:id="@+id/close"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="4dp"
-            android:src="@drawable/ic_baseline_close_24" />
+            <ImageView
+                android:id="@+id/icon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="4dp"
+                android:src="@drawable/ic_baseline_history_edu_24" />
+
+            <TextView
+                android:id="@+id/add_todo_statusbar"
+                style="@style/dailyRecyclerTitleStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginVertical="8dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="12dp"
+                android:layout_toLeftOf="@+id/close"
+                android:layout_toRightOf="@+id/icon"
+                android:ellipsize="end"
+                android:text="할 일 추가"
+                android:textColor="@color/colorOnPrimary"
+                android:textSize="20dp" />
+
+            <ImageView
+                android:id="@+id/close"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="4dp"
+                android:src="@drawable/ic_baseline_close_24" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout_add_todo_title"
+            android:background="@drawable/dialog_history_detail_2"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_history_title"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="4dp"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/todo_date_edit"
+                    style="@style/history_dialog_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="16dp"
+                    android:fontFamily="@font/nexonlv1_bold"
+                    android:gravity="center"
+                    android:text="@{viewModel.today}"
+                    android:textSize="24sp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/todo_date_today"
+                    style="@style/button_basic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="오늘"
+                    android:textSize="16sp"
+                    android:onClick="@{()->viewModel.setToday()}"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/colorPrimaryVariant" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/todo_goallist_main"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:spinnerMode="dialog"
+                    android:textAlignment="center"
+                    tools:listitem="@{userGoalData.goalList}"/>
+
+
+                <Spinner
+                    android:id="@+id/todo_goallist_sub"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:spinnerMode="dialog"
+                    android:textAlignment="center"/>
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/colorPrimaryVariant" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/todo_goallist_task"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:spinnerMode="dialog"
+                    android:textAlignment="center" />
+
+                <TextView
+                    style="@style/history_dialog_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="의 달성량" />
+
+                <TextView
+                    android:id="@+id/todo_task_count"
+                    style="@style/history_dialog_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="16dp"
+                    android:fontFamily="@font/nexonlv1_bold"
+                    android:gravity="center"
+                    android:text="00"
+                    android:textSize="30sp"
+                    android:onClick="@{()->viewModel.setCount()}"/>
+
+                <TextView
+                    style="@style/history_dialog_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="16dp"
+                    android:text="개" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/colorPrimaryVariant" />
+
+            <EditText
+                android:id="@+id/todo_memo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:background="@null"
+                android:hint="목표 메모"
+                android:minLines="6"
+                android:overScrollMode="ifContentScrolls"
+                android:scrollbars="vertical"
+                android:textColor="@color/colorOnSecondary"
+                android:textColorHint="@color/colorOnSecondary"
+                android:textCursorDrawable="@color/colorPrimaryVariant" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/todo_cancel"
+                    style="@style/button_basic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="취소"
+                    android:onClick="@{()->viewModel.close()}"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/todo_add_list"
+                    style="@style/button_basic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="추가"
+                    android:onClick="@{()->viewModel.add()}"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/todo_add_all"
+                    style="@style/button_basic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:text="확인"
+                    android:onClick="@{()->viewModel.commit()}"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="12dp"
+                android:background="@color/colorPrimaryVariant" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/todo_list_to_add_recycler"
+                style="@style/history_dialog_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryVariant"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/add_todo_recycler_item"/>
+
+        </LinearLayout>
 
     </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/dialog_history_detail_2"
-        android:layout_below="@+id/layout_add_todo_title"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/layout_history_title"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="4dp"
-            android:orientation="horizontal">
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
-
-            <TextView
-                android:id="@+id/todo_date_edit"
-                style="@style/history_dialog_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="16dp"
-                android:fontFamily="@font/nexonlv1_bold"
-                android:gravity="center"
-                android:text="2022/11/03"
-                android:textSize="24sp" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
-
-            <Button
-                android:id="@+id/todo_date_today"
-                style="@style/button_basic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="오늘"
-                android:textSize="16sp"
-                android:gravity="right"/>
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="12dp"
-            android:background="@color/colorPrimaryVariant" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Spinner
-                android:id="@+id/todo_goallist_main"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:spinnerMode="dialog"
-                android:textAlignment="center"/>
-
-
-            <Spinner
-                android:id="@+id/todo_goallist_sub"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:spinnerMode="dialog"
-                android:textAlignment="center" />
-
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="12dp"
-            android:background="@color/colorPrimaryVariant" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center">
-
-            <Spinner
-                android:id="@+id/todo_goallist_task"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:spinnerMode="dialog"
-                android:textAlignment="center"
-                android:layout_marginHorizontal="16dp"
-                android:gravity="center"
-                android:layout_gravity="center"/>
-
-            <TextView
-                style="@style/history_dialog_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="의 달성량" />
-
-            <TextView
-                android:id="@+id/todo_task_count"
-                style="@style/history_dialog_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="16dp"
-                android:fontFamily="@font/nexonlv1_bold"
-                android:gravity="center"
-                android:text="00"
-                android:textSize="30sp" />
-
-            <TextView
-                style="@style/history_dialog_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="개"
-                android:layout_marginRight="16dp"/>
-
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="12dp"
-            android:background="@color/colorPrimaryVariant" />
-
-        <EditText
-            android:id="@+id/todo_memo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="4dp"
-            android:background="@null"
-            android:hint="히스토리 제목 입력"
-            android:minLines="6"
-            android:overScrollMode="ifContentScrolls"
-            android:scrollbars="vertical"
-            android:text="기존 히스토리 메모"
-            android:textColor="@color/colorOnSecondary"
-            android:textColorHint="@color/colorOnSecondary"
-            android:textCursorDrawable="@color/colorPrimaryVariant" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/todo_cancel"
-                style="@style/button_basic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="취소" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <Button
-                android:id="@+id/todo_add_list"
-                style="@style/button_basic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="추가" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <Button
-                android:id="@+id/todo_add_all"
-                style="@style/button_basic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:text="확인" />
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="12dp"
-            android:background="@color/colorPrimaryVariant" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/todo_list_to_add_recycler"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:orientation="vertical"
-            style="@style/history_dialog_text"
-            android:background="@color/colorPrimaryVariant"/>
-
-    </LinearLayout>
-
-</RelativeLayout>
+</layout>

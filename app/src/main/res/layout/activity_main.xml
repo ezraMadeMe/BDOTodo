@@ -1,34 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.ezralee.bdotodo.viewmodel.MainActivityVM" />
+    </data>
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".main.MainActivity">
-
-<!--    <com.google.android.material.appbar.AppBarLayout-->
-<!--        android:id="@+id/main_ABL"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="@color/colorPrimaryVariant"-->
-<!--        android:labelFor="@+id/main_TB">-->
-
-<!--        <com.google.android.material.appbar.CollapsingToolbarLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:contentScrim="?attr/colorPrimary"-->
-<!--            app:layout_scrollFlags="scroll|enterAlwaysCollapsed"-->
-<!--            app:titleCollapseMode="scale"-->
-<!--            app:title="툴바">-->
-
-<!--            <androidx.appcompat.widget.Toolbar-->
-<!--                android:id="@+id/main_TB"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="?attr/actionBarSize"-->
-<!--                app:layout_collapseMode="pin" />-->
-<!--        </com.google.android.material.appbar.CollapsingToolbarLayout>-->
-
-<!--    </com.google.android.material.appbar.AppBarLayout>-->
+    tools:context=".ui.activity.intro.MainActivity">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/main_VP"
@@ -46,6 +28,7 @@
         app:itemIconTint="@color/colorOnSecondary"
         app:itemTextColor="@color/colorOnSecondary"
         app:itemTextAppearanceActive="@style/selectedBNVtextStyle"
-        app:itemTextAppearanceInactive="@style/notSelectedBNVtextStyle" />
+        app:itemTextAppearanceInactive="@style/notSelectedBNVtextStyle"/>
 
 </RelativeLayout>
+</layout>

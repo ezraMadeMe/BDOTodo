@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="userData"
+            type="com.ezralee.bdotodo.data.model.UserInfo" />
+        <variable
+            name="viewModel"
+            type="com.ezralee.bdotodo.viewmodel.MainActivityVM" />
+    </data>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -34,7 +43,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/logo"
             android:src="@drawable/kakao_login_medium_narrow"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:onClick="@{()->viewModel.setUserInfo()}"/>
 
     </RelativeLayout>
 </RelativeLayout>
+</layout>

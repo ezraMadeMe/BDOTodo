@@ -1,28 +1,57 @@
 package com.ezralee.bdotodo.viewmodel
 
 import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
+import androidx.room.Room
+import com.ezralee.bdotodo.data.Util.KakaoLogin
+import com.ezralee.bdotodo.data.model.HistoryData
+import com.ezralee.bdotodo.data.repository.history.HistoryDB
 
-class HistoryVM(application: Application) : ViewModel() {
+class HistoryVM(application: Application) : AndroidViewModel(application) {
 
-    private val repository = HistoryRepo(application)
+    private val db = Room.databaseBuilder(application, HistoryDB::class.java, "historyList")
+                         .allowMainThreadQueries()
+                         .build()
 
-    fun getAll(): LiveData<List<HistoryData>> {
-        return repository.getAllHistory()
+    fun getHistory(): LiveData<List<HistoryData>> {
+        return db.hisDAO().getHistory(KakaoLogin.USER_ID)
     }
 
-    fun insert(history: HistoryData){
-        repository.insertHistory(history)
-    }
-    fun delete(history: HistoryData){
-        repository.deleteHistory(history)
-    }
-    fun updateHistory(history: HistoryData){
-        repository.updateHistory(history)
+    fun insertHistory(historyData: HistoryData) {
+        db.hisDAO().insertHistory(historyData)
     }
 
-    override fun onCleared() {
-        super.onCleared()
+    fun updateHistory(historyData: HistoryData) {
+        db.hisDAO().updateHistory(historyData)
     }
+
+    fun deleteHistory(historyData: HistoryData) {
+        db.hisDAO().deleteHistory(historyData)
+    }
+
+    fun setToday(){
+
+    }
+
+    fun setImage(){
+
+    }
+
+    fun deleteImage(){
+
+    }
+
+    fun done(){
+
+    }
+
+    fun cancel(){
+
+    }
+
+    fun edit(){
+
+    }
+
 }

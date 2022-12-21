@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
 
         <variable
-            name="fragmentNumber"
-            type="String" />
+            name="planData"
+            type="com.ezralee.bdotodo.data.model.PlanData" />
+        <variable
+            name="viewModel"
+            type="com.ezralee.bdotodo.viewmodel.GoalVM" />
     </data>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="12dp">
@@ -15,7 +19,7 @@
         android:id="@+id/goallist_inner_recycler_item_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="소목표"
+        android:text="@{planData.plan}"
         android:layout_centerHorizontal="true"
         android:maxLines="1"
         android:ellipsize="end"
@@ -27,7 +31,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/goallist_inner_recycler_item_title"
-        tools:listitem="@layout/goallist_inner_inner_recycler_item"/>
+        tools:listitem="@layout/goallist_inner_inner_recycler_item"
+        android:adapter="@{viewModel.adapter}"/>
 
 </RelativeLayout>
 </layout>

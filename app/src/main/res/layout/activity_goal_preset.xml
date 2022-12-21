@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="presetItem"
+            type="com.ezralee.bdotodo.data.model.GoalPreset" />
+        <variable
+            name="viewModel"
+            type="com.ezralee.bdotodo.viewmodel.GoalVM" />
+    </data>
+
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="16dp"
@@ -72,8 +83,12 @@
             android:id="@+id/preset_VP"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/preset_BNV"/>
+            android:layout_below="@+id/preset_BNV"
+            app:addOnPageChangeListener="@{viewModel.pageChangeListener}"
+            app:setAdapter="@{viewModel.adapter}"
+            app:setCurrentItem="@{viewModel.currentPosition}" />
 
     </RelativeLayout>
 
 </RelativeLayout>
+</layout>

@@ -3,7 +3,7 @@
     <data>
         <variable
             name="historyData"
-            type="com.ezralee.bdotodo.viewmodel.HistoryData" />
+            type="com.ezralee.bdotodo.data.model.HistoryData" />
     </data>
 <RelativeLayout
     android:layout_width="match_parent"

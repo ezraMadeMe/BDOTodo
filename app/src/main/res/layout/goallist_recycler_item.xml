@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="goalData"
+            type="com.ezralee.bdotodo.data.model.GoalData" />
+        <variable
+            name="viewModel"
+            type="com.ezralee.bdotodo.viewmodel.GoalVM" />
+    </data>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:id="@+id/goallist"
@@ -14,7 +26,7 @@
         android:id="@+id/daily_recycler_item_civ"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:src="@color/colorPicker01"
+        android:src="@{goalData.color}"
         android:layout_centerVertical="true"
         android:layout_margin="12dp"/>
 
@@ -22,7 +34,7 @@
         android:id="@+id/daily_recycler_item_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="대목표"
+        android:text="@{goalData.goal}"
         style="@style/dailyRecyclerTitleStyle"
         android:layout_toRightOf="@id/daily_recycler_item_civ"
         android:layout_centerVertical="true"
@@ -30,22 +42,22 @@
         android:ellipsize="end"/>
 
 
-    <TextView
-        android:id="@+id/daily_recycler_item_dday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="D-22"
-        android:layout_toLeftOf="@id/goallist_show_more"
-        android:layout_marginVertical="12dp"
-        style="@style/dailyRecyclerTitleStyle"
-        android:textSize="16dp"
-        android:textAlignment="viewEnd"/>
+<!--    <TextView-->
+<!--        android:id="@+id/daily_recycler_item_dday"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="D-22"-->
+<!--        android:layout_toLeftOf="@id/goallist_show_more"-->
+<!--        android:layout_marginVertical="12dp"-->
+<!--        style="@style/dailyRecyclerTitleStyle"-->
+<!--        android:textSize="16dp"-->
+<!--        android:textAlignment="viewEnd"/>-->
 
     <TextView
         android:id="@+id/daily_recycler_item_percentage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="100%"
+        android:text="@{goalData.end}"
         android:layout_toLeftOf="@id/goallist_show_more"
         android:layout_marginVertical="12dp"
         style="@style/dailyRecyclerTitleStyle"
@@ -59,7 +71,6 @@
             android:layout_alignParentRight="true"
             app:tint="@color/colorPrimary"
             android:layout_centerVertical="true"/>
-
 
     <View
         android:layout_width="match_parent"
@@ -77,6 +88,8 @@
         android:layout_below="@+id/goallist"
         android:paddingVertical="8dp"
         android:paddingHorizontal="16dp"
-        tools:listitem="@layout/goallist_inner_recycler_item"/>
+        tools:listitem="@layout/goallist_inner_recycler_item"
+        android:adapter="@{viewModel.adapter}"/>
 
 </RelativeLayout>
+</layout>

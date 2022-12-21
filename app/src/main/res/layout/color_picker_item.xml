@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+
+        <variable
+            name="goalItem"
+            type="com.ezralee.bdotodo.data.model.GoalItem" />
+
+        <variable
+            name="viewModel"
+            type="com.ezralee.bdotodo.viewmodel.DialogVM" />
+    </data>
+<RelativeLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/color_picker_item"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:src="@drawable/ic_baseline_circle_24"/>
+        android:src="@{goalItem.goalData.color}"/>
 
 </RelativeLayout>
+</layout>

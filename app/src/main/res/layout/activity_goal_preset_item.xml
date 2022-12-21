@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+        <data>
+                <variable
+                    name="presetItem"
+                    type="com.ezralee.bdotodo.data.model.GoalPreset" />
+                <variable
+                    name="viewModel"
+                    type="com.ezralee.bdotodo.viewmodel.GoalVM" />
+        </data>
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="12dp">
@@ -9,7 +18,7 @@
             android:id="@+id/goal_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="오네트의 정령수"
+            android:text="@{presetItem.goalPreset}"
             style="@style/history_dialog_text"
             android:layout_centerVertical="true"
             android:textSize="20sp"/>
@@ -23,3 +32,4 @@
             android:layout_alignParentRight="true"/>
 
 </RelativeLayout>
+</layout>
