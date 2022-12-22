@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.ezralee.bdotodo.viewmodel.daily.MainDailyVM" />
+    </data>
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="70dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/shape_add_todo">
+    android:background="@drawable/shape_add_todo"
+    android:onClick="@{()->viewModel.addTask()}">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -29,3 +36,4 @@
     </RelativeLayout>
 
 </RelativeLayout>
+</layout>

@@ -1,152 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="300dp"
-    android:id="@+id/bs_layout"
-    android:background="@drawable/dialog_history_bottom_sheet"
-    app:layout_behavior="@string/bottom_sheet_behavior"
-    app:behavior_hideable="false"
-    app:behavior_peekHeight="20dp">
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="historyItem"
+            type="com.ezralee.bdotodo.data.model.HistoryData" />
+
+        <variable
+            name="viewModel"
+            type="com.ezralee.bdotodo.viewmodel.history.MainHistoryVM" />
+    </data>
 
     <RelativeLayout
+        android:id="@+id/bs_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
+        android:layout_height="300dp"
+        android:background="@drawable/dialog_history_bottom_sheet"
+        app:behavior_hideable="false"
+        app:behavior_peekHeight="20dp"
+        app:layout_behavior="@string/bottom_sheet_behavior">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/bs_title"
-            android:layout_alignParentRight="true"
-            android:text="확인"
-            style="@style/history_dialog_text"
-            android:fontFamily="@font/nexonlv1_bold"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/bs_title"
-            android:text="취소"
-            style="@style/history_dialog_text"
-            android:fontFamily="@font/nexonlv1_bold"/>
-
-        <TextView
-            android:id="@+id/bs_title"
-            style="@style/history_dialog_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="히스토리 필터링"
-            android:textSize="24sp"
-            android:fontFamily="@font/nexonlv1_light"/>
-
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/bs_title"
-            android:orientation="vertical"
-            android:paddingVertical="20dp">
+            android:padding="16dp">
+
+            <TextView
+                style="@style/history_dialog_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/bs_title"
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/nexonlv1_bold"
+                android:onClick="@{()->viewModel.filterHistory(
+                                        filterKeyword.toString(),
+                                        filterDate.toString(),
+                                        filterCategory.toString())}"
+                android:text="확인" />
+
+            <TextView
+                style="@style/history_dialog_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/bs_title"
+                android:fontFamily="@font/nexonlv1_bold"
+                android:onClick="@{()->viewModel.cancelBSD()}"
+                android:text="취소" />
+
+            <TextView
+                android:id="@+id/bs_title"
+                style="@style/history_dialog_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/nexonlv1_light"
+                android:text="히스토리 필터링"
+                android:textSize="24sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="10"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:layout_height="match_parent"
+                android:layout_below="@+id/bs_title"
+                android:orientation="vertical"
+                android:paddingVertical="20dp">
 
-                <TextView
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="검색어"
-                    style="@style/history_dialog_text"
-                    android:textSize="20sp"/>
+                    android:layout_weight="10"
+                    android:orientation="horizontal"
+                    android:padding="8dp">
 
-                <EditText
-                    android:id="@+id/history_keyword"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="2"
-                    android:background="@drawable/bs_search_shape"
-                    android:maxLines="1"
-                    android:drawableRight="@drawable/ic_baseline_search_24"
-                    android:cursorVisible="false"
-                    android:padding="8dp"
-                    android:backgroundTint="@color/colorOnSecondary"/>
+                    <TextView
+                        style="@style/history_dialog_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:text="검색어"
+                        android:textSize="20sp" />
 
+                    <androidx.appcompat.widget.SearchView
+                        android:id="@+id/filter_keyword"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:background="@drawable/bs_search_shape"
+                        android:backgroundTint="@color/colorOnSecondary"
+                        android:cursorVisible="false"
+                        android:padding="8dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="10"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="8dp">
+
+                    <TextView
+                        style="@style/history_dialog_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="날짜"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/filter_date"
+                        style="@style/history_dialog_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:fontFamily="@font/nexonlv1_bold"
+                        android:gravity="center"
+                        android:text="@={()->viewModel.setToday()}"
+                        android:textSize="20sp" />
+
+                    <Button
+                        android:id="@+id/btn_today"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bs_today_selector"
+                        android:backgroundTint="@color/colorOnPrimary"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:onClick="@={()->viewModel.setToday()}"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="8dp"
+                        android:text="오늘"
+                        android:textColor="@color/colorSecondary"
+                        android:textSize="12dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="8dp">
+
+                    <TextView
+                        style="@style/history_dialog_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="카테고리"
+                        android:textSize="20sp" />
+
+                    <Spinner
+                        android:id="@+id/filter_category"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_weight="2"
+                        android:background="@drawable/bs_search_shape"
+                        android:backgroundTint="@color/colorOnSecondary" />
+
+                </LinearLayout>
             </LinearLayout>
+        </RelativeLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="10"
-                android:orientation="horizontal"
-                android:padding="8dp"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="날짜"
-                    style="@style/history_dialog_text"
-                    android:textSize="20sp"/>
-
-                <TextView
-                    android:id="@+id/history_date"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="2022/10/27"
-                    style="@style/history_dialog_text"
-                    android:textSize="20sp"
-                    android:gravity="center"
-                    android:fontFamily="@font/nexonlv1_bold"/>
-
-                <Button
-                    android:id="@+id/history_today"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bs_today_selector"
-                    android:minWidth="0dp"
-                    android:minHeight="0dp"
-                    android:paddingHorizontal="12dp"
-                    android:paddingVertical="8dp"
-                    android:text="오늘"
-                    android:textSize="12dp"
-                    android:textColor="@color/colorSecondary"
-                    android:backgroundTint="@color/colorOnPrimary"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="10"
-                android:orientation="horizontal"
-                android:padding="8dp"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="카테고리"
-                    style="@style/history_dialog_text"
-                    android:textSize="20sp"/>
-
-                <Spinner
-                    android:id="@+id/history_category"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="2"
-                    android:background="@drawable/bs_search_shape"
-                    android:backgroundTint="@color/colorOnSecondary"/>
-
-            </LinearLayout>
-        </LinearLayout>
     </RelativeLayout>
-
-</RelativeLayout>
+</layout>

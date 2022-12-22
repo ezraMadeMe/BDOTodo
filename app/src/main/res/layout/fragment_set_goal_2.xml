@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 <data>
     <variable
-        name="planItem"
-        type="com.ezralee.bdotodo.data.model.PlanItem" />
+        name="planData"
+        type="com.ezralee.bdotodo.data.model.PlanData" />
     <variable
         name="viewModel"
-        type="com.ezralee.bdotodo.viewmodel.GoalVM" />
+        type="com.ezralee.bdotodo.viewmodel.goal.SetGoalFragment2VM" />
 </data>
 
 <RelativeLayout
@@ -66,7 +66,7 @@
                 android:textColor="@color/colorOnSecondary"
                 android:textColorHint="@color/colorOnSecondary"
                 android:textCursorDrawable="@color/colorPrimaryVariant"
-                android:text="@{planItem.planData.plan}"/>
+                android:text="@={planData.plan}"/>
 
         </LinearLayout>
 
@@ -98,8 +98,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nexonlv1_bold"
-                    android:text="@{planItem.planData.plan}"
-                    android:textSize="20sp" />
+                    android:text="@={planData.start}"
+                    android:textSize="20sp"
+                    android:onClick="@{()->viewModel.startDate()}"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -127,8 +128,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nexonlv1_bold"
-                    android:text="@{planItem.planData.plan}"
-                    android:textSize="20sp" />
+                    android:text="@{planData.end}"
+                    android:textSize="20sp"
+                    android:onClick="@{()->viewModel.endDate()}"/>
 
                 <View
                     android:layout_width="match_parent"

@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.ezralee.bdotodo.viewmodel.DialogVM" />
+            type="com.ezralee.bdotodo.viewmodel.main.DialogVM" />
     </data>
 
 <RelativeLayout

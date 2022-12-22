@@ -9,7 +9,7 @@ import androidx.databinding.library.baseAdapters.BR
 import androidx.fragment.app.Fragment
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.FragmentDaliyBinding
-import com.ezralee.bdotodo.viewmodel.DailyVM
+import com.ezralee.bdotodo.viewmodel.daily.MainDailyVM
 
 class DailyFragment : Fragment() {
 
@@ -47,7 +47,7 @@ class DailyFragment : Fragment() {
         return binding.root
     }
 
-    private fun createVm() = DailyVM(object : DailyVM.DailyFragmentContract {
+    private fun createVm() = MainDailyVM(object : MainDailyVM.DailyFragmentContract {
 //        override fun showToast(message: String) {
 //            Toast.makeText(activity, message, Toast.LENGTH_LONG).show()
 //        }

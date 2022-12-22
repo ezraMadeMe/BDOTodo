@@ -6,7 +6,7 @@
             type="com.ezralee.bdotodo.data.model.UserInfo" />
         <variable
             name="viewModel"
-            type="com.ezralee.bdotodo.viewmodel.MainActivityVM" />
+            type="com.ezralee.bdotodo.viewmodel.main.LoginVM" />
     </data>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"

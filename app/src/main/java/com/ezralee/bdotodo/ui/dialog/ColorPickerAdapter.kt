@@ -36,7 +36,7 @@ class ColorPickerAdapter(var context: Context, var items: MutableList<Int>) : Re
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        var itemview :View = LayoutInflater.from(context).inflate(R.layout.color_picker_item,parent,false)
+        var itemview :View = LayoutInflater.from(context).inflate(R.layout.picker_color_item,parent,false)
 
         return VH(itemview)
     }

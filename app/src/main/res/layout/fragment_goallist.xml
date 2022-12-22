@@ -1,27 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
             name="goalItem"
             type="com.ezralee.bdotodo.data.model.GoalItem" />
         <variable
             name="viewModel"
-            type="com.ezralee.bdotodo.viewmodel.GoalVM" />
+            type="com.ezralee.bdotodo.viewmodel.goal.MainGoalVM" />
     </data>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorOnSecondary">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/final_goal_recycler"
+        android:id="@+id/goal_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="vertical"
-        tools:listitem="@layout/goallist_recycler_item"/>
+        tools:listitem="@layout/goallist_recycler_item"
+        android:adapter="@{viewModel.goalAdapter}"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/goallist_main_FAB"
@@ -31,7 +32,8 @@
         android:backgroundTint="@color/colorPrimary"
         android:layout_margin="20dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true" />
+        android:layout_alignParentRight="true"
+        android:onClick="@{()->viewModel.popupFAB()}"/>
 
     <LinearLayout
         android:id="@+id/layout_preset_FAB"
@@ -40,7 +42,8 @@
         android:orientation="horizontal"
         android:layout_marginRight="28dp"
         android:layout_above="@+id/goallist_main_FAB"
-        android:layout_alignParentRight="true">
+        android:layout_alignParentRight="true"
+        android:onClick="@{()->viewModel.openPreset()}">
 
         <TextView
             android:layout_width="wrap_content"
@@ -67,7 +70,8 @@
         android:layout_marginRight="28dp"
         android:layout_above="@+id/layout_preset_FAB"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="20dp">
+        android:layout_marginBottom="20dp"
+        android:onClick="@{()->viewModel.openMyself()}">
 
         <TextView
             android:layout_width="wrap_content"

@@ -7,6 +7,7 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.View
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
@@ -18,15 +19,24 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import androidx.loader.content.CursorLoader
 import com.bumptech.glide.Glide
 import com.ezralee.bdotodo.R
+import com.ezralee.bdotodo.data.Util.Info
 import com.ezralee.bdotodo.data.Util.KakaoLogin
 import com.ezralee.bdotodo.data.Util.RetrofitHelper
+import com.ezralee.bdotodo.data.Util.RetrofitService
+import com.ezralee.bdotodo.data.model.HistoryData
+import com.ezralee.bdotodo.data.repository.history.HistoryDB
 import com.ezralee.bdotodo.databinding.ActivitySetHistoryBinding
-import com.ezralee.bdotodo.dialog.DatePickerDialog
-import com.ezralee.bdotodo.main.*
-import com.ezralee.bdotodo.viewmodel.HistoryVM
+import com.ezralee.bdotodo.ui.dialog.DatePickerDialog
+import com.ezralee.bdotodo.viewmodel.history.MainHistoryVM
+import com.ezralee.bdotodo.viewmodel.history.SetHistoryActivityVM
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -37,25 +47,21 @@ import java.io.File
 import java.util.*
 
 class SetHistoryActivity : AppCompatActivity() {
-    private val viewModel: HistoryVM by viewModels{
-        object : ViewModelProvider.Factory{
-            override fun <T : ViewModel> create(modelClass: Class<T>): T =
-                HistoryVM(application) as T
-        }
-    }
 
-    val binding: ActivitySetHistoryBinding by lazy {
-        ActivitySetHistoryBinding.inflate(
-            layoutInflater
-        )
-    }
+    private lateinit var viewModel: SetHistoryActivityVM
+    private lateinit var binding: ActivitySetHistoryBinding
+    private lateinit var db: HistoryDB
+
     lateinit var imgPath: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivitySetHistoryBinding.inflate(layoutInflater)
+        viewModel = ViewModelProvider(this)[SetHistoryActivityVM::class.java]
+        binding.viewModel = viewModel
+        db = HistoryDB.getInstance(application)!!
         setContentView(binding.root)
 
-        binding.historyDateEdit.text = Info.date
 
         var intent = intent
         if (intent != null){
@@ -70,9 +76,21 @@ class SetHistoryActivity : AppCompatActivity() {
         }
     }
 
+    // 새로운 정보 추가시 옵저버가 감지하여 updateUserList 함수를 호출하기 때문에 자동으로 뷰 갱신
+    fun addHistory(view : View){
+        val data = HistoryData(/*historyData 목록*/)
+
+        CoroutineScope(Dispatchers.IO).launch {
+            db.hisDAO().insert(data)
+        }
+    }
+
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onStart() {
         super.onStart()
+
+        binding.historyDateEdit.text = Info.date
 
         //창을 띄울 때 오늘 날짜로 기본 설정이 안됨
         binding.historyDateEdit.setOnClickListener {

@@ -1,11 +1,11 @@
-package com.ezralee.bdotodo.viewmodel
+package com.ezralee.bdotodo.viewmodel.daily
 
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.data.Util.Info
 import com.ezralee.bdotodo.data.model.GoalItem
 import com.ezralee.bdotodo.ui.adapter.daily.DailyRecyclerAdapter
 
-class DailyVM(private val contract: DailyFragmentContract) {
+class MainDailyVM(private val contract: DailyFragmentContract) {
     interface DailyFragmentContract {
         fun selectDailyAccure(){ }
         fun showDetail(){ }
@@ -19,23 +19,26 @@ class DailyVM(private val contract: DailyFragmentContract) {
         listener = this
     )
 
+    //한 일/할 일 추가 버튼 클릭 시 Set액티비티 발동
+    fun addTask(){
+
+    }
+
+    //할 일 클릭시 완료 처리
+    fun complete(){
+
+    }
+
+    //할 일 롱클릭시 수정/자세히보기/삭제 여부 묻는 다이얼로그 팝업
+    fun additionalWork(){
+
+    }
+
     fun setToday(){
 
     }
 
     fun setCount(){
-
-    }
-
-    fun close(){
-
-    }
-
-    fun add(){
-
-    }
-
-    fun commit(){
 
     }
 

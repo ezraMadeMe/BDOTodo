@@ -6,6 +6,9 @@
         <variable
             name="historyData"
             type="com.ezralee.bdotodo.data.model.HistoryData" />
+        <variable
+            name="viewModel"
+            type="com.ezralee.bdotodo.viewmodel.history.MainHistoryVM" />
     </data>
 <LinearLayout
     android:layout_width="match_parent"
@@ -31,7 +34,7 @@
             app:stackFromEnd="true"
             android:layout_gravity="right"
             tools:listitem="@layout/history_inner_recycler_item"
-            />
+            android:adapter="@{viewModel.historyDetailAdapter}"/>
 
         <View
             android:id="@+id/line_left"
@@ -70,7 +73,9 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:reverseLayout="true"
             app:stackFromEnd="true"
-            tools:listitem="@layout/history_inner_recycler_item"/>
+            tools:listitem="@layout/history_inner_recycler_item"
+            android:adapter="@{viewModel.historyDatailAdapter}"
+            android:onItemSelected="@{()->viewModel.showDetailHistory()}"/>
 
         <View
             android:id="@+id/line_right"

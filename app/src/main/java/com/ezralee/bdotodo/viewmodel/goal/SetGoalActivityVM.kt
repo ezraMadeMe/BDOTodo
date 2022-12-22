@@ -1,50 +1,18 @@
-package com.ezralee.bdotodo.viewmodel
+package com.ezralee.bdotodo.viewmodel.goal
 
 import androidx.viewpager2.widget.ViewPager2
-import com.ezralee.bdotodo.data.Util.Info
 
-class GoalVM(private val contract: GoalFragmentContract) {
-    interface GoalFragmentContract {
-
-    }
+class SetGoalActivityVM {
 
     val adapter
 
-    val today = Info.date
-
+    //SetGoalActivity의 Fragment에서 작성한 데이터 저장
     fun createGoal(){
 
     }
 
+    //Activity 종료
     fun cancel(){
-
-    }
-
-    fun selectPreset(){
-
-    }
-
-    fun colorPick(){
-
-    }
-
-    fun setCategory(){
-
-    }
-
-    fun deletePlan(){
-
-    }
-
-    fun addPlan(){
-
-    }
-
-    fun deleteTask(){
-
-    }
-
-    fun addTask(){
 
     }
 

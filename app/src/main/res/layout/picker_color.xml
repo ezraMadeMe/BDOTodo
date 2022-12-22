@@ -11,7 +11,7 @@
 
         <variable
             name="viewModel"
-            type="com.ezralee.bdotodo.viewmodel.DialogVM" />
+            type="com.ezralee.bdotodo.viewmodel.goal.MainGoalVM" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -31,8 +31,9 @@
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"
-            tools:listitem="@layout/color_picker_item"
-            android:onItemSelected="@{()->viewModel.}"/>
+            tools:listitem="@layout/picker_color_item"
+            android:onItemSelected="@{()->viewModel.colorPick()}"
+            android:adapter="@{viewModel.colorAdapter}"/>
 
     </androidx.cardview.widget.CardView>
 </layout>

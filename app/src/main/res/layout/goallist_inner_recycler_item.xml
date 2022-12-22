@@ -8,7 +8,7 @@
             type="com.ezralee.bdotodo.data.model.PlanData" />
         <variable
             name="viewModel"
-            type="com.ezralee.bdotodo.viewmodel.GoalVM" />
+            type="com.ezralee.bdotodo.viewmodel.goal.MainGoalVM" />
     </data>
 <RelativeLayout
     android:layout_width="match_parent"

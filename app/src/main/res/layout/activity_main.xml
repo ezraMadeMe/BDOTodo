@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.activity.intro.MainActivity">
     <data>
         <variable
             name="viewModel"
-            type="com.ezralee.bdotodo.viewmodel.MainActivityVM" />
+            type="com.ezralee.bdotodo.viewmodel.main.MainActivityVM" />
     </data>
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.activity.intro.MainActivity">
+    android:layout_height="match_parent">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/main_VP"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/main_BNV" />
+        android:layout_above="@+id/main_BNV"
+        app:addOnPageChangeListener="@{viewModel.pageChangeListener}"
+        app:setAdapter="@{viewModel.adapter}"
+        app:setCurrentItem="@{viewModel.currentPosition}"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/main_BNV"
@@ -28,7 +31,8 @@
         app:itemIconTint="@color/colorOnSecondary"
         app:itemTextColor="@color/colorOnSecondary"
         app:itemTextAppearanceActive="@style/selectedBNVtextStyle"
-        app:itemTextAppearanceInactive="@style/notSelectedBNVtextStyle"/>
+        app:itemTextAppearanceInactive="@style/notSelectedBNVtextStyle"
+        app:setupWithViewPager="@{mainVP}"/>
 
 </RelativeLayout>
 </layout>

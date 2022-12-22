@@ -7,7 +7,7 @@
             type="com.ezralee.bdotodo.data.model.HistoryData" />
         <variable
             name="viewModel"
-            type="com.ezralee.bdotodo.viewmodel.HistoryVM" />
+            type="com.ezralee.bdotodo.viewmodel.history.ShowHistoryVM" />
     </data>
 <RelativeLayout
     style="@style/history_dialog"
@@ -126,6 +126,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/history_image"
                     android:text="@{historyItem.memo}"
+                    android:maxLines="8"
                     android:paddingHorizontal="8dp"
                     android:layout_marginTop="12dp"/>
 
@@ -147,7 +148,7 @@
             android:paddingVertical="8dp"
             android:text="수정"
             android:textColor="@color/colorOnPrimary"
-            android:onClick="@{()->viewModel.edit()}"/>
+            android:onClick="@{()->viewModel.edit(historyItem)}"/>
 
         <Button
             android:id="@+id/history_ok"

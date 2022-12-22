@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
             name="historyItem"
             type="com.ezralee.bdotodo.data.model.HistoryUnit" />
         <variable
             name="viewModel"
-            type="com.ezralee.bdotodo.viewmodel.HistoryVM" />
+            type="com.ezralee.bdotodo.viewmodel.history.MainHistoryVM" />
     </data>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorOnSecondary">
 
     <View
@@ -35,7 +35,7 @@
         app:reverseLayout="true"
         app:stackFromEnd="true"
         tools:listitem="@layout/history_recycler_item"
-        android:adapter=""/>
+        android:adapter="@{viewModel.historyAdapter}"/>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
@@ -48,7 +48,7 @@
         android:layout_margin="20dp"
         android:src="@drawable/ic_baseline_add_24"
         android:backgroundTint="@color/colorPrimary"
-        android:onClick=""/>
+        android:onClick="@{()->viewModel.setHistory()}"/>
 
 </RelativeLayout>
 </layout>

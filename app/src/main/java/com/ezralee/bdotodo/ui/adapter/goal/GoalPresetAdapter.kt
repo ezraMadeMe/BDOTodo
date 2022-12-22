@@ -37,7 +37,7 @@ class GoalPresetAdapter(var context: Context, var items: MutableList<GoalItem>) 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         var view: View =
-            LayoutInflater.from(context).inflate(R.layout.activity_goal_preset_item, parent, false)
+            LayoutInflater.from(context).inflate(R.layout.goal_preset_recycler_item, parent, false)
 
         preset
             .addOnSuccessListener { result ->

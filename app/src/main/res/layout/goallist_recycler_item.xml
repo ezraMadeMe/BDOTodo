@@ -5,91 +5,95 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="goalData"
             type="com.ezralee.bdotodo.data.model.GoalData" />
+
         <variable
             name="viewModel"
-            type="com.ezralee.bdotodo.viewmodel.GoalVM" />
+            type="com.ezralee.bdotodo.viewmodel.goal.MainGoalVM" />
     </data>
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
     <RelativeLayout
-        android:id="@+id/goallist"
         android:layout_width="match_parent"
-        android:layout_height="70dp">
+        android:layout_height="wrap_content">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/daily_recycler_item_civ"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:src="@{goalData.color}"
-        android:layout_centerVertical="true"
-        android:layout_margin="12dp"/>
+        <RelativeLayout
+            android:id="@+id/goallist"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:onClick="@{()->viewModel.showDetail()}">
 
-    <TextView
-        android:id="@+id/daily_recycler_item_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@{goalData.goal}"
-        style="@style/dailyRecyclerTitleStyle"
-        android:layout_toRightOf="@id/daily_recycler_item_civ"
-        android:layout_centerVertical="true"
-        android:maxLines="1"
-        android:ellipsize="end"/>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/daily_recycler_item_civ"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_margin="12dp"
+                android:src="@color/purple_700" />
+
+            <TextView
+                android:id="@+id/daily_recycler_item_title"
+                style="@style/dailyRecyclerTitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/daily_recycler_item_civ"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{goalData.goal}" />
 
 
-<!--    <TextView-->
-<!--        android:id="@+id/daily_recycler_item_dday"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="D-22"-->
-<!--        android:layout_toLeftOf="@id/goallist_show_more"-->
-<!--        android:layout_marginVertical="12dp"-->
-<!--        style="@style/dailyRecyclerTitleStyle"-->
-<!--        android:textSize="16dp"-->
-<!--        android:textAlignment="viewEnd"/>-->
+            <TextView
+                android:id="@+id/daily_recycler_item_dday"
+                style="@style/dailyRecyclerTitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="12dp"
+                android:layout_toLeftOf="@id/goallist_show_more"
+                android:text="@{goalData.start}"
+                android:textAlignment="viewEnd"
+                android:textSize="16dp" />
 
-    <TextView
-        android:id="@+id/daily_recycler_item_percentage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@{goalData.end}"
-        android:layout_toLeftOf="@id/goallist_show_more"
-        android:layout_marginVertical="12dp"
-        style="@style/dailyRecyclerTitleStyle"
-        android:layout_alignParentBottom="true"/>
+            <TextView
+                android:id="@+id/daily_recycler_item_percentage"
+                style="@style/dailyRecyclerTitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginVertical="12dp"
+                android:layout_toLeftOf="@id/goallist_show_more"
+                android:text="@{goalData.end}" />
 
-        <ImageView
-            android:id="@+id/goallist_show_more"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/selector_goallist_show_detail"
-            android:layout_alignParentRight="true"
-            app:tint="@color/colorPrimary"
-            android:layout_centerVertical="true"/>
+            <ImageView
+                android:id="@+id/goallist_show_more"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:onClick="@{()->viewModel.arrowAnimate()}"
+                android:src="@drawable/selector_goallist_show_detail"
+                app:tint="@color/colorPrimary" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorPrimary"
-        android:layout_alignParentBottom="true"
-        android:layout_marginHorizontal="5dp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginHorizontal="5dp"
+                android:background="@color/colorPrimary" />
+
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/goallist_detail_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/goallist"
+            android:adapter="@{viewModel.adapter}"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            tools:listitem="@layout/goallist_inner_recycler_item" />
 
     </RelativeLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/goallist_detail_recycler"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/goallist"
-        android:paddingVertical="8dp"
-        android:paddingHorizontal="16dp"
-        tools:listitem="@layout/goallist_inner_recycler_item"
-        android:adapter="@{viewModel.adapter}"/>
-
-</RelativeLayout>
 </layout>

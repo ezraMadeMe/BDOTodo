@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="accureItem"
             type="com.ezralee.bdotodo.data.model.TaskAccureData" />
@@ -14,8 +13,19 @@
             type="com.ezralee.bdotodo.data.model.UserGoalData" />
 
         <variable
+            name="goalItem"
+            type="com.ezralee.bdotodo.data.model.GoalItem" />
+
+        <variable
+            name="planItem"
+            type="com.ezralee.bdotodo.data.model.PlanItem" />
+        <variable
+            name="taskItem"
+            type="com.ezralee.bdotodo.data.model.TaskItem" />
+
+        <variable
             name="viewModel"
-            type="com.ezralee.bdotodo.viewmodel.DailyVM" />
+            type="com.ezralee.bdotodo.viewmodel.daily.SetDailyActivityVM" />
     </data>
 
     <RelativeLayout
@@ -130,22 +140,25 @@
                 android:orientation="horizontal">
 
                 <Spinner
-                    android:id="@+id/todo_goallist_main"
+                    android:id="@+id/todo_spinner_goal"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:spinnerMode="dialog"
                     android:textAlignment="center"
-                    tools:listitem="@{userGoalData.goalList}"/>
+                    tools:listitem="@{viewModel.goalList}"
+                    android:onItemSelected="@{(parent,view,pos,id)->viewModel.selectedGoal(parent,view,pos,id)}"/>
 
 
                 <Spinner
-                    android:id="@+id/todo_goallist_sub"
+                    android:id="@+id/todo_spinner_plan"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:spinnerMode="dialog"
-                    android:textAlignment="center"/>
+                    android:textAlignment="center"
+                    tools:listitem="@{viewModel.planList}"
+                    android:onItemSelected="@{(parent,view,pos,id)->viewModel.selectedPlan(parent,view,pos,id)}"/>
 
 
             </LinearLayout>
@@ -164,7 +177,7 @@
                 android:orientation="horizontal">
 
                 <Spinner
-                    android:id="@+id/todo_goallist_task"
+                    android:id="@+id/todo_spinner_task"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -172,7 +185,9 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:spinnerMode="dialog"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    tools:listitem="@{viewModel.taskList}"
+                    android:onItemSelected="@{(parent,view,pos,id)->viewModel.selectedTask(parent,view,pos,id)}"/>
 
                 <TextView
                     style="@style/history_dialog_text"
@@ -224,7 +239,8 @@
                 android:scrollbars="vertical"
                 android:textColor="@color/colorOnSecondary"
                 android:textColorHint="@color/colorOnSecondary"
-                android:textCursorDrawable="@color/colorPrimaryVariant" />
+                android:textCursorDrawable="@color/colorPrimaryVariant"
+                android:text="@{viewModel.}"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -286,7 +302,8 @@
                 android:background="@color/colorPrimaryVariant"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/add_todo_recycler_item"/>
+                tools:listitem="@layout/add_todo_recycler_item"
+                android:adapter="@{viewModel.adapter}"/>
 
         </LinearLayout>
 

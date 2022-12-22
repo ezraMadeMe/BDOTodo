@@ -8,7 +8,7 @@
             type="com.ezralee.bdotodo.data.model.GoalPreset" />
         <variable
             name="viewModel"
-            type="com.ezralee.bdotodo.viewmodel.GoalVM" />
+            type="com.ezralee.bdotodo.viewmodel.goal.GoalPresetActivityVM" />
     </data>
 
 <RelativeLayout
@@ -77,10 +77,11 @@
             app:itemTextColor="@color/colorOnPrimary"
             app:itemTextAppearanceActive="@style/selectedBNVtextStyle"
             app:itemTextAppearanceInactive="@style/notSelectedBNVtextStyle"
-            app:labelVisibilityMode="labeled" />
+            app:labelVisibilityMode="labeled"
+            app:setupWithViewPager="@{presetVP}"/>
 
         <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/preset_VP"
+            android:id="@+id/presetVP"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/preset_BNV"
