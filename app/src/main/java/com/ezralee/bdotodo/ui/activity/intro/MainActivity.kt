@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         //선택된 BNV 반응
         binding.mainBNV.setOnNavigationItemSelectedListener(this)
         //ViewPager에 FragmentManager 붙이기
-        binding.mainVP.adapter = MainActivityVPAdapter(supportFragmentManager, lifecycle)
+        binding.mainVP.adapter = MainActivityVPAdapter(supportFragmentManager)
         //ViewPager에 페이지 변화를 감지하는 콜백메서드 오버라이딩
         binding.mainVP.registerOnPageChangeCallback(ViewPagerPageChangeCallback())
     }

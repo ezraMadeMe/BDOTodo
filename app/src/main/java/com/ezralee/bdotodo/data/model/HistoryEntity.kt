@@ -2,23 +2,21 @@ package com.ezralee.bdotodo.data.model
 
 import androidx.room.*
 
-////history들의 날짜 정보
-//@Entity(tableName = "historyList")
-//data class HistoryDateData(
-//    //autoGenerate null을 받으면 ID 값을 자동으로 할당
-//    @PrimaryKey(autoGenerate = true)
-//    var userId : String?,
-//    @ColumnInfo(name ="date")
-//    var date: String
-//){
-//    constructor() : this(null,"")
-//}
+//사용자의 모든 history 목록
+data class HistoryUnit(
+    @Embedded val userInfo: UserInfo,
+    @Relation(
+        parentColumn = "userId",
+        entityColumn = "userId"
+    )
+    val historyList: MutableList<HistoryData>
+)
 
 //history 하나의 정보
 @Entity(tableName = "historyList")
 data class HistoryData(
-    //autoGenerate null을 받으면 ID 값을 자동으로 할당
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name ="userId")
     var userId : String?,
 
     @ColumnInfo(name ="title")

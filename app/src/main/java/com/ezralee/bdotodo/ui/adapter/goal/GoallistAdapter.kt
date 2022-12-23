@@ -10,14 +10,12 @@ import android.view.animation.Transformation
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.ezralee.bdotodo.R
+import com.ezralee.bdotodo.data.model.GoalItem
 import com.ezralee.bdotodo.databinding.GoallistRecyclerItemBinding
-import com.ezralee.bdotodo.main.GoalItem
-import com.ezralee.bdotodo.main.PlanItem
-import com.ezralee.bdotodo.main.TaskItem
 import java.text.SimpleDateFormat
 import java.util.*
 
-class GoallistAdapter(var context: Context, var items: MutableList<GoalItem>, var planItems: MutableList<PlanItem>, var taskItems: MutableList<TaskItem>) :
+class GoallistAdapter(var context: Context, var items: MutableList<GoalItem>) :
     RecyclerView.Adapter<GoallistAdapter.VH>() {
 
     inner class VH(itemView: View) : ViewHolder(itemView) {

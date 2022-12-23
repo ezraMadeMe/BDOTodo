@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="historyData"
+            name="data"
             type="com.ezralee.bdotodo.data.model.HistoryData" />
         <variable
             name="viewModel"
@@ -34,7 +34,8 @@
             app:stackFromEnd="true"
             android:layout_gravity="right"
             tools:listitem="@layout/history_inner_recycler_item"
-            android:adapter="@{viewModel.historyDetailAdapter}"/>
+            bindHistory="@{viewModel.historyList}"
+            android:onItemSelected="@={()->viewModel.onClickEvent(data)}"/>
 
         <View
             android:id="@+id/line_left"
@@ -51,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="8dp"
             android:layout_marginRight="8dp"
-            android:text="@{historyData.date}"
+            android:text="@{data.date}"
             android:textAlignment="viewEnd"
             android:textSize="20sp"/>
     </LinearLayout>
@@ -75,7 +76,7 @@
             app:stackFromEnd="true"
             tools:listitem="@layout/history_inner_recycler_item"
             android:adapter="@{viewModel.historyDatailAdapter}"
-            android:onItemSelected="@{()->viewModel.showDetailHistory()}"/>
+            android:onItemSelected="@={()->viewModel.onClickEvent(data)}"/>
 
         <View
             android:id="@+id/line_right"
@@ -92,7 +93,7 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="8dp"
             android:layout_marginLeft="8dp"
-            android:text="@{historyData.date}"
+            android:text="@{data.date}"
             android:textSize="20sp" />
 
     </LinearLayout>

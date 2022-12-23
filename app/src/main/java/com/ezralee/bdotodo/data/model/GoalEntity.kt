@@ -2,11 +2,14 @@ package com.ezralee.bdotodo.data.model
 
 import androidx.room.*
 
-//미리 설정된 goalPreset 리스트
-@Entity(tableName = "goalPreset")
-data class GoalPreset(
-    @ColumnInfo(name = "goal")
-    var goalPreset: String
+//사용자의 모든 goal 정보
+data class UserGoalData(
+    @Embedded val userInfo: UserInfo,
+    @Relation(
+        parentColumn = "userId",
+        entityColumn = "userId"
+    )
+    val goalList: MutableList<GoalItem>
 )
 
 //goal하나+goal에 속한 plan의 리스트
@@ -39,24 +42,12 @@ data class TaskItem(
     val taskAccureList: MutableList<TaskAccureData>
 )
 
-//accure이 속한 대목표의 색상/디데이/토탈개수
-data class AccureList(
-    @Embedded val goalData: GoalData,
-    @Relation(
-        parentColumn = "userId",
-        entityColumn = "userId"
-    )
-    val accureList: MutableList<TaskAccureData>
-)
-
-//daily에 보여질 task와 goal의 연관관계 표시
-
-
-//goal의 기본 정보
+///////////////////////////////goal 정보
 @Entity(tableName = "goalData")
 data class GoalData(
     //autoGenerate null을 받으면 ID 값을 자동으로 할당
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name ="userId")
     var userId : String?,
 
     @ColumnInfo(name ="goal")
@@ -75,9 +66,14 @@ data class GoalData(
     constructor() : this(null,"","","","","","")
 }
 
-//plan의 기본 정보
+///////////////////////////////plan 정보
 @Entity(tableName = "planData")
 data class PlanData(
+    //autoGenerate null을 받으면 ID 값을 자동으로 할당
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name ="userId")
+    var userId : String?,
+
     @ColumnInfo(name ="goalBelong")
     var goal: String,
     @ColumnInfo(name ="plan")
@@ -90,12 +86,17 @@ data class PlanData(
     var andor: Boolean
 
 ){
-    constructor() : this("","","","",false)
+    constructor() : this("","","","","",false)
 }
 
-//task의 기본 정보
+///////////////////////////////task 정보
 @Entity(tableName = "taskData")
 data class TaskData(
+    //autoGenerate null을 받으면 ID 값을 자동으로 할당
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name ="userId")
+    var userId : String?,
+
     @ColumnInfo(name ="planBelong")
     var plan: String,
     @ColumnInfo(name ="task")
@@ -105,21 +106,5 @@ data class TaskData(
     @ColumnInfo(name ="count")
     var count: Int
 ){
-    constructor() : this("","",0,0)
-}
-
-//날짜별로 완수한 task 개수
-@Entity(tableName = "taskAccureData")
-data class TaskAccureData(
-    //autoGenerate null을 받으면 ID 값을 자동으로 할당
-    @PrimaryKey(autoGenerate = true)
-    var userId : String?,
-    @ColumnInfo(name ="taskBelong")
-    var task: String,
-    @ColumnInfo(name ="taskAccureDate")
-    var date: String,
-    @ColumnInfo(name ="count")
-    var count: Int
-){
-    constructor() : this("","","",0)
+    constructor() : this("","","",0,0)
 }

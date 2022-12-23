@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.ezralee.bdotodo.data.Util.KakaoLogin
-import com.ezralee.bdotodo.data.model.PreferenceUtil
+import com.ezralee.bdotodo.data.Util.PreferenceUtil
 import com.ezralee.bdotodo.databinding.ActivityIntroBinding
 
 class IntroActivity : AppCompatActivity() {

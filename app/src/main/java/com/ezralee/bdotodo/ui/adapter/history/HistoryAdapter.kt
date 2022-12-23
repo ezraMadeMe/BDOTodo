@@ -1,95 +1,99 @@
 package com.ezralee.bdotodo.ui.adapter.history
 
-import android.content.Context
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.databinding.BindingAdapter
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat.startActivity
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.HistoryRecyclerItemBinding
 import com.ezralee.bdotodo.data.model.HistoryData
+import com.ezralee.bdotodo.ui.activity.history.ShowHistoryActivity
+import com.ezralee.bdotodo.ui.adapter.OnItemClickListener
+import com.ezralee.bdotodo.viewmodel.main.eventObserve
 
-class HistoryAdapter(var context: Context, var items: MutableList<HistoryData>) :
-    RecyclerView.Adapter<HistoryAdapter.VH>() {
-    interface OnItemClickListener {
-        fun onItemClick(v: View?, p: Int)
-    }
-    interface OnItemLongClickListener {
-        fun onItemLongClick(v: View?, p: Int)
-    }
-    // 리스너 객체 참조를 저장하는 변수
-    private var mListener: OnItemClickListener? = null
+class HistoryAdapter: ListAdapter<HistoryData,HistoryAdapter.VH>(diffUtil) {
 
-    // OnItemClickListener 객체 참조를 어댑터에 전달하는 메서드
-    fun setOnItemClickListener(listener: OnItemClickListener?) {
-        mListener = listener
-    }
+    inner class VH(private val binding: HistoryRecyclerItemBinding)
+        : RecyclerView.ViewHolder(binding.root),View.OnClickListener {
 
-    inner class VH(private val binding: HistoryRecyclerItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        //val binding: HistoryRecyclerItemBinding = HistoryRecyclerItemBinding.bind(itemView)
+        fun bind(data: HistoryData){
+            binding.apply {
+                this.data.date = data.date
+                this.data.title = data.title
+                this.data.category = data.category
+                this.data.imgUrl = data.imgUrl
+                this.data.memo = data.memo
+                this.data.imgUrl = data.imgUrl
 
-        init {
-            itemView.setOnClickListener(object : View.OnClickListener {
-                override fun onClick(v: View?) {
-                    val position = adapterPosition
-                    if (position != RecyclerView.NO_POSITION){
-                        mListener?.onItemClick(v, position)
-                    }
+                if (adapterPosition%2 == 0){
+                    binding.historyRecyclerDatasLeft.visibility = View.INVISIBLE
+                    binding.historyRecyclerLeft.visibility = View.INVISIBLE
+                    binding.historyRecyclerDateLeft.visibility = View.INVISIBLE
+                    binding.lineLeft.visibility = View.INVISIBLE
+                }else{
+                    binding.historyRecyclerRight.visibility = View.INVISIBLE
+                    binding.historyRecyclerDatasRight.visibility = View.INVISIBLE
+                    binding.historyRecyclerDateRight.visibility = View.INVISIBLE
+                    binding.lineLeft.visibility = View.INVISIBLE
                 }
-            })
-        }
-
-        fun bind(item: HistoryData){
-            with(binding){
-                historyData = item
-                executePendingBindings()
             }
         }
 
-    }//inner class VH
+        override fun onClick(v: View?) {
+            onItemClickListener.onItemClick(adapterPosition)
+        }
+    }//inner class
+
+    private lateinit var onItemClickListener : OnItemClickListener
+
+    fun setOnItemClickListener(listener : OnItemClickListener){
+        this.onItemClickListener = listener
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        val binding =
-            HistoryRecyclerItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = HistoryRecyclerItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return VH(binding)
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        holder.binding.historyRecyclerDatasRight.adapter = InnerHistoryAdapter(context, items)
-        holder.binding.historyRecyclerDatasLeft.adapter = InnerHistoryAdapter(context, items)
-        holder.binding.historyRecyclerDateLeft.text = items[position].date
-        holder.binding.historyRecyclerDateRight.text = items[position].date
+        holder.bind(getItem(position))
+    }
 
-        when (position % 2) {
-            0 -> {
-                holder.binding.historyRecyclerDatasRight.visibility = View.INVISIBLE
-                holder.binding.historyRecyclerDateRight.visibility = View.INVISIBLE
-                holder.binding.lineRight.visibility = View.INVISIBLE
-            }
-            1 -> {
-                holder.binding.historyRecyclerDatasLeft.visibility = View.INVISIBLE
-                holder.binding.historyRecyclerDateLeft.visibility = View.INVISIBLE
-                holder.binding.lineLeft.visibility = View.INVISIBLE
+    override fun submitList(list: MutableList<HistoryData>?) {
+        super.submitList(list)
+    }
 
-            }
-            else -> {
-                holder.binding.historyRecyclerDateRight.visibility = View.VISIBLE
-            }
+    private fun initObserve() {
+        viewModel.openEvent.eventObserve(this) { data ->
+            val intent = Intent(requireContext(), ShowHistoryActivity::class.java)
+            val bundle = Bundle()
+            val datas = arrayOf(
+                data.title,
+                data.date,
+                data.category,
+                data.imgUrl,
+                data.memo
+            )
+            bundle.putStringArray("data", datas)
+            intent.putExtra("data", bundle)
+            startActivity(intent)
         }
     }
 
-    override fun getItemCount(): Int {
-        return items.size
-    }
+    companion object {
+        val diffUtil = object : DiffUtil.ItemCallback<HistoryData>(){
+            override fun areItemsTheSame(oldItem: HistoryData, newItem: HistoryData): Boolean {
+                return oldItem == newItem
+            }
 
-    @BindingAdapter("imgUrl")
-    fun loadHistoryImage(view: ImageView, imgUrl: String){
-        Glide.with(view.context)
-            .load(imgUrl)
-            .error(R.drawable.img_sample)
-            .into(view)
+            override fun areContentsTheSame(oldItem: HistoryData, newItem: HistoryData): Boolean {
+                return oldItem.hashCode() == newItem.hashCode()
+            }
+        }
     }
 }

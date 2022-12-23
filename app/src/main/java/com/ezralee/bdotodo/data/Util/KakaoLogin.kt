@@ -1,7 +1,6 @@
 package com.ezralee.bdotodo.data.Util
 
 import android.app.Application
-import com.ezralee.bdotodo.data.model.PreferenceUtil
 import com.kakao.sdk.common.KakaoSdk
 
 class KakaoLogin : Application() {

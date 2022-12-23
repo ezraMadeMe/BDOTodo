@@ -1,4 +1,4 @@
-package com.ezralee.bdotodo.data.model
+package com.ezralee.bdotodo.data.Util
 
 import android.content.Context
 import android.content.SharedPreferences

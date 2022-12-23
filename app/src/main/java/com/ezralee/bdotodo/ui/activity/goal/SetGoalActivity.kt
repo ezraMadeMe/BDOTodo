@@ -6,18 +6,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.ezralee.bdotodo.databinding.ActivitySetGoalBinding
-import com.ezralee.bdotodo.main.*
-import com.ezralee.bdotodo.ui.adapter.goal.GoalViewPagerAdapter
+import com.ezralee.bdotodo.ui.adapter.goal.SetGoalVPAdapter
 import com.ezralee.bdotodo.ui.fragment.goal.MyGoalFragment
 import com.ezralee.bdotodo.ui.fragment.goal.SetGoalFragment1
 import com.ezralee.bdotodo.ui.fragment.goal.SetGoalFragment2
 
 class SetGoalActivity : AppCompatActivity() {
     val binding: ActivitySetGoalBinding by lazy { ActivitySetGoalBinding.inflate(layoutInflater) }
-    var items: MutableList<Fragment> = mutableListOf()
-    lateinit var newTaskList: TaskList
-    lateinit var newPlan: PlanItem
-    lateinit var newPlanList: PlanList
+    var items: List<Fragment> = ListOf()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +23,7 @@ class SetGoalActivity : AppCompatActivity() {
         var initItems = mutableListOf<Fragment>(SetGoalFragment1(), SetGoalFragment2())
         items.addAll(initItems)
 
-        binding.setGoalPager.adapter = GoalViewPagerAdapter(items, this@SetGoalActivity, supportFragmentManager, lifecycle)
+        binding.setGoalPager.adapter = SetGoalVPAdapter(supportFragmentManager, items)
         binding.setGoalPager.getChildAt(binding.setGoalPager.currentItem)
 
         binding.goalDone.setOnClickListener{
@@ -37,11 +34,7 @@ class SetGoalActivity : AppCompatActivity() {
 
     fun addData(){
         //소목표 fragment가 추가될 때마다 데이터 추가시키기
-        newTaskList = MyGoalFragment.getTaskList(MyGoalFragment.taskItem)
-        newPlan = MyGoalFragment.planItem
-        newPlanList = MyGoalFragment.getPlanList(newPlan,newTaskList)
-        MyGoalFragment.planUnit = MyGoalFragment.getPlanUnit(newPlanList)
-        Toast.makeText(this@SetGoalActivity,""+ MyGoalFragment.planList.taskList.tasks.size, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this@SetGoalActivity,"", Toast.LENGTH_SHORT).show()
     }
 
 

@@ -4,9 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="historyItem"
-            type="com.ezralee.bdotodo.data.model.HistoryUnit" />
-        <variable
             name="viewModel"
             type="com.ezralee.bdotodo.viewmodel.history.MainHistoryVM" />
     </data>
@@ -35,7 +32,7 @@
         app:reverseLayout="true"
         app:stackFromEnd="true"
         tools:listitem="@layout/history_recycler_item"
-        android:adapter="@{viewModel.historyAdapter}"/>
+        android:adapter="@{viewModel.recyclerAdapter}"/>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
