@@ -6,8 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.ezralee.bdotodo.databinding.ActivitySetGoalBinding
-import com.ezralee.bdotodo.ui.adapter.goal.SetGoalVPAdapter
-import com.ezralee.bdotodo.ui.fragment.goal.MyGoalFragment
+import com.ezralee.bdotodo.ui.adapter.SetGoalVPAdapter
 import com.ezralee.bdotodo.ui.fragment.goal.SetGoalFragment1
 import com.ezralee.bdotodo.ui.fragment.goal.SetGoalFragment2
 

@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import com.ezralee.bdotodo.databinding.FragmentSetGoal2Binding
 import com.ezralee.bdotodo.dialog.DatePickerDialog
 import com.ezralee.bdotodo.main.*
-import com.ezralee.bdotodo.ui.adapter.goal.GoalTaskRecyclerAdapter
 import com.ezralee.bdotodo.ui.activity.goal.SetGoalActivity
 
 class SetGoalFragment2 : MyGoalFragment() {

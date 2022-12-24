@@ -1,51 +1,25 @@
 package com.ezralee.bdotodo.viewmodel.daily
 
-class SetDailyActivityVM {
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.ezralee.bdotodo.R
+import com.ezralee.bdotodo.data.model.AccureItem
 
-    val adapter
+class SetDailyActivityVM(application: Application): AndroidViewModel(application) {
 
-    //userId로 쿼리한 goal의 이름 목록
-    val goalList
-
-    //유저가 선택한 goal의 이름
-    fun selectedGoal(){
-
+    // ViewModel에 파라미터를 넘기기 위해서, 파라미터를 포함한 Factory 객체를 생성하기 위한 클래스
+    class Factory(val application: Application) : ViewModelProvider.Factory {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            return SetDailyActivityVM(application) as T
+        }
     }
 
-    //selectedGoal로 쿼리한 plan의 이름 목록
-    val planList
+    val adapter = AddTodoAdapter(
+        id = R.layout.add_todo_recycler_item,
+        items = listOf<AccureItem>(),
+        listener = this
+    )
 
-    //유저가선택한 plan의 이름
-    fun selectedPlan(){
-
-    }
-
-    //selectedPlan으로 쿼리한 task의 이름 목록
-    val taskList
-
-    //유저가 선택한 task의 이름
-    fun selectedTask(){
-
-    }
-
-    //선택한 task의 달성량
-    fun setCount(){
-        //number picker 실행
-    }
-
-    fun setToday(){
-
-    }
-
-    fun close(){
-
-    }
-
-    fun add(){
-
-    }
-
-    fun commit(){
-
-    }
 }

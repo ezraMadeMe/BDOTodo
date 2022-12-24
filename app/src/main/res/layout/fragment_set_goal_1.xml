@@ -48,17 +48,16 @@
                     android:textColorHint="@color/colorOnSecondary"
                     android:textCursorDrawable="@color/colorPrimaryVariant" />
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/goal_color_picker"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_gravity="right"
                     android:layout_marginHorizontal="8dp"
-                    android:onClick="@={()->viewModel.colorPick()}"
-                    android:src="@drawable/ic_baseline_circle_24" />
+                    android:onClick="@={()->viewModel.colorPick(viewModel.color)}"
+                    android:src="@={viewModel.color}"/>
 
             </LinearLayout>
-
 
             <View
                 android:layout_width="250dp"
@@ -87,8 +86,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nexonlv1_bold"
-                        android:onClick="@={()->viewModel.datePick()}"
-                        android:text="@={viewModel.today}"
+                        android:onClick="@={()->viewModel.setStart()}"
+                        android:text="@={viewModel.setStart}"
                         android:textSize="20sp" />
 
                     <View
@@ -117,7 +116,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nexonlv1_bold"
-                        android:text="@={viewModel.today}"
+                        android:text="@={()->viewModel.setEnd()}"
                         android:textSize="20sp" />
 
                     <View
@@ -147,7 +146,7 @@
                     android:background="@drawable/bs_search_shape"
                     android:backgroundTint="@color/colorOnSecondary"
                     android:entries="@array/category_entry"
-                    android:onItemSelected="@={()->viewModel.setCategory()}"
+                    android:onItemSelected="@={()->viewModel.setCategory(viewModel.currentCategory)}"
                     android:spinnerMode="dialog"
                     android:textAlignment="center" />
 
@@ -166,7 +165,7 @@
                 android:layout_height="330dp"
                 android:layout_marginHorizontal="4dp"
                 android:background="@null"
-                android:hint="히스토리 제목 입력"
+                android:hint="메모"
                 android:minLines="10"
                 android:overScrollMode="ifContentScrolls"
                 android:scrollbars="vertical"

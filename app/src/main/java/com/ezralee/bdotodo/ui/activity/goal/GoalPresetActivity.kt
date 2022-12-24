@@ -1,16 +1,12 @@
 package com.ezralee.bdotodo.ui.activity.goal
 
 import android.os.Bundle
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.viewpager2.widget.ViewPager2
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.ActivityGoalPresetBinding
-import com.ezralee.bdotodo.ui.adapter.goal.GoalPresetViewPagerAdapter
 import com.ezralee.bdotodo.viewmodel.goal.GoalPresetActivityVM
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class GoalPresetActivity : AppCompatActivity() {
 

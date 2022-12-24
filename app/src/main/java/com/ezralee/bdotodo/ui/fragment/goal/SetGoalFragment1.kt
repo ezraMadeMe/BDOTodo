@@ -7,19 +7,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import com.ezralee.bdotodo.data.Util.Info
+import com.ezralee.bdotodo.data.Util.KakaoLogin
+import com.ezralee.bdotodo.data.model.GoalData
 import com.ezralee.bdotodo.databinding.FragmentSetGoal1Binding
-import com.ezralee.bdotodo.dialog.ColorPickerActivity
-import com.ezralee.bdotodo.dialog.DatePickerDialog
-import com.ezralee.bdotodo.main.*
+import com.ezralee.bdotodo.ui.dialog.ColorPickerActivity
+import com.ezralee.bdotodo.ui.dialog.DatePickerDialog
 
-class SetGoalFragment1 : MyGoalFragment() {
+class SetGoalFragment1 : Fragment() {
 
     lateinit var binding: FragmentSetGoal1Binding
-    var items: MutableList<GoalItem> = mutableListOf()
+    var items: MutableList<GoalData> = mutableListOf()
 
 
     companion object{
-        var goalItem: GoalItem? = null
+        var goalItem: GoalData? = null
     }
 
     override fun onCreateView(
@@ -86,7 +89,7 @@ class SetGoalFragment1 : MyGoalFragment() {
         goalItem = goalData()
     }
 
-    fun goalData(): GoalItem {
+    fun goalData(): GoalData {
         var gl = binding.historyTitleEdit.text.toString()
         var glS = binding.goalStartDate.text.toString()
         var glE = binding.goalEndDate.text.toString()
@@ -94,7 +97,7 @@ class SetGoalFragment1 : MyGoalFragment() {
         var ctgr = binding.historyCategory.selectedItem.toString()
         var memo = binding.historyMemoEdit.text.toString()
 
-        var item = GoalItem(gl, glS, glE, clr, ctgr, memo)
+        var item = GoalData(KakaoLogin.USER_ID, gl, glS, glE, clr, ctgr, memo)
 
         return item
     }

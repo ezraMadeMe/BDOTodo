@@ -4,10 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="presetList"
-            type="com.ezralee.bdotodo.data.model.GoalPreset" />
-
-        <variable
             name="viewModel"
             type="com.ezralee.bdotodo.viewmodel.goal.GoalPresetActivityVM" />
     </data>
@@ -22,10 +18,11 @@
             style="@style/history_dialog_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onItemSelected="@{()->viewModel.getPresetData(presetList)}"
+            app:onItemSelected="@{()->viewModel.setPresetData(viewModel.presetList)}"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/goal_preset_recycler_item"/>
+            tools:listitem="@layout/goal_preset_recycler_item"
+            android:adapter="@{viewModel.recyclerAdapter}"/>
 
     </RelativeLayout>
 </layout>

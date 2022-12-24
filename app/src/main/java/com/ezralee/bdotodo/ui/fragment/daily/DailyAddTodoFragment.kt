@@ -10,7 +10,6 @@ import com.ezralee.bdotodo.dialog.NumberPickerFragment
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.FragmentDailyAddTodoBinding
 import com.ezralee.bdotodo.dialog.DatePickerDialog
-import com.ezralee.bdotodo.ui.adapter.daily.AddTodoAdapter
 
 class DailyAddTodoFragment: DialogFragment() {
     var _binding: FragmentDailyAddTodoBinding? = null

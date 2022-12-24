@@ -32,7 +32,8 @@
         app:reverseLayout="true"
         app:stackFromEnd="true"
         tools:listitem="@layout/history_recycler_item"
-        android:adapter="@{viewModel.recyclerAdapter}"/>
+        android:adapter="@{viewModel.recyclerAdapter}"
+        android:onItemSelected="@{()->viewModel.onClickEvent()}"/>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

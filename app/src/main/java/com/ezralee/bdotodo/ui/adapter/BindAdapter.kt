@@ -1,4 +1,4 @@
-package com.ezralee.bdotodo.ui.adapter.daily
+package com.ezralee.bdotodo.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,45 +6,45 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableList
 import androidx.databinding.ViewDataBinding
-import androidx.databinding.library.baseAdapters.BR
 import androidx.recyclerview.widget.RecyclerView
+import com.ezralee.bdotodo.BR
 
-class DailyRecyclerAdapter<T>(
+class BindAdapter<T>(
     private val layouts: Map<Int, Int>,
     items: List<T>,
     private val listener: Any? = null
-): RecyclerView.Adapter<DailyRecyclerAdapter.Holder>() {
+): RecyclerView.Adapter<BindAdapter.Holder>() {
 
     private val items = ObservableArrayList<T>().apply {
         addAll(items)
     }
 
-    class Holder(val bind: ViewDataBinding) : RecyclerView.ViewHolder(bind.root)
+    class Holder(val bind: ViewDataBinding): RecyclerView.ViewHolder(bind.root)
 
     constructor(id: Int, items: List<T>, listener: Any? = null): this(mapOf(0 to id), items, listener)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         return LayoutInflater.from(parent.context).let {
             val id = layouts[viewType]!!
-            val bind = DataBindingUtil.inflate<ViewDataBinding>(it, id,parent, false)
+            val bind = DataBindingUtil.inflate<ViewDataBinding>(it, id, parent, false)
             return@let Holder(bind)
         }
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.bind.setVariable(BR._all, getItemViewType(position))
+        holder.bind.setVariable(BR._all, getItemByPosition(position))
         listener?.let { holder.bind.setVariable(BR._all, it) }
         holder.bind.executePendingBindings()
     }
 
-    override fun getItemCount(): Int {
-        return items.size
-    }
+    override fun getItemCount(): Int = items.size
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
         recyclerView.itemAnimator = null
     }
+
+    open fun getItemByPosition(position: Int): T = items[position]
 
     fun add(item: T) {
         items.add(item)
@@ -77,4 +77,5 @@ class DailyRecyclerAdapter<T>(
     }
 
     fun getItems(): ObservableList<T> = items
+
 }

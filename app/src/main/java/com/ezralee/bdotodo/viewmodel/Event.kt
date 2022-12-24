@@ -1,4 +1,4 @@
-package com.ezralee.bdotodo.viewmodel.main
+package com.ezralee.bdotodo.viewmodel
 
 import androidx.annotation.MainThread
 import androidx.lifecycle.LifecycleOwner

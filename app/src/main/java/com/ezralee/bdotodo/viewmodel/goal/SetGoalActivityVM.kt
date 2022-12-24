@@ -9,15 +9,9 @@ import com.ezralee.bdotodo.data.repository.goal.GoalDB
 import com.ezralee.bdotodo.data.repository.goal.GoalRepo
 import com.ezralee.bdotodo.ui.fragment.goal.SetGoalFragment1
 import com.ezralee.bdotodo.ui.fragment.goal.SetGoalFragment2
-import com.ezralee.bdotodo.viewmodel.main.Event
+import com.ezralee.bdotodo.viewmodel.Event
 
 class SetGoalActivityVM(application: Application): AndroidViewModel(application) {
-
-    class Factory(val application: Application): ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return SetGoalActivityVM(application) as T
-        }
-    }
 
     private val repository = GoalRepo(application)
     private val db = Room.databaseBuilder(application, GoalDB::class.java, "goalList")

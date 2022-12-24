@@ -86,7 +86,7 @@
             android:layout_height="match_parent"
             android:layout_below="@+id/preset_BNV"
             app:addOnPageChangeListener="@{viewModel.pageChangeListener}"
-            app:setAdapter="@{viewModel.adapter}"
+            app:setAdapter="@{viewModel.viewPagerAdapter}"
             app:setCurrentItem="@{viewModel.currentPosition}" />
 
     </RelativeLayout>

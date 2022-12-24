@@ -1,34 +1,50 @@
 package com.ezralee.bdotodo.viewmodel.goal
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.room.Room
-import com.ezralee.bdotodo.data.repository.goal.GoalDB
-import com.ezralee.bdotodo.data.repository.goal.GoalRepo
+import androidx.fragment.app.FragmentManager
+import androidx.viewpager.widget.ViewPager
+import com.ezralee.bdotodo.R
+import com.ezralee.bdotodo.data.model.GoalPreset
+import com.ezralee.bdotodo.ui.adapter.BindAdapter
+import com.ezralee.bdotodo.ui.adapter.ViewPagerAdapter
+import com.ezralee.bdotodo.ui.fragment.goal.GoalPresetListFragment
 
-class GoalPresetActivityVM(application: Application) : AndroidViewModel(application) {
+class GoalPresetActivityVM(val contract: GoalPresetContract) {
 
-    private val repository = GoalRepo(application)
-    private val db = Room.databaseBuilder(application, GoalDB::class.java, "goalList")
-                         .allowMainThreadQueries()
-                         .build()
+    interface GoalPresetContract{
+        fun getFragmentManager(): FragmentManager
+    }
 
-    class Factory(val application: Application): ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return GoalPresetActivityVM(application) as T
+    /////////////////////////////////////////////////// 뷰페이저
+    var viewPagerAdapter = ViewPagerAdapter(
+        contract.getFragmentManager(),
+        listOf("보물","생활", "장비"),
+        listOf(
+            GoalPresetListFragment.newInstance("보물"),
+            GoalPresetListFragment.newInstance("생활"),
+            GoalPresetListFragment.newInstance("장비")
+        )
+    )
+
+    var currentPosition = 0
+
+    var pageChangeListener = object : ViewPager.OnPageChangeListener {
+        override fun onPageScrolled(
+            position: Int,
+            positionOffset: Float,
+            positionOffsetPixels: Int
+        ) {
+            TODO("Not yet implemented")
         }
-    }
 
-    //프리셋 리스트 리사이클러뷰 아답터
-    val recyclerAdapter
+        override fun onPageSelected(position: Int) {
+            currentPosition = position
+        }
 
-    //뷰페이저 아답터
-    val vpAdapter
-
-    //선택한 프리셋에 해당하는 세부 정보가 입력된 목표가 하나 새로 생성됨(HistoryFragment로 이동)
-    fun getPresetData(preset: String) {
+        override fun onPageScrollStateChanged(state: Int) {
+            TODO("Not yet implemented")
+        }
 
     }
+
+
 }

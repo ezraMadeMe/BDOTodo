@@ -1,4 +1,4 @@
-package com.ezralee.bdotodo.ui.adapter.goal
+package com.ezralee.bdotodo.ui.adapter
 
 import android.content.Context
 import androidx.fragment.app.Fragment

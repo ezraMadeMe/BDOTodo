@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable
             name="viewModel"
             type="com.ezralee.bdotodo.viewmodel.goal.SetGoalActivityVM" />
-        <variable
-            name="fragmentManager"
-            type="androidx.fragment.app.FragmentManager" />
     </data>
 <RelativeLayout
     android:layout_width="match_parent"
@@ -18,9 +14,7 @@
         android:id="@+id/set_goal_pager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        setVM="@{viewModel}"
-        setFsm="@{fragmentManager}"
-        android:adapter=""/>
+        android:adapter="@{viewModel.viewPagerAdapter}"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="완료"
-            android:onClick="@{()->viewModel.createGoal()}"/>
+            android:onClick="@{()->viewModel.createGoal(viewModel.goalItem)}"/>
 
         <View
             android:layout_width="0dp"

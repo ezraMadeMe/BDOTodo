@@ -7,22 +7,19 @@
         <variable
             name="viewModel"
             type="com.ezralee.bdotodo.viewmodel.main.MainActivityVM" />
-        <variable
-            name="fragmentManager"
-            type="androidx.fragment.app.FragmentManager" />
     </data>
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.viewpager2.widget.ViewPager2
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/main_VP"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/main_BNV"
-        setFsm="@{fragmentManager}"
-        setVM="@{viewModel}"
-        sharePosition="@{viewModel.position}"/>
+        android:adapter="@{viewModel.adapter}"
+        app:currentTab="@{viewModel.currentPosition}"
+        app:onTabChanged="@{viewModel.pageChangeListener}"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/main_BNV"
@@ -35,8 +32,7 @@
         app:itemTextColor="@color/colorOnSecondary"
         app:itemTextAppearanceActive="@style/selectedBNVtextStyle"
         app:itemTextAppearanceInactive="@style/notSelectedBNVtextStyle"
-        setVM="@{viewModel}"
-        sharePosition="@{viewModel.position}"/>
+        app:currentTab="@{viewModel.currentPosition}"/>
 
 </RelativeLayout>
 </layout>

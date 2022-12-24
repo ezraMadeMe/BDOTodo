@@ -24,7 +24,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
         android:src="@drawable/ic_baseline_delete_outline_24"
-        android:onClick="@{()->viewModel.deletePlan()}"/>
+        android:onClick="@{()->viewModel.deletePlan(viewModel.currentPage)}"/>
 
     <TextView
         android:id="@+id/add_detail_goal_page"
@@ -100,7 +100,7 @@
                     android:fontFamily="@font/nexonlv1_bold"
                     android:text="@={planData.start}"
                     android:textSize="20sp"
-                    android:onClick="@{()->viewModel.startDate()}"/>
+                    android:onClick="@{()->viewModel.setStart()}"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -130,7 +130,7 @@
                     android:fontFamily="@font/nexonlv1_bold"
                     android:text="@{planData.end}"
                     android:textSize="20sp"
-                    android:onClick="@{()->viewModel.endDate()}"/>
+                    android:onClick="@{()->viewModel.setEnd()}"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -168,7 +168,8 @@
                 app:colorOff="@color/colorOnSecondary"
                 app:colorOn="@color/colorSecondary"
                 app:textOff="또는"
-                app:textOn="그리고" />
+                app:textOn="그리고"
+                android:onClick="@{()->viewModel.setNor(viewModel.nor)}"/>
         </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -178,7 +179,7 @@
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/set_goal2_recycler_item"
-            android:adapter="@{viewModel.adapter}"/>
+            android:adapter="@{viewModel.taskAdapter}"/>
 
         <TextView
             style="@style/history_dialog_text"
