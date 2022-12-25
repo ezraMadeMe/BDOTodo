@@ -1,5 +1,7 @@
 package com.ezralee.bdotodo.ui.adapter
 
+import com.ezralee.bdotodo.data.model.HistoryData
+
 interface OnItemClickListener{
-    fun onItemClick(position: Int)
+    fun onItemClick(data: HistoryData)
 }

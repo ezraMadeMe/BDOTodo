@@ -4,9 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="goalItem"
-            type="com.ezralee.bdotodo.data.model.GoalItem" />
-        <variable
             name="viewModel"
             type="com.ezralee.bdotodo.viewmodel.goal.MainGoalVM" />
     </data>
@@ -22,7 +19,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="vertical"
         tools:listitem="@layout/goallist_recycler_item"
-        android:adapter="@{viewModel.goalAdapter}"/>
+        goalitems="@{}"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/goallist_main_FAB"

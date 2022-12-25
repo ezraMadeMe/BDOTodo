@@ -78,7 +78,7 @@ class GoallistFragment : Fragment() {
         private const val ARG_TEXT = "fragmentTAG"
 
         fun newInstance() =
-            DailyFragment().apply {
+            GoallistFragment().apply {
                 arguments =
                     Bundle().apply {
                         putString(ARG_TEXT, "목표")

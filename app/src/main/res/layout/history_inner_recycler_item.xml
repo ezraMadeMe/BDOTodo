@@ -4,10 +4,6 @@
         <variable
             name="data"
             type="com.ezralee.bdotodo.data.model.HistoryData" />
-
-        <variable
-            name="viewModel"
-            type="com.ezralee.bdotodo.viewmodel.history.MainHistoryVM" />
     </data>
 <RelativeLayout
     android:layout_width="match_parent"
@@ -31,7 +27,7 @@
         android:src="@drawable/img_sample"
         android:layout_below="@+id/inner_recycler_title"
         android:layout_marginVertical="4dp"
-        imgUrl="@{data.imgUrl}"/>
+        image="@{data.imgUrl}"/>
 
 </RelativeLayout>
 </layout>
