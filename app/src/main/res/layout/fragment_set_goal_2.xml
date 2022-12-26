@@ -8,7 +8,7 @@
         type="com.ezralee.bdotodo.data.model.PlanData" />
     <variable
         name="viewModel"
-        type="com.ezralee.bdotodo.viewmodel.goal.SetGoalFragment2VM" />
+        type="com.ezralee.bdotodo.viewmodel.goal.SetGoalActivityVM" />
 </data>
 
 <RelativeLayout
@@ -24,7 +24,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
         android:src="@drawable/ic_baseline_delete_outline_24"
-        android:onClick="@{()->viewModel.deletePlan(viewModel.currentPage)}"/>
+        android:onClick="@{()->viewModel.deletePage(viewModel.currentPage)}"/>
 
     <TextView
         android:id="@+id/add_detail_goal_page"
@@ -37,7 +37,7 @@
         android:drawableTop="@drawable/ic_baseline_add_24"
         android:text="소목표 추가"
         android:textSize="12sp"
-        android:onClick="@{()->viewModel.addPlan()}"/>
+        android:onClick="@{()->viewModel.addPage()}"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -179,7 +179,7 @@
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/set_goal2_recycler_item"
-            android:adapter="@{viewModel.taskAdapter}"/>
+            items="@{viewModel.tasks}"/>
 
         <TextView
             style="@style/history_dialog_text"

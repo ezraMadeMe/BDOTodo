@@ -1,7 +1,6 @@
 package com.ezralee.bdotodo.data.repository.goal
 
 import android.app.Application
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ezralee.bdotodo.data.Util.KakaoLogin
 import com.ezralee.bdotodo.data.model.*
@@ -26,11 +25,19 @@ class GoalRepo(application: Application) {
     init {
         var db: GoalDB = GoalDB.getInstance(application)!!
         goalDAO = db.goalDAO()
-        goalList = db.goalDAO().getAll(KakaoLogin.USER_ID)
+        goalList = db.goalDAO().getGoalItem(KakaoLogin.USER_ID)
     }
 
-    fun getAll(userId: String): MutableLiveData<List<GoalItem>>{
-        return goalDAO.getAll(userId)
+    fun getGoalItem(userId: String): MutableLiveData<List<GoalItem>>{
+        return goalDAO.getGoalItem(userId)
+    }
+
+    fun getPlanItem(userId: String, goal: String): MutableLiveData<List<PlanItem>>{
+        return goalDAO.getPlanItem(userId, goal)
+    }
+
+    fun getTaskItem(userId: String, plan: String): MutableLiveData<List<TaskItem>>{
+        return goalDAO.getTaskItem(userId, plan)
     }
 
     fun getGoalList(userId: String): MutableLiveData<List<GoalData>>{

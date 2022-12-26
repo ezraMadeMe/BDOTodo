@@ -1,6 +1,5 @@
 package com.ezralee.bdotodo.data.repository.goal
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.room.Dao
 import androidx.room.Delete
@@ -19,7 +18,15 @@ import com.ezralee.bdotodo.data.model.*
 interface GoalDAO {
     //특정 유저의 goal 전체 쿼리
     @Query("SELECT * FROM goalData WHERE userId = :userId ORDER BY start DESC")
-    fun getAll(userId: String): MutableLiveData<List<GoalItem>>
+    fun getGoalItem(userId: String): MutableLiveData<List<GoalItem>>
+
+    //특정 유저의 goal에 속한 plan 전체 쿼리
+    @Query("SELECT * FROM planData WHERE userId = :userId AND goalBelong = :goal")
+    fun getPlanItem(userId: String, goal: String): MutableLiveData<List<PlanItem>>
+
+    //특정 유저의 plan에 속한 task 전체 쿼리
+    @Query("SELECT * FROM taskData WHERE userId = :userId AND planBelong = :plan")
+    fun getTaskItem(userId: String, plan: String): MutableLiveData<List<TaskItem>>
 
     //특정 유저의 goal 목록 쿼리
     @Query("SELECT goal FROM goalData WHERE userId = :userId ORDER BY start DESC")

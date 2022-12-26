@@ -2,13 +2,15 @@
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
+        <import type="java.lang.Integer"/>
+        <import type="java.lang.String"/>
         <variable
             name="taskData"
             type="com.ezralee.bdotodo.data.model.TaskData" />
 
         <variable
             name="viewModel"
-            type="com.ezralee.bdotodo.viewmodel.goal.SetGoalFragment2VM" />
+            type="com.ezralee.bdotodo.viewmodel.goal.SetGoalActivityVM" />
     </data>
 
     <LinearLayout
@@ -22,7 +24,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@={viewModel.nor}"
             android:textColor="@color/colorPrimaryVariant" />
 
         <LinearLayout
@@ -68,7 +69,7 @@
                 android:hint="필요개수"
                 android:inputType="number"
                 android:maxLines="1"
-                android:text="@={taskData.total}"
+                android:text="@={(taskData.total).toString()}"
                 android:textColor="@color/colorPrimary"
                 android:textColorHint="@color/colorPrimary"
                 android:textCursorDrawable="@color/colorPrimaryVariant" />

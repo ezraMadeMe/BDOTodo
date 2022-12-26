@@ -4,59 +4,56 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.ezralee.bdotodo.R
+import com.ezralee.bdotodo.data.model.TaskData
+import com.ezralee.bdotodo.data.model.TaskItem
+import com.ezralee.bdotodo.data.repository.goal.GoalDB
 import com.ezralee.bdotodo.databinding.FragmentSetGoal2Binding
-import com.ezralee.bdotodo.dialog.DatePickerDialog
-import com.ezralee.bdotodo.main.*
 import com.ezralee.bdotodo.ui.activity.goal.SetGoalActivity
+import com.ezralee.bdotodo.ui.adapter.goal.GoalAdapter
+import com.ezralee.bdotodo.ui.adapter.goal.TaskAdapter
+import com.ezralee.bdotodo.ui.adapter.goal.TaskAdapter.OnGoalItemClickListener
+import com.ezralee.bdotodo.viewmodel.goal.SetGoalActivityVM
 
-class SetGoalFragment2 : MyGoalFragment() {
+class SetGoalFragment2 : Fragment() {
+
     lateinit var binding: FragmentSetGoal2Binding
-    var items: MutableList<TaskItem> = mutableListOf(TaskItem("", 0, 0))
+    lateinit var viewModel: SetGoalActivityVM
+    lateinit var db: GoalDB
 
-    companion object{
-        var planItem: PlanItem? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        db = GoalDB.getInstance(requireContext())!!
+        viewModel = ViewModelProvider(this)[SetGoalActivityVM::class.java]
+        binding = DataBindingUtil.setContentView(requireActivity(), R.layout.fragment_set_goal_2)
+
+        binding.apply {
+            lifecycleOwner = this@SetGoalFragment2
+            viewModel = viewModel
+            taskRecycler.adapter = TaskAdapter(object : OnGoalItemClickListener<TaskData>{
+                override fun onAddTaskClick(data: TaskData) {
+                    viewModel.addTask()
+                    binding.taskRecycler.adapter?.notifyItemInserted(viewModel.fragments.value!!.size)
+                }
+                override fun onDeleteTaskClick(position: Int) {
+                    viewModel.deleteTask(position)
+                    binding.taskRecycler.adapter?.notifyDataSetChanged()
+                }
+            })
+        }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentSetGoal2Binding.inflate(inflater, container, false)
-
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding.taskRecycler.adapter = GoalTaskRecyclerAdapter(requireContext(), items)
-
-        binding.planStartDate.setOnClickListener {
-            DatePickerDialog().show(parentFragmentManager, "date picker")
-        }
-        binding.planEndDate.setOnClickListener {
-            DatePickerDialog().show(parentFragmentManager, "date picker")
-        }
-
-        binding.addDetailGoalPage.setOnClickListener {
-            (activity as SetGoalActivity).addPage()
-        }
-
-        binding.deleteDetailGoalPage.setOnClickListener {
-            (activity as SetGoalActivity).deletePage()
-        }
-
-        planItem = planData()
-    }/////////
-
-    fun planData(): PlanItem {
-        var pl = binding.planTitleEdit.text.toString()
-        var plS = binding.planStartDate.text.toString()
-        var plE = binding.planEndDate.text.toString()
-        var nor = binding.andOrToggle.isActivated
-
-        var item = PlanItem(pl, plS, plE, nor)
-
-        return item
+    companion object {
+        fun newInstance() =
+            SetGoalFragment2().apply {
+                arguments =
+                    Bundle().apply {
+                        putString("any", "새 페이지 생성")
+                    }
+            }
     }
 }

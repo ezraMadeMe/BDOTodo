@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
+        <import type="android.view.View"/>
         <variable
             name="viewModel"
             type="com.ezralee.bdotodo.viewmodel.goal.MainGoalVM" />
@@ -19,7 +20,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="vertical"
         tools:listitem="@layout/goallist_recycler_item"
-        goalitems="@{}"/>
+        items="@{viewModel.goalList}"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/goallist_main_FAB"
@@ -30,7 +31,7 @@
         android:layout_margin="20dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:onClick="@{()->viewModel.popupFAB()}"/>
+        android:onClick="@{()->viewModel.popupFAB()}" />
 
     <LinearLayout
         android:id="@+id/layout_preset_FAB"
@@ -40,7 +41,8 @@
         android:layout_marginRight="28dp"
         android:layout_above="@+id/goallist_main_FAB"
         android:layout_alignParentRight="true"
-        android:onClick="@{()->viewModel.openPreset()}">
+        android:onClick="@{()->viewModel.openPreset()}"
+        android:visibility="@{viewModel.isGone ? View.VISIBLE : View.GONE, default = GONE}">
 
         <TextView
             android:layout_width="wrap_content"
@@ -68,7 +70,8 @@
         android:layout_above="@+id/layout_preset_FAB"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="20dp"
-        android:onClick="@{()->viewModel.openMyself()}">
+        android:onClick="@{()->viewModel.openMyself()}"
+        android:visibility="@{viewModel.isGone ? View.VISIBLE : View.GONE, default = GONE}">
 
         <TextView
             android:layout_width="wrap_content"

@@ -2,31 +2,40 @@ package com.ezralee.bdotodo.viewmodel.goal
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.viewpager2.widget.ViewPager2
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.room.Room
 import com.ezralee.bdotodo.data.Util.Info
-import com.ezralee.bdotodo.viewmodel.history.SetHistoryActivityVM
+import com.ezralee.bdotodo.data.Util.KakaoLogin
+import com.ezralee.bdotodo.data.model.GoalItem
+import com.ezralee.bdotodo.data.model.PlanItem
+import com.ezralee.bdotodo.data.model.TaskItem
+import com.ezralee.bdotodo.data.repository.goal.GoalDB
+import com.ezralee.bdotodo.data.repository.goal.GoalRepo
 
 class MainGoalVM(application: Application): AndroidViewModel(application) {
 
-    // ViewModel에 파라미터를 넘기기 위해서, 파라미터를 포함한 Factory 객체를 생성하기 위한 클래스
-    class Factory(val application: Application) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return SetHistoryActivityVM(application) as T
-        }
-    }
+    private val repository = GoalRepo(application)
+    private val db = Room.databaseBuilder(application, GoalDB::class.java, "goalList")
+                         .allowMainThreadQueries()
+                         .build()
 
-    //최상위 리사이클러뷰 아답터
-    val goalAdapter
+    private val _goalList = MutableLiveData<List<GoalItem>>()
+    val goalList : LiveData<List<GoalItem>> get() = _goalList
 
-    //소목표단 리사이클러뷰 아답터
-    val planAdapter
+    private val _planList = MutableLiveData<List<PlanItem>>()
+    val planList : LiveData<List<PlanItem>> get() = _planList
 
-    //task단 리사이클러뷰 아답터
-    val taskAdapter
+    private val _taskList = MutableLiveData<List<TaskItem>>()
+    val taskList : LiveData<List<TaskItem>> get() = _taskList
 
     val today = Info.date
+    var isGone: Boolean
+
+    init {
+        _goalList.value = db.goalDAO().getGoalItem(KakaoLogin.USER_ID).value
+         isGone = false
+    }
 
     fun showDetail(){
 
@@ -36,9 +45,9 @@ class MainGoalVM(application: Application): AndroidViewModel(application) {
 
     }
 
-    //메인 FAB 클릭시 작은 FAB 2개 팝업
-    fun popupFAB(){
 
+    fun popupFAB() {
+        isGone = !isGone
     }
 
     fun openPreset(){
@@ -51,29 +60,5 @@ class MainGoalVM(application: Application): AndroidViewModel(application) {
 
     fun colorPick(){
 
-    }
-
-    fun setCategory(){
-
-    }
-
-    var currentPosition = 0
-
-    var pageChangeListener = object : ViewPager2.OnPageChangeCallback() {
-        override fun onPageScrollStateChanged(state: Int) {
-//            super.onPageScrollStateChanged(state)
-        }
-
-        override fun onPageSelected(position: Int) {
-            currentPosition = position
-        }
-
-        override fun onPageScrolled(
-            position: Int,
-            positionOffset: Float,
-            positionOffsetPixels: Int
-        ) {
-//            super.onPageScrolled(position, positionOffset, positionOffsetPixels)
-        }
     }
 }

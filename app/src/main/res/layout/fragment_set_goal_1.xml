@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.ezralee.bdotodo.viewmodel.goal.SetGoalFragment1VM" />
+            type="com.ezralee.bdotodo.viewmodel.goal.SetGoalActivityVM" />
     </data>
 
     <RelativeLayout
@@ -54,8 +54,8 @@
                     android:layout_height="24dp"
                     android:layout_gravity="right"
                     android:layout_marginHorizontal="8dp"
-                    android:onClick="@={()->viewModel.colorPick(viewModel.color)}"
-                    android:src="@={viewModel.color}"/>
+                    android:onClick="@={()->viewModel.colorPick()}"
+                    android:src="@={viewModel.selColor}"/>
 
             </LinearLayout>
 
@@ -87,7 +87,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nexonlv1_bold"
                         android:onClick="@={()->viewModel.setStart()}"
-                        android:text="@={viewModel.setStart}"
+                        android:text="@={viewModel.start}"
                         android:textSize="20sp" />
 
                     <View
@@ -116,7 +116,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nexonlv1_bold"
-                        android:text="@={()->viewModel.setEnd()}"
+                        android:onClick="@={()->viewModel.setEnd()}"
+                        android:text="@={viewModel.end}"
                         android:textSize="20sp" />
 
                     <View
@@ -146,7 +147,6 @@
                     android:background="@drawable/bs_search_shape"
                     android:backgroundTint="@color/colorOnSecondary"
                     android:entries="@array/category_entry"
-                    android:onItemSelected="@={()->viewModel.setCategory(viewModel.currentCategory)}"
                     android:spinnerMode="dialog"
                     android:textAlignment="center" />
 

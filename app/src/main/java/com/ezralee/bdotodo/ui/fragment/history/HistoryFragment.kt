@@ -19,6 +19,7 @@ import com.ezralee.bdotodo.viewmodel.history.MainHistoryVM
 
 class HistoryFragment : Fragment() {
 
+    lateinit var binding: FragmentHistoryBinding
     lateinit var viewModel: MainHistoryVM
     lateinit var db: HistoryDB
 
@@ -27,6 +28,13 @@ class HistoryFragment : Fragment() {
 
         db = HistoryDB.getInstance(requireContext())!!
         viewModel = ViewModelProvider(this)[MainHistoryVM::class.java]
+        binding = DataBindingUtil
+            .setContentView(requireActivity(),R.layout.fragment_history)
+        binding.apply {
+            historyRecycler.adapter = HistoryAdapter(requireContext())
+            lifecycleOwner = this@HistoryFragment
+            viewModel = viewModel
+        }
 
         initObserve()
     }
@@ -36,13 +44,6 @@ class HistoryFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = DataBindingUtil
-            .setContentView<FragmentHistoryBinding>(requireActivity(),R.layout.fragment_history)
-        binding.apply {
-            historyRecycler.adapter = HistoryAdapter(requireContext())
-            lifecycleOwner = this@HistoryFragment
-            viewModel = viewModel
-        }
 
         return binding.root
     }

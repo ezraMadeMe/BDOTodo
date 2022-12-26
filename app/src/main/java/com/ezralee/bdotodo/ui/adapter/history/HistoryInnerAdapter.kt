@@ -1,5 +1,6 @@
 package com.ezralee.bdotodo.ui.adapter.history
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -7,10 +8,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.ezralee.bdotodo.data.model.HistoryData
 import com.ezralee.bdotodo.databinding.HistoryRecyclerItemBinding
-import com.ezralee.bdotodo.ui.adapter.OnItemClickListener
 
-class HistoryInnerAdapter(private val listener: OnItemClickListener)
+class HistoryInnerAdapter(val context: Context, private val listener: OnHistoryItemClickListener<HistoryData>)
     : ListAdapter<HistoryData, HistoryInnerAdapter.Holder>(diffUtil) {
+
+    interface OnHistoryItemClickListener<T>{
+        fun onHistoryClick(data: T)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val binding = HistoryRecyclerItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -26,14 +30,13 @@ class HistoryInnerAdapter(private val listener: OnItemClickListener)
         super.submitList(list)
     }
 
-    inner class Holder(private val binding: HistoryRecyclerItemBinding) : RecyclerView.ViewHolder(binding.root){
+    inner class Holder(private val binding: HistoryRecyclerItemBinding)
+        : RecyclerView.ViewHolder(binding.root){
         init {
-            //클릭된 아이템의 객체를 넘겨줌
             binding.root.setOnClickListener {
-                listener.onItemClick(getItem(adapterPosition))
+                listener.onHistoryClick(getItem(adapterPosition))
             }
         }
-
         fun bind(currentData: HistoryData){
             binding.data = currentData
         }

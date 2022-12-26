@@ -7,6 +7,7 @@ import com.bumptech.glide.Glide
 import com.ezralee.bdotodo.data.model.GoalItem
 import com.ezralee.bdotodo.data.model.HistoryData
 import com.ezralee.bdotodo.data.model.PlanItem
+import com.ezralee.bdotodo.data.model.TaskItem
 import com.ezralee.bdotodo.ui.adapter.history.HistoryAdapter
 
 object GoalBindingAdapter {
@@ -23,5 +24,12 @@ object GoalBindingAdapter {
     fun RecyclerView.setPlans(items: List<PlanItem>){
         val planAdapter = this.adapter as GoalInnerAdapter
        planAdapter.submitList(items.toMutableList())
+    }
+
+    @BindingAdapter("items")
+    @JvmStatic
+    fun RecyclerView.setTasks(items: List<TaskItem>){
+        val taskAdapter = this.adapter as GoalInnerInnerAdapter
+        taskAdapter.submitList(items.toMutableList())
     }
 }

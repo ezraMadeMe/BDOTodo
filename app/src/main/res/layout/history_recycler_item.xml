@@ -74,8 +74,7 @@
             app:reverseLayout="true"
             app:stackFromEnd="true"
             tools:listitem="@layout/history_inner_recycler_item"
-            android:adapter="@{viewModel.recyclerInnerAdapter}"
-            android:onItemSelected="@{()->viewModel.onClickEvent(viewModel._selected)}"/>
+            android:onItemSelected="@{()->viewModel.onClickEvent()}"/>
 
         <View
             android:id="@+id/line_right"

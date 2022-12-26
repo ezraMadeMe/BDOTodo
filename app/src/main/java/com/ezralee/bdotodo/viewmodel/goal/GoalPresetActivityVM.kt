@@ -2,10 +2,7 @@ package com.ezralee.bdotodo.viewmodel.goal
 
 import androidx.fragment.app.FragmentManager
 import androidx.viewpager.widget.ViewPager
-import com.ezralee.bdotodo.R
-import com.ezralee.bdotodo.data.model.GoalPreset
-import com.ezralee.bdotodo.ui.adapter.BindAdapter
-import com.ezralee.bdotodo.ui.adapter.ViewPagerAdapter
+import com.ezralee.bdotodo.ui.adapter.MainVPAdapter
 import com.ezralee.bdotodo.ui.fragment.goal.GoalPresetListFragment
 
 class GoalPresetActivityVM(val contract: GoalPresetContract) {
@@ -15,7 +12,7 @@ class GoalPresetActivityVM(val contract: GoalPresetContract) {
     }
 
     /////////////////////////////////////////////////// 뷰페이저
-    var viewPagerAdapter = ViewPagerAdapter(
+    var viewPagerAdapter = MainVPAdapter(
         contract.getFragmentManager(),
         listOf("보물","생활", "장비"),
         listOf(

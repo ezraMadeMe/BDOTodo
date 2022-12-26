@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
-
         <variable
-            name="goalData"
+            name="goal"
             type="com.ezralee.bdotodo.data.model.GoalData" />
 
         <variable
@@ -22,8 +19,7 @@
         <RelativeLayout
             android:id="@+id/goallist"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:onClick="@{()->viewModel.showDetail()}">
+            android:layout_height="70dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/daily_recycler_item_civ"
@@ -31,7 +27,7 @@
                 android:layout_height="20dp"
                 android:layout_centerVertical="true"
                 android:layout_margin="12dp"
-                android:src="@color/purple_700" />
+                android:src="@{goal.color}" />
 
             <TextView
                 android:id="@+id/daily_recycler_item_title"
@@ -42,7 +38,7 @@
                 android:layout_toRightOf="@id/daily_recycler_item_civ"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="@{goalData.goal}" />
+                android:text="@{goal.goal}" />
 
 
             <TextView
@@ -52,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="12dp"
                 android:layout_toLeftOf="@id/goallist_show_more"
-                android:text="@{goalData.start}"
+                android:text="@{goal.start}"
                 android:textAlignment="viewEnd"
                 android:textSize="16dp" />
 
@@ -64,7 +60,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginVertical="12dp"
                 android:layout_toLeftOf="@id/goallist_show_more"
-                android:text="@{goalData.end}" />
+                android:text="@{goal.end}" />
 
             <ImageView
                 android:id="@+id/goallist_show_more"
@@ -90,10 +86,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/goallist"
-            android:adapter="@{viewModel.adapter}"
             android:paddingHorizontal="16dp"
             android:paddingVertical="8dp"
-            tools:listitem="@layout/goallist_inner_recycler_item" />
+            items="@{viewModel.planList}"/>
 
     </RelativeLayout>
 </layout>

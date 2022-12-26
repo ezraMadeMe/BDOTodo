@@ -3,7 +3,6 @@ package com.ezralee.bdotodo.viewmodel.goal
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.data.model.GoalPreset
 import com.ezralee.bdotodo.ui.adapter.BindAdapter
-import com.ezralee.bdotodo.ui.adapter.OnItemClickListener
 
 class GoalPresetFragmentVM(val contract: GoalPresetFragmentContract) {
     interface GoalPresetFragmentContract{

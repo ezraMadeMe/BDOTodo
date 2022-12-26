@@ -36,22 +36,4 @@ class MainHistoryVM(application: Application): AndroidViewModel(application) {
     fun onClickEvent(data: HistoryData) {
         _openEvent.value = Event(data)
     }
-
-    fun getAll() : LiveData<List<HistoryData>> {
-        return repository.getAll(KakaoLogin.USER_ID)
-    }
-
-    // history 필터(나중에..)
-    fun filter(search: String, keyword: String){
-        CoroutineScope(Dispatchers.IO).launch {
-            repository.filter(search, keyword)
-        }
-    }
-
-    // history 삭제
-    fun delete(historyData: HistoryData){
-        CoroutineScope(Dispatchers.IO).launch {
-            repository.delete(historyData)
-        }
-    }
 }
