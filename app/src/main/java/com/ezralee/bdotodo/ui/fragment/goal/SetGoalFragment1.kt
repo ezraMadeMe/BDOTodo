@@ -52,7 +52,7 @@ class SetGoalFragment1 : Fragment() {
                     )
                 }
             }//color picker
-            this.goalStartDate.setOnClickListener {
+            goalStartDate.setOnClickListener {
                 val datePickerDialog = DatePickerDialog()
                 datePickerDialog.show(parentFragmentManager, "date")
 
@@ -62,7 +62,7 @@ class SetGoalFragment1 : Fragment() {
                     binding.goalStartDate.text = pickedDate
                 }
             }//start date
-            this.goalEndDate.setOnClickListener {
+            goalEndDate.setOnClickListener {
                 val datePickerDialog = DatePickerDialog()
                 datePickerDialog.show(parentFragmentManager, "date")
 

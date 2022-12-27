@@ -1,15 +1,14 @@
 package com.ezralee.bdotodo.viewmodel.goal
 
 import android.app.Application
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.room.Room
 import com.ezralee.bdotodo.data.Util.Info
 import com.ezralee.bdotodo.data.Util.KakaoLogin
-import com.ezralee.bdotodo.data.model.GoalItem
-import com.ezralee.bdotodo.data.model.PlanItem
-import com.ezralee.bdotodo.data.model.TaskItem
+import com.ezralee.bdotodo.data.model.*
 import com.ezralee.bdotodo.data.repository.goal.GoalDB
 import com.ezralee.bdotodo.data.repository.goal.GoalRepo
 
@@ -20,20 +19,41 @@ class MainGoalVM(application: Application): AndroidViewModel(application) {
                          .allowMainThreadQueries()
                          .build()
 
-    private val _goalList = MutableLiveData<List<GoalItem>>()
-    val goalList : LiveData<List<GoalItem>> get() = _goalList
+    //종속성을 가지는 데이터 객체
+    var _goalItem = MutableLiveData<GoalItem>()
+    val goalITem: LiveData<GoalItem> get() = _goalItem
 
-    private val _planList = MutableLiveData<List<PlanItem>>()
-    val planList : LiveData<List<PlanItem>> get() = _planList
+    var _planList = MutableLiveData<PlanItem>()
+    val planList: LiveData<PlanItem> get() = _planList
 
-    private val _taskList = MutableLiveData<List<TaskItem>>()
-    val taskList : LiveData<List<TaskItem>> get() = _taskList
+//    var _taskList = MutableLiveData<TaskItem>()
+//    val taskList: LiveData<TaskItem> get() = _taskList
+
+    //독립된 goal plan task 객체
+    var _goalData = MutableLiveData<GoalData>()
+    val goalData: LiveData<GoalData> get() = _goalData
+
+    var _planData = MutableLiveData<PlanData>()
+    val planData: LiveData<PlanData> get() = _planData
+
+    var _taskData = MutableLiveData<TaskData>()
+    val taskData: LiveData<TaskData> get() = _taskData
+
+    // VP
+    private var _fragments = MutableLiveData<ArrayList<Fragment>>()
+    val fragments: LiveData<ArrayList<Fragment>> get() = _fragments
+
+    // task 리사이클러뷰
+    var _tasks = MutableLiveData<List<TaskData>>()
+    val tasks: LiveData<List<TaskData>> get() = _tasks
 
     val today = Info.date
     var isGone: Boolean
 
     init {
-        _goalList.value = db.goalDAO().getGoalItem(KakaoLogin.USER_ID).value
+        db.goalDAO().getGoalItem(KakaoLogin.USER_ID).value.apply {
+            _goalItem.value
+        }
          isGone = false
     }
 

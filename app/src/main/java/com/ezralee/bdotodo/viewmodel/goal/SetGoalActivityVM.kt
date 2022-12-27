@@ -1,53 +1,64 @@
 package com.ezralee.bdotodo.viewmodel.goal
 
 import android.app.Application
-import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
 import androidx.room.Room
-import com.ezralee.bdotodo.data.Util.KakaoLogin
-import com.ezralee.bdotodo.data.model.GoalItem
-import com.ezralee.bdotodo.data.model.PlanItem
-import com.ezralee.bdotodo.data.model.TaskData
-import com.ezralee.bdotodo.data.model.TaskItem
+import androidx.viewpager2.widget.ViewPager2
+import com.ezralee.bdotodo.data.model.*
 import com.ezralee.bdotodo.data.repository.goal.GoalDB
 import com.ezralee.bdotodo.data.repository.goal.GoalRepo
 import com.ezralee.bdotodo.ui.fragment.goal.SetGoalFragment1
 import com.ezralee.bdotodo.ui.fragment.goal.SetGoalFragment2
-import com.ezralee.bdotodo.viewmodel.Event
 
-class SetGoalActivityVM(application: Application): AndroidViewModel(application) {
+open class SetGoalActivityVM(application: Application): AndroidViewModel(application) {
 
     private val repository = GoalRepo(application)
     private val db = Room.databaseBuilder(application, GoalDB::class.java, "goalList")
                          .allowMainThreadQueries()
                          .build()
 
-    private val _goalList = MutableLiveData<List<GoalItem>>()
-    val goalList : LiveData<List<GoalItem>> get() = _goalList
+    //종속성을 가지는 데이터 객체
+    var _goalItem = MutableLiveData<GoalItem>()
+    val goalITem: LiveData<GoalItem> get() = _goalItem
 
-    private val _planList = MutableLiveData<List<PlanItem>>()
-    val planList : LiveData<List<PlanItem>> get() = _planList
+    var _planList = MutableLiveData<PlanItem>()
+    val planList: LiveData<PlanItem> get() = _planList
 
-    private val _taskList = MutableLiveData<List<TaskItem>>()
-    val taskList : LiveData<List<TaskItem>> get() = _taskList
+//    var _taskList = MutableLiveData<TaskItem>()
+//    val taskList: LiveData<TaskItem> get() = _taskList
 
-    // VP 포지션
-    private val _fragments = MutableLiveData<ArrayList<Fragment>>()
-    private val _tasks = MutableLiveData<ArrayList<TaskData>>()
+    //독립된 goal plan task 객체
+    var _goalData = MutableLiveData<GoalData>()
+    val goalData: LiveData<GoalData> get() = _goalData
 
+    var _planData = MutableLiveData<PlanData>()
+    val planData: LiveData<PlanData> get() = _planData
+
+    var _taskData = MutableLiveData<TaskData>()
+    val taskData: LiveData<TaskData> get() = _taskData
+
+    // VP
+    private var _fragments = MutableLiveData<ArrayList<Fragment>>()
     val fragments: LiveData<ArrayList<Fragment>> get() = _fragments
-    val tasks: LiveData<ArrayList<TaskData>> get() = _tasks
 
+    // task 리사이클러뷰
+    var _tasks = MutableLiveData<List<TaskData>>()
+    val tasks: LiveData<List<TaskData>> get() = _tasks
 
     init {
-        _fragments.apply {
-            value = FRAG_ITEMS
-        }
-        _tasks.apply {
-            value = TASK_ITEMS
-        }
+        //andor 토글버튼 초기화
+        _goalData.value?.andor = false
+        //VP 아이템 초기화
+        _fragments.value = FRAG_ITEMS
+        //task 리사이클러 아이템 초기화
+        _tasks.value = TASK_ITEMS
+    }
+
+    //완료 버튼
+    fun createGoal(){
+
     }
 
     fun setStart(){
@@ -58,15 +69,17 @@ class SetGoalActivityVM(application: Application): AndroidViewModel(application)
 
     }
 
-    val nor = false
-
-    fun setNor(isNor: Boolean){
-        if (isNor){
-
-        }
+    //and or 설정
+    fun setNor(){
+        _goalData.value?.andor = !(_goalData.value?.andor)!!
     }
 
-    var currentPage = 0
+    //선택된 카테고리
+    var selectedCategory: Int = 0
+
+    fun setCategory(){
+
+    }
 
     //fragment 추가
     fun addPage(){
@@ -98,13 +111,25 @@ class SetGoalActivityVM(application: Application): AndroidViewModel(application)
         }
     }
 
+    //SetGoal VP 페이지 리스너
+    var currentPage = 0
+
+    var pageChangeListener = object : ViewPager2.OnPageChangeCallback() {
+        override fun onPageSelected(position: Int) {
+            currentPage = position
+        }
+    }
+
+    //최초생성 frag tsk 개수
     companion object {
         //fragment 개수
         private val FRAG_ITEMS = arrayListOf(
-            SetGoalFragment1() as Fragment,
-            SetGoalFragment2() as Fragment
+            SetGoalFragment1.newInstance(),
+            SetGoalFragment2.newInstance()
         )
         //초기 task 개수
-        private val TASK_ITEMS = arrayListOf( TaskData() )
+        private val TASK_ITEMS = arrayListOf(
+            TaskData()
+        )
     }
 }

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.data.repository.goal.GoalDB
@@ -36,6 +37,17 @@ class SetGoalActivity : AppCompatActivity() {
                             viewModel.fragments,
                             supportFragmentManager,
                             lifecycle)
+        }
+
+        binding.apply {
+            goalDone.setOnClickListener {
+                //data 받아와서 livedata 저장
+                viewModel.createGoal()
+                this@SetGoalActivity.finish()
+            }
+            goalCancel.setOnClickListener {
+                this@SetGoalActivity.finish()
+            }
         }
     }
 }

@@ -6,7 +6,7 @@
             type="com.ezralee.bdotodo.data.model.UserInfo" />
         <variable
             name="viewModel"
-            type="com.ezralee.bdotodo.viewmodel.main.LoginVM" />
+            type="com.ezralee.bdotodo.viewmodel.main.MainVM" />
     </data>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -44,7 +44,7 @@
             android:layout_below="@+id/logo"
             android:src="@drawable/kakao_login_medium_narrow"
             android:layout_centerHorizontal="true"
-            android:onClick="@{()->viewModel.setUserInfo()}"/>
+            android:onClick="@{()->viewModel.kakaoLogin()}"/>
 
     </RelativeLayout>
 </RelativeLayout>

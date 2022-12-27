@@ -16,6 +16,9 @@ import com.ezralee.bdotodo.data.model.*
 
 @Dao
 interface GoalDAO {
+    @Query("SELECT * FROM goalpreset")
+    fun getPresets(): MutableLiveData<List<PresetItem>>
+
     //특정 유저의 goal 전체 쿼리
     @Query("SELECT * FROM goalData WHERE userId = :userId ORDER BY start DESC")
     fun getGoalItem(userId: String): MutableLiveData<List<GoalItem>>

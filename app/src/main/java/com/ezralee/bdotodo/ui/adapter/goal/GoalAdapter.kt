@@ -49,7 +49,6 @@ class GoalAdapter(val context: Context, private val listener: OnGoalItemClickLis
 
         fun bind(data: GoalItem, sparse: SparseBooleanArray) {
             binding.apply {
-                goal = data.goalData
                 goallistDetailRecycler.adapter = GoalInnerAdapter(context)
 
                 root.setOnClickListener {

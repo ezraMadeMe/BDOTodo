@@ -5,25 +5,6 @@
 
     <data>
         <variable
-            name="accureItem"
-            type="com.ezralee.bdotodo.data.model.TaskAccureData" />
-
-        <variable
-            name="userGoalData"
-            type="com.ezralee.bdotodo.data.model.UserGoalData" />
-
-        <variable
-            name="goalItem"
-            type="com.ezralee.bdotodo.data.model.GoalItem" />
-
-        <variable
-            name="planItem"
-            type="com.ezralee.bdotodo.data.model.PlanItem" />
-        <variable
-            name="taskItem"
-            type="com.ezralee.bdotodo.data.model.TaskItem" />
-
-        <variable
             name="viewModel"
             type="com.ezralee.bdotodo.viewmodel.daily.SetDailyActivityVM" />
     </data>

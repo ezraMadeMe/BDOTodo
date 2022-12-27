@@ -6,18 +6,17 @@
     <data>
         <variable
             name="viewModel"
-            type="com.ezralee.bdotodo.viewmodel.main.MainActivityVM" />
+            type="com.ezralee.bdotodo.viewmodel.main.MainVM" />
     </data>
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.viewpager.widget.ViewPager
+    <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/main_VP"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/main_BNV"
-        android:adapter="@{viewModel.adapter}"
         app:currentTab="@{viewModel.currentPosition}"
         app:onTabChanged="@{viewModel.pageChangeListener}"/>
 

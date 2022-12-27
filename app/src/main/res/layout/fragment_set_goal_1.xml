@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
-
     <data>
-
-        <variable
-            name="goalData"
-            type="com.ezralee.bdotodo.data.model.GoalData" />
-
         <variable
             name="viewModel"
             type="com.ezralee.bdotodo.viewmodel.goal.SetGoalActivityVM" />
@@ -43,7 +37,7 @@
                     android:gravity="center_horizontal"
                     android:hint="목표 입력"
                     android:maxLines="1"
-                    android:text="@={goalData.goal}"
+                    android:text="@={viewModel.goalData.goal}"
                     android:textColor="@color/colorOnSecondary"
                     android:textColorHint="@color/colorOnSecondary"
                     android:textCursorDrawable="@color/colorPrimaryVariant" />
@@ -55,7 +49,7 @@
                     android:layout_gravity="right"
                     android:layout_marginHorizontal="8dp"
                     android:onClick="@={()->viewModel.colorPick()}"
-                    android:src="@={viewModel.selColor}"/>
+                    android:src="@={viewModel.goalData.color}" />
 
             </LinearLayout>
 
@@ -87,7 +81,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nexonlv1_bold"
                         android:onClick="@={()->viewModel.setStart()}"
-                        android:text="@={viewModel.start}"
+                        android:text="@={viewModel.goalData.start}"
                         android:textSize="20sp" />
 
                     <View
@@ -117,7 +111,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nexonlv1_bold"
                         android:onClick="@={()->viewModel.setEnd()}"
-                        android:text="@={viewModel.end}"
+                        android:text="@={viewModel.goalData.end}"
                         android:textSize="20sp" />
 
                     <View
@@ -148,7 +142,9 @@
                     android:backgroundTint="@color/colorOnSecondary"
                     android:entries="@array/category_entry"
                     android:spinnerMode="dialog"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:selectedItemPosition="@={viewModel.selectedCategory}"
+                    android:onItemSelected="@={()->viewModel.setCategory()}"/>
 
             </LinearLayout>
 
@@ -169,7 +165,7 @@
                 android:minLines="10"
                 android:overScrollMode="ifContentScrolls"
                 android:scrollbars="vertical"
-                android:text="@={goalData.memo}"
+                android:text="@={viewModel.goalData.memo}"
                 android:textColor="@color/colorOnSecondary"
                 android:textColorHint="@color/colorOnSecondary"
                 android:textCursorDrawable="@color/colorPrimaryVariant" />

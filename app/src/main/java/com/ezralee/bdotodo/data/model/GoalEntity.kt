@@ -12,9 +12,21 @@ data class UserGoalData(
     val goalList: MutableList<GoalItem>
 )
 
+//미리 설정된 goalPreset 리스트
+@Entity(tableName = "goalPreset")
+//goal하나+goal에 속한 plan의 리스트
+data class PresetItem(
+    @Embedded var goalData: GoalData,
+    @Relation(
+        parentColumn = "goal",
+        entityColumn = "goalBelong"
+    )
+    val planList: MutableList<PlanItem>
+)
+
 //goal하나+goal에 속한 plan의 리스트
 data class GoalItem(
-    @Embedded val goalData: GoalData,
+    @Embedded var goalData: GoalData,
     @Relation(
         parentColumn = "goal",
         entityColumn = "goalBelong"
@@ -24,7 +36,7 @@ data class GoalItem(
 
 //plan하나+plan에 속한 task의 리스트
 data class PlanItem(
-    @Embedded val planData: PlanData,
+    @Embedded var planData: PlanData,
     @Relation(
         parentColumn = "plan",
         entityColumn = "planBelong"
@@ -34,7 +46,7 @@ data class PlanItem(
 
 //task하나+task의 날짜별 누적 개수
 data class TaskItem(
-    @Embedded val taskData: TaskData,
+    @Embedded var taskData: TaskData,
     @Relation(
         parentColumn = "task",
         entityColumn = "taskBelong"
@@ -61,9 +73,13 @@ data class GoalData(
     @ColumnInfo(name ="category")
     var category: String,
     @ColumnInfo(name ="memo")
-    var memo: String
+    var memo: String,
+    @ColumnInfo(name ="andor")
+    var andor: Boolean
+
+
 ){
-    constructor() : this(null,"","","","","","")
+    constructor() : this(null,"","","","","","",false)
 }
 
 ///////////////////////////////plan 정보
@@ -82,11 +98,8 @@ data class PlanData(
     var start: String,
     @ColumnInfo(name ="end")
     var end: String,
-    @ColumnInfo(name ="andor")
-    var andor: Boolean
-
 ){
-    constructor() : this("","","","","",false)
+    constructor() : this("","","","","")
 }
 
 ///////////////////////////////task 정보
@@ -102,9 +115,9 @@ data class TaskData(
     @ColumnInfo(name ="task")
     var task: String,
     @ColumnInfo(name ="total")
-    var total: Int,
+    var total: String,
     @ColumnInfo(name ="count")
-    var count: Int
+    var count: String
 ){
-    constructor() : this("","","",0,0)
+    constructor() : this("","","","0","0")
 }

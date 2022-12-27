@@ -29,7 +29,7 @@ class GoalInnerAdapter(val context: Context) :
     inner class Holder(private val binding: GoallistInnerRecyclerItemBinding)
         : RecyclerView.ViewHolder(binding.root){
             fun bind(data: PlanItem) {
-                binding.planData = data.planData
+                binding.viewModel
                 binding.apply {
                     goallistInnerRecycler.adapter = GoalInnerInnerAdapter(context)
 

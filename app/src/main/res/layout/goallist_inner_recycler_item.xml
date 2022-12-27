@@ -3,9 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable
-            name="plan"
-            type="com.ezralee.bdotodo.data.model.PlanData" />
-        <variable
             name="viewModel"
             type="com.ezralee.bdotodo.viewmodel.goal.MainGoalVM" />
     </data>
@@ -18,7 +15,7 @@
         android:id="@+id/goallist_inner_recycler_item_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@{plan.plan}"
+        android:text="@={viewModel.planData.plan}"
         android:layout_centerHorizontal="true"
         android:maxLines="1"
         android:ellipsize="end"
@@ -31,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/goallist_inner_recycler_item_title"
         tools:listitem="@layout/goallist_inner_inner_recycler_item"
-        items="@{viewModel.taskList}"/>
+        items="@{viewModel.tasks}"/>
 
 </RelativeLayout>
 </layout>

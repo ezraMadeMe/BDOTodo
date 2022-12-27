@@ -1,25 +1,40 @@
 package com.ezralee.bdotodo.viewmodel.daily
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
+import androidx.room.Room
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.data.model.AccureItem
+import com.ezralee.bdotodo.data.model.GoalItem
+import com.ezralee.bdotodo.data.model.PlanItem
+import com.ezralee.bdotodo.data.model.TaskItem
+import com.ezralee.bdotodo.data.repository.daily.DailyDB
+import com.ezralee.bdotodo.data.repository.daily.DailyRepo
 
 class SetDailyActivityVM(application: Application): AndroidViewModel(application) {
+    private val repository = DailyRepo(application)
+    private val db = Room.databaseBuilder(application, DailyDB::class.java, "dailyList")
+                         .allowMainThreadQueries()
+                         .build()
 
-    // ViewModel에 파라미터를 넘기기 위해서, 파라미터를 포함한 Factory 객체를 생성하기 위한 클래스
-    class Factory(val application: Application) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return SetDailyActivityVM(application) as T
-        }
+    //종속성을 가지는 데이터 객체
+    var _goalItem = MutableLiveData<GoalItem>()
+    val goalITem: LiveData<GoalItem> get() = _goalItem
+
+    var _planList = MutableLiveData<PlanItem>()
+    val planList: LiveData<PlanItem> get() = _planList
+
+    var _taskList = MutableLiveData<TaskItem>()
+    val taskList: LiveData<TaskItem> get() = _taskList
+
+    var _accureList = MutableLiveData<AccureItem>()
+    val accureList: LiveData<AccureItem> get() = _accureList
+
+    init {
+
     }
 
-    val adapter = AddTodoAdapter(
-        id = R.layout.add_todo_recycler_item,
-        items = listOf<AccureItem>(),
-        listener = this
-    )
+    companion object {
 
+    }
 }

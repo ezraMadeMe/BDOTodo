@@ -4,9 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 <data>
     <variable
-        name="planData"
-        type="com.ezralee.bdotodo.data.model.PlanData" />
-    <variable
         name="viewModel"
         type="com.ezralee.bdotodo.viewmodel.goal.SetGoalActivityVM" />
 </data>
@@ -66,10 +63,9 @@
                 android:textColor="@color/colorOnSecondary"
                 android:textColorHint="@color/colorOnSecondary"
                 android:textCursorDrawable="@color/colorPrimaryVariant"
-                android:text="@={planData.plan}"/>
+                android:text="@={viewModel.planData.plan}"/>
 
         </LinearLayout>
-
 
         <View
             android:layout_width="200dp"
@@ -98,7 +94,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nexonlv1_bold"
-                    android:text="@={planData.start}"
+                    android:text="@={viewModel.planData.start}"
                     android:textSize="20sp"
                     android:onClick="@{()->viewModel.setStart()}"/>
 
@@ -128,7 +124,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nexonlv1_bold"
-                    android:text="@{planData.end}"
+                    android:text="@{viewModel.planData.end}"
                     android:textSize="20sp"
                     android:onClick="@{()->viewModel.setEnd()}"/>
 
@@ -169,7 +165,7 @@
                 app:colorOn="@color/colorSecondary"
                 app:textOff="또는"
                 app:textOn="그리고"
-                android:onClick="@{()->viewModel.setNor(viewModel.nor)}"/>
+                android:onClick="@{()->viewModel.setNor()}"/>
         </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView

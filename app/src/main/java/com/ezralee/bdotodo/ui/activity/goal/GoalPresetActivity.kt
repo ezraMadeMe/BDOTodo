@@ -5,61 +5,40 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.ezralee.bdotodo.R
+import com.ezralee.bdotodo.data.repository.goal.PresetDB
 import com.ezralee.bdotodo.databinding.ActivityGoalPresetBinding
-import com.ezralee.bdotodo.viewmodel.goal.GoalPresetActivityVM
+import com.ezralee.bdotodo.ui.adapter.goal.PresetVPAdapter
+import com.ezralee.bdotodo.ui.fragment.goal.GoalPresetListFragment
+import com.ezralee.bdotodo.viewmodel.goal.GoalPresetVM
 
 class GoalPresetActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityGoalPresetBinding
-    lateinit var viewModel: GoalPresetActivityVM
+    lateinit var viewModel: GoalPresetVM
+    lateinit var db: PresetDB
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_goal_preset)
-        viewModel = ViewModelProvider(this)[GoalPresetActivityVM::class.java]
+        viewModel = ViewModelProvider(this)[GoalPresetVM::class.java]
+        db = PresetDB.getInstance(this@GoalPresetActivity)!!
 
-        binding.lifecycleOwner = this
-        binding.viewModel = viewModel
-
-//        binding.presetBNV.setOnNavigationItemSelectedListener(this)
-//        binding.presetVP.adapter = GoalPresetViewPagerAdapter(supportFragmentManager, lifecycle)
-//        binding.presetVP.registerOnPageChangeCallback(ViewPagerPageChangeCallback())
-//
-//        binding.close.setOnClickListener {
-//            finish()
-//        }
-
+        binding.apply {
+            lifecycleOwner = this@GoalPresetActivity
+            viewModel = viewModel
+            presetVP.adapter = PresetVPAdapter(
+                PRESET_FRAG,
+                supportFragmentManager,
+                lifecycle
+            )
+        }
     }
 
-//    //선택된 BNV 감지하는 리스너 오버라이딩
-//    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-//        return when (item.itemId) {
-//            R.id.menu_treasure -> {
-//                binding.presetVP.currentItem = 0
-//                true
-//            }
-//            R.id.menu_lifeskill -> {
-//                binding.presetVP.currentItem = 1
-//                true
-//            }
-//            R.id.menu_gear -> {
-//                binding.presetVP.currentItem = 2
-//                true
-//            }
-//            else -> false
-//        }
-//    }
-//
-//    //ViewPager의 페이지 변화 감지 콜백메서드 오버라이딩
-//    inner class ViewPagerPageChangeCallback : ViewPager2.OnPageChangeCallback() {
-//        override fun onPageSelected(position: Int) {
-//            binding.presetBNV.selectedItemId = when (position) {
-//                0 -> R.id.menu_treasure
-//                1 -> R.id.menu_lifeskill
-//                2 -> R.id.menu_gear
-//                else -> error("no menu")
-//            }
-//        }
-//    }
-
+    companion object {
+        val PRESET_FRAG = listOf(
+            GoalPresetListFragment.newInstance("보물"),
+            GoalPresetListFragment.newInstance("생활"),
+            GoalPresetListFragment.newInstance("장비")
+        )
+    }
 }

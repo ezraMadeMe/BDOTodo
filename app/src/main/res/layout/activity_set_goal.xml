@@ -13,7 +13,9 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/set_goal_pager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:currentTab="@{viewModel.currentPage}"
+        android:onTabChanged="@{viewModel.pageChangeListener}"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="완료"
-            android:onClick="@{()->viewModel.createGoal(viewModel.created)}"/>
+            android:onClick="@{()->viewModel.createGoal()}"/>
 
         <View
             android:layout_width="0dp"
@@ -42,8 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:text="취소"
-            android:onClick="@{()->viewModel.cancel()}"/>
+            android:text="취소" />
 
     </LinearLayout>
 

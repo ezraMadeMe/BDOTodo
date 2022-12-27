@@ -21,11 +21,17 @@ import com.ezralee.bdotodo.data.model.*
 class GoalRepo(application: Application) {
     private var goalDAO: GoalDAO
     private var goalList: MutableLiveData<List<GoalItem>>
+    private var presetList: MutableLiveData<List<PresetItem>>
 
     init {
         var db: GoalDB = GoalDB.getInstance(application)!!
         goalDAO = db.goalDAO()
         goalList = db.goalDAO().getGoalItem(KakaoLogin.USER_ID)
+        presetList = db.goalDAO().getPresets()
+    }
+
+    fun getPresets(): MutableLiveData<List<PresetItem>>{
+        return goalDAO.getPresets()
     }
 
     fun getGoalItem(userId: String): MutableLiveData<List<GoalItem>>{
