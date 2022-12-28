@@ -59,19 +59,6 @@ class SetHistoryActivity : AppCompatActivity() {
         }
     }
 
-    //히스토리 수정 시 기존의 정보를 들고 Set으로 이동
-    private fun initObserve(){
-        viewModel.openEvent.eventObserve(this){
-            val intent = Intent(requireActivity(), SetHistoryActivity::class.java)
-            intent.putExtra("title",it.title)
-            intent.putExtra("date",it.date)
-            intent.putExtra("catogory",it.category)
-            intent.putExtra("image",it.imgUrl)
-            intent.putExtra("memo", it.memo)
-            startActivity(intent)
-        }
-    }
-
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onStart() {
         super.onStart()
@@ -89,8 +76,6 @@ class SetHistoryActivity : AppCompatActivity() {
 
         //입력한 정보들을 DB에 저장
         binding.historyDone.setOnClickListener {
-            historyRetrofit()
-
             binding.historyTitleEdit.text = null
             binding.historyDateEdit.text = Info.date
             binding.historyMemoEdit.text = null
@@ -139,53 +124,6 @@ class SetHistoryActivity : AppCompatActivity() {
             binding.historyDateEdit.text = Info.date
         }
     }
-
-    fun historyRetrofit() {
-        var userId = KakaoLogin.USER_ID
-        var title = binding.historyTitleEdit.text.toString()
-        var date = binding.historyDateEdit.text.toString()
-        var category = binding.historyCategory.selectedItem.toString()
-        var memo = binding.historyMemoEdit.text.toString()
-
-        val retrofit = RetrofitHelper().getRetrofitInstance()
-        val retrofitService = retrofit.create(RetrofitService::class.java)
-        var filePart: MultipartBody.Part? = null
-
-        if (imgPath != null) {
-            var file = File(imgPath)
-            var requestBody = RequestBody.create(MediaType.parse("image/*"), file)
-            filePart = MultipartBody.Part.createFormData("img", file.name, requestBody)
-        }
-
-        var dataPart = hashMapOf<String, String>()
-        dataPart.put("userId", userId)
-        dataPart.put("title", title)
-        dataPart.put("date", date)
-        dataPart.put("category", category)
-        dataPart.put("memo", memo)
-
-        val call: Call<String> = retrofitService.postHistoryToServer(dataPart, filePart!!)
-        call.enqueue(object : Callback<String> {
-            override fun onResponse(call: Call<String>, response: Response<String>) {
-                var result = response.body()
-                if (response.isSuccessful){
-                    Log.i("response####",result.toString())
-                }else{
-                    Log.i("failure####",result.toString())
-                }
-                Log.i("userId####",userId)
-                Log.i("title####",title)
-                Log.i("date####",date)
-                Log.i("category####",category)
-                Log.i("memo####",memo)
-
-                finish()
-            }
-            override fun onFailure(call: Call<String>, t: Throwable) {
-                AlertDialog.Builder(this@SetHistoryActivity).setMessage(t.message).show()
-            }
-        })//////enqueue
-    }///////historyRetrofit
 
     //갤러리 앱 실행하여 선택한 결과 받아오기
     val resultLauncher: ActivityResultLauncher<Intent> = registerForActivityResult(

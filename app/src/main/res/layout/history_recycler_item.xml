@@ -34,7 +34,7 @@
             app:stackFromEnd="true"
             android:layout_gravity="right"
             tools:listitem="@layout/history_inner_recycler_item"
-            items="@{viewModel.historyList}"/>
+            historyInnerItems="@{viewModel.historyList}"/>
 
         <View
             android:id="@+id/line_left"
@@ -73,7 +73,8 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:reverseLayout="true"
             app:stackFromEnd="true"
-            tools:listitem="@layout/history_inner_recycler_item" />
+            tools:listitem="@layout/history_inner_recycler_item"
+            historyInnerItems="@{viewModel.historyList}"/>
 
         <View
             android:id="@+id/line_right"

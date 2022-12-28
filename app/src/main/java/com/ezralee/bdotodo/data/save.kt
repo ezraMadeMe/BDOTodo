@@ -82,3 +82,50 @@ fun postFirstHistory() {
         }
     })
 }
+
+fun historyRetrofit() {
+    var userId = KakaoLogin.USER_ID
+    var title = binding.historyTitleEdit.text.toString()
+    var date = binding.historyDateEdit.text.toString()
+    var category = binding.historyCategory.selectedItem.toString()
+    var memo = binding.historyMemoEdit.text.toString()
+
+    val retrofit = RetrofitHelper().getRetrofitInstance()
+    val retrofitService = retrofit.create(RetrofitService::class.java)
+    var filePart: MultipartBody.Part? = null
+
+    if (imgPath != null) {
+        var file = File(imgPath)
+        var requestBody = RequestBody.create(MediaType.parse("image/*"), file)
+        filePart = MultipartBody.Part.createFormData("img", file.name, requestBody)
+    }
+
+    var dataPart = hashMapOf<String, String>()
+    dataPart.put("userId", userId)
+    dataPart.put("title", title)
+    dataPart.put("date", date)
+    dataPart.put("category", category)
+    dataPart.put("memo", memo)
+
+    val call: Call<String> = retrofitService.postHistoryToServer(dataPart, filePart!!)
+    call.enqueue(object : Callback<String> {
+        override fun onResponse(call: Call<String>, response: Response<String>) {
+            var result = response.body()
+            if (response.isSuccessful){
+                Log.i("response####",result.toString())
+            }else{
+                Log.i("failure####",result.toString())
+            }
+            Log.i("userId####",userId)
+            Log.i("title####",title)
+            Log.i("date####",date)
+            Log.i("category####",category)
+            Log.i("memo####",memo)
+
+            finish()
+        }
+        override fun onFailure(call: Call<String>, t: Throwable) {
+            AlertDialog.Builder(this@SetHistoryActivity).setMessage(t.message).show()
+        }
+    })//////enqueue
+}///////historyRetrofit

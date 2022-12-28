@@ -19,15 +19,11 @@ import com.ezralee.bdotodo.data.model.*
 interface DailyDAO {
 ///////////////////////////////daily 테이블
     //유저가 등록한 모든 할일/한일 목록 쿼리
-    @Query("SELECT * FROM daily WHERE userId = :userId")
+    @Query("SELECT * FROM taskAccureData WHERE userId = :userId")
     fun getAll(userId: String): MutableLiveData<List<AccureItem>>
 
     //유저가 등록한 해당 날짜의 누적 할일/한일 task 목록 쿼리
-    //공통 : userId
-    //goalData : goal color end
-    //taskData : total count
-    //taskAccureData : task date count
-    @Query("SELECT * FROM daily WHERE userId = :userId AND taskAccureDate = :date")
+    @Query("SELECT * FROM taskAccureData AS a, goalData AS b WHERE a.userId = :userId AND b.userId = :userId AND a.taskAccureDate = :date AND a.goalBelong = b.goal")
     fun getAccureList(userId: String, date: String): MutableLiveData<List<AccureItem>>
 
 ///////////////////////////////taskAccureData 테이블

@@ -45,7 +45,7 @@ class TaskAdapter(
         RecyclerView.ViewHolder(binding.root) {
         private var initAccure = mutableListOf<TaskAccureData>()
         init {
-            initAccure.add(TaskAccureData(KakaoLogin.USER_ID, binding.task.toString(), "", 0))
+            initAccure.add(TaskAccureData(KakaoLogin.USER_ID, binding.task.toString(), "", "0","0"))
             viewModel = ViewModelProvider(owner)[SetGoalActivityVM::class.java]
 
             binding.addTask.setOnClickListener {

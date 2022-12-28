@@ -9,9 +9,6 @@ import com.ezralee.bdotodo.data.repository.history.HistoryDB
 import com.ezralee.bdotodo.data.repository.history.HistoryRepo
 import com.ezralee.bdotodo.viewmodel.Event
 
-// 뷰모델은 DB에 직접 접근하지 않아야함. Repository 에서 데이터 통신.
-//뷰와 Repository(Model) 사이의 인터페이스, 데이터바인딩 전달하여 뷰를 그리기 위한 데이터 처리
-
 class HistoryVM(application: Application): AndroidViewModel(application) {
 
     private val repository = HistoryRepo(application)
@@ -27,5 +24,4 @@ class HistoryVM(application: Application): AndroidViewModel(application) {
     init {
         _historyList.value = repository.getAll(KakaoLogin.USER_ID).value
     }
-
 }
