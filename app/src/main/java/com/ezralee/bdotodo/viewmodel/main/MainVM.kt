@@ -19,6 +19,7 @@ import com.ezralee.bdotodo.data.model.UserInfo
 import com.ezralee.bdotodo.data.repository.user.UserDB
 import com.ezralee.bdotodo.data.repository.user.UserRepo
 import com.ezralee.bdotodo.ui.activity.intro.MainActivity
+import com.ezralee.bdotodo.viewmodel.Event
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
@@ -40,11 +41,14 @@ class MainVM(application: Application): AndroidViewModel(application) {
     var _userInfo = MutableLiveData<UserInfo>()
     val userInfo: LiveData<UserInfo> get() = _userInfo
 
-    fun kakaoLogin(): (OAuthToken?, Throwable?) -> Unit {
-        var new: UserInfo
+    private val _loginEvent = MutableLiveData<Event<UserInfo>>()
+    val loginEvent: LiveData<Event<UserInfo>> get() = _loginEvent
 
-        val keyhash: String = Utility.getKeyHash(getApplication())
-        Log.d("%%%%keyhash", keyhash)
+    fun kakaoLogin(data: UserInfo): (OAuthToken?, Throwable?) -> Unit {
+
+        _loginEvent.value = Event(data)
+
+        var new: UserInfo
 
         val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
             Log.i("####loginavailable", token.toString())

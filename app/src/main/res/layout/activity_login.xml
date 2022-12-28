@@ -44,7 +44,7 @@
             android:layout_below="@+id/logo"
             android:src="@drawable/kakao_login_medium_narrow"
             android:layout_centerHorizontal="true"
-            android:onClick="@{()->viewModel.kakaoLogin()}"/>
+            android:onClick="@{()->viewModel.kakaoLogin(viewModel.userInfo)}"/>
 
     </RelativeLayout>
 </RelativeLayout>

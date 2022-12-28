@@ -1,6 +1,5 @@
 package com.ezralee.bdotodo.ui.fragment.history
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,23 +10,21 @@ import androidx.lifecycle.ViewModelProvider
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.databinding.FragmentHistoryBinding
 import com.ezralee.bdotodo.data.repository.history.HistoryDB
-import com.ezralee.bdotodo.ui.activity.history.SetHistoryActivity
 import com.ezralee.bdotodo.ui.adapter.history.HistoryAdapter
-import com.ezralee.bdotodo.viewmodel.eventObserve
-import com.ezralee.bdotodo.viewmodel.history.MainHistoryVM
+import com.ezralee.bdotodo.viewmodel.history.HistoryVM
 
 
 class HistoryFragment : Fragment() {
 
     lateinit var binding: FragmentHistoryBinding
-    lateinit var viewModel: MainHistoryVM
+    lateinit var viewModel: HistoryVM
     lateinit var db: HistoryDB
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         db = HistoryDB.getInstance(requireContext())!!
-        viewModel = ViewModelProvider(this)[MainHistoryVM::class.java]
+        viewModel = ViewModelProvider(this)[HistoryVM::class.java]
         binding = DataBindingUtil
             .setContentView(requireActivity(),R.layout.fragment_history)
         binding.apply {
@@ -35,8 +32,6 @@ class HistoryFragment : Fragment() {
             lifecycleOwner = this@HistoryFragment
             viewModel = viewModel
         }
-
-        initObserve()
     }
 
     override fun onCreateView(
@@ -46,13 +41,6 @@ class HistoryFragment : Fragment() {
     ): View? {
 
         return binding.root
-    }
-
-    //+버튼 클릭시 SetHistoryActivity로 이동
-    private fun initObserve(){
-        viewModel.openEvent.eventObserve(this){
-            startActivity(Intent(requireContext(),SetHistoryActivity::class.java))
-        }
     }
 
     companion object {

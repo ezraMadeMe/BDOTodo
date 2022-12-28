@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.ezralee.bdotodo.viewmodel.history.MainHistoryVM" />
+            type="com.ezralee.bdotodo.viewmodel.history.HistoryVM" />
     </data>
 <RelativeLayout
     android:layout_width="match_parent"

@@ -38,7 +38,7 @@ class HistoryInnerAdapter(val context: Context, private val listener: OnHistoryI
             }
         }
         fun bind(currentData: HistoryData){
-            binding.data = currentData
+            binding.viewModel.currentHistory.value = currentData
         }
     }
 

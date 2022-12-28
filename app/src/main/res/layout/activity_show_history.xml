@@ -3,11 +3,8 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable
-            name="data"
-            type="com.ezralee.bdotodo.data.model.HistoryData" />
-        <variable
             name="viewModel"
-            type="com.ezralee.bdotodo.viewmodel.history.MainHistoryVM" />
+            type="com.ezralee.bdotodo.viewmodel.history.HistoryVM" />
     </data>
 <RelativeLayout
     style="@style/history_dialog"

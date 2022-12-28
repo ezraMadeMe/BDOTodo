@@ -33,7 +33,7 @@ class HistoryAdapter(val context: Context) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(data: HistoryData) {
-            binding.data = data
+            binding.viewModel.currentHistory.value = data
 
             binding.apply {
                 historyRecyclerDatasRight.adapter = HistoryInnerAdapter(context,
