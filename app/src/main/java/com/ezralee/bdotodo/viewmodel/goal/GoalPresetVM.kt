@@ -7,8 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.room.Room
 import androidx.viewpager2.widget.ViewPager2
 import com.ezralee.bdotodo.data.model.PresetItem
-import com.ezralee.bdotodo.data.repository.goal.GoalRepo
-import com.ezralee.bdotodo.data.repository.goal.PresetDB
+import com.ezralee.bdotodo.data.repository.goal.goal.GoalRepo
 
 class GoalPresetVM(application: Application): AndroidViewModel(application) {
 

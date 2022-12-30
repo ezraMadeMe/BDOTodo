@@ -8,7 +8,7 @@ data class UserInfo(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name ="userId")
     var userId : String?,
-    @ColumnInfo(name ="date")
+    @ColumnInfo(name ="joinDate")
     var joinDate: String
 )
 

@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.ezralee.bdotodo.R
-import com.ezralee.bdotodo.data.repository.goal.PresetDB
 import com.ezralee.bdotodo.databinding.ActivityGoalPresetBinding
 import com.ezralee.bdotodo.ui.adapter.goal.PresetVPAdapter
 import com.ezralee.bdotodo.ui.fragment.goal.GoalPresetListFragment

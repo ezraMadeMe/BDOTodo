@@ -1,6 +1,7 @@
-package com.ezralee.bdotodo.data.repository.goal
+package com.ezralee.bdotodo.data.repository.goal.goal
 
 import android.app.Application
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ezralee.bdotodo.data.Util.KakaoLogin
 import com.ezralee.bdotodo.data.model.*
@@ -20,54 +21,23 @@ import com.ezralee.bdotodo.data.model.*
 
 class GoalRepo(application: Application) {
     private var goalDAO: GoalDAO
-    private var goalList: MutableLiveData<List<GoalItem>>
-    private var presetList: MutableLiveData<List<PresetItem>>
+    private var goalList: LiveData<List<GoalData>>
 
     init {
         var db: GoalDB = GoalDB.getInstance(application)!!
         goalDAO = db.goalDAO()
-        goalList = db.goalDAO().getGoalItem(KakaoLogin.USER_ID)
-        presetList = db.goalDAO().getPresets()
+        goalList = db.goalDAO().getGoalData(KakaoLogin.USER_ID)
     }
 
-    fun getPresets(): MutableLiveData<List<PresetItem>>{
-        return goalDAO.getPresets()
+    fun insertGoal(goalData: GoalData){
+        goalDAO.insertGoal(goalData)
     }
 
-    fun getGoalItem(userId: String): MutableLiveData<List<GoalItem>>{
-        return goalDAO.getGoalItem(userId)
+    fun updateGoal(goalData: GoalData){
+        goalDAO.updateGoal(goalData)
     }
 
-    fun getPlanItem(userId: String, goal: String): MutableLiveData<List<PlanItem>>{
-        return goalDAO.getPlanItem(userId, goal)
-    }
-
-    fun getTaskItem(userId: String, plan: String): MutableLiveData<List<TaskItem>>{
-        return goalDAO.getTaskItem(userId, plan)
-    }
-
-    fun getGoalList(userId: String): MutableLiveData<List<GoalData>>{
-        return goalDAO.getGoalList(userId)
-    }
-
-    fun getPlanList(userId: String, goal: String): MutableLiveData<List<PlanData>>{
-        return goalDAO.getPlanList(userId, goal)
-    }
-
-    fun getTaskList(userId: String, plan: String): MutableLiveData<List<TaskData>>{
-        return goalDAO.getTaskList(userId, plan)
-    }
-
-
-    fun insert(goalItem: GoalItem){
-        goalDAO.insert(goalItem)
-    }
-
-    fun update(goalItem: GoalItem){
-        goalDAO.update(goalItem)
-    }
-
-    fun delete(goalItem: GoalItem){
-        goalDAO.delete(goalItem)
+    fun deleteGoal(goal: String){
+        goalDAO.deleteGoal(goal)
     }
 }

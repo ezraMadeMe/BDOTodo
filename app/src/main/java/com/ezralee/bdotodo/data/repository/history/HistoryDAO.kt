@@ -16,23 +16,24 @@ import kotlinx.coroutines.Dispatchers
 
 @Dao
 interface HistoryDAO {
-    //특정 유저의 history 내역을 전부 쿼리
-    @Query("SELECT * FROM historyList WHERE userId = :userId ORDER BY date DESC")
+    //특정 유저의 history 내역을 날짜 내림차순으로 전부 쿼리
+    @Query("SELECT * FROM historyData WHERE userId = :userId ORDER BY date DESC")
     fun getAll(userId: String): MutableLiveData<List<HistoryData>>
 
-    //history 내역 삽입
+    //history 삽입
     @Insert
     fun insert(historyData: HistoryData)
 
-    //특정 유저의 history 내역 수정
+    //history 내역 수정
     @Update
     fun update(historyData: HistoryData)
 
-    //특정 유저의 history 내역 삭제
+    //history 내역 삭제
     @Delete
     fun delete(historyData: HistoryData)
 
-    @Query("SELECT * FROM historyList WHERE :search LIKE :keyword ORDER BY date DESC")
+    //히스토리를 특정 키워드/카테고리/날짜로 필터
+    @Query("SELECT * FROM historyData WHERE :search LIKE :keyword ORDER BY date DESC")
     fun filter(search: String, keyword: String): MutableLiveData<List<HistoryData>>
 
 }

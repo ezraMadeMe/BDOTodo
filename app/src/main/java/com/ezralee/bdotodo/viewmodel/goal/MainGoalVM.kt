@@ -9,8 +9,8 @@ import androidx.room.Room
 import com.ezralee.bdotodo.data.Util.Info
 import com.ezralee.bdotodo.data.Util.KakaoLogin
 import com.ezralee.bdotodo.data.model.*
-import com.ezralee.bdotodo.data.repository.goal.GoalDB
-import com.ezralee.bdotodo.data.repository.goal.GoalRepo
+import com.ezralee.bdotodo.data.repository.goal.goal.GoalDB
+import com.ezralee.bdotodo.data.repository.goal.goal.GoalRepo
 
 class MainGoalVM(application: Application): AndroidViewModel(application) {
 
@@ -51,7 +51,7 @@ class MainGoalVM(application: Application): AndroidViewModel(application) {
     var isGone: Boolean
 
     init {
-        db.goalDAO().getGoalItem(KakaoLogin.USER_ID).value.apply {
+        db.goalDAO().getGoalData(KakaoLogin.USER_ID).value.apply {
             _goalItem.value
         }
          isGone = false

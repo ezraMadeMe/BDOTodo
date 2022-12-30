@@ -1,8 +1,6 @@
 package com.ezralee.bdotodo.ui.fragment.goal
 
-import android.animation.ValueAnimator
 import android.os.Bundle
-import android.util.SparseBooleanArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.data.model.GoalItem
-import com.ezralee.bdotodo.data.repository.goal.GoalDB
+import com.ezralee.bdotodo.data.repository.goal.goal.GoalDB
 import com.ezralee.bdotodo.databinding.FragmentGoallistBinding
 import com.ezralee.bdotodo.ui.adapter.goal.GoalAdapter
 import com.ezralee.bdotodo.viewmodel.goal.MainGoalVM

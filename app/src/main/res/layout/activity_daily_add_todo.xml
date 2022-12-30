@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.ezralee.bdotodo.viewmodel.daily.SetDailyActivityVM" />
+            type="com.ezralee.bdotodo.viewmodel.daily.MainDailyVM" />
     </data>
 
     <RelativeLayout

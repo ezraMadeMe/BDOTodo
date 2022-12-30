@@ -1,12 +1,10 @@
-package com.ezralee.bdotodo.data.repository.history
+package com.ezralee.bdotodo.data.repository.goal.plan
 
 import android.app.Application
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ezralee.bdotodo.data.Util.KakaoLogin
-import com.ezralee.bdotodo.data.model.HistoryData
-
-// 앱에서 사용하는 데이터와 그 데이터 통신을 하는 역할
-//뷰모델은 DB에 직접 접근하지 않아야함
+import com.ezralee.bdotodo.data.model.*
 
 //Repository
 //ViewModel과 데이터를 주고받기 위해, 데이터 API를 포함하는 클래스다.
@@ -21,30 +19,23 @@ import com.ezralee.bdotodo.data.model.HistoryData
 // 즉, Activity가 화면 위에 활성화되어 있을 때만 UI변경 등의 기능을 동작하게 되고,
 // Destroy되 상태에서는 동작하지 않기 때문에 메모리 릭의 발생을 줄여준다.
 
-class HistoryRepo(application: Application) {
-
-    private var historyDAO: HistoryDAO
-    private var historyData: MutableLiveData<List<HistoryData>>
+class PlanRepo(application: Application) {
+    private var planDAO: PlanDAO
 
     init {
-        var db : HistoryDB = HistoryDB.getInstance(application)!!
-        historyDAO = db.hisDAO()
-        historyData = db.hisDAO().getAll(KakaoLogin.USER_ID)
+        var db: PlanDB = PlanDB.getInstance(application)!!
+        planDAO = db.planDAO()
     }
 
-    fun getAll(userId: String): MutableLiveData<List<HistoryData>> {
-        return historyDAO.getAll(userId)
+    fun insertPlan(planData: List<PlanData>){
+        planDAO.insertPlan(planData)
     }
-    fun insert(history: HistoryData){
-        historyDAO.insert(history)
+
+    fun updatePlan(planData: List<PlanData>){
+        planDAO.updatePlan(planData)
     }
-    fun update(history: HistoryData){
-        historyDAO.update(history)
-    }
-    fun delete(history: HistoryData){
-        historyDAO.delete(history)
-    }
-    fun filter(search: String, keyword: String): MutableLiveData<List<HistoryData>> {
-        return historyDAO.filter(search, keyword)
+
+    fun deletePlan(plan: String){
+        planDAO.deletePlan(plan)
     }
 }

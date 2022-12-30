@@ -1,7 +1,6 @@
-package com.ezralee.bdotodo.data.repository.daily
+package com.ezralee.bdotodo.data.repository.goal.daily
 
 import android.app.Application
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.ezralee.bdotodo.data.Util.KakaoLogin
 import com.ezralee.bdotodo.data.model.*
@@ -21,29 +20,27 @@ import com.ezralee.bdotodo.data.model.*
 
 class DailyRepo(application: Application) {
     private var dailyDAO: DailyDAO
-    private var accureList: MutableLiveData<List<AccureItem>>
+    private var goalList: MutableLiveData<List<TaskAccureData>>
 
     init {
         var db: DailyDB = DailyDB.getInstance(application)!!
-        dailyDAO = db.goalDAO()
-        accureList = db.goalDAO().getAll(KakaoLogin.USER_ID)
+        dailyDAO = db.dailyDAO()
+        goalList = db.dailyDAO().getAllAccure(KakaoLogin.USER_ID)
     }
 
-    ///////////////////////////////daily 테이블
-    fun getAccureList(userId: String, date: String): MutableLiveData<List<AccureItem>>{
-        return dailyDAO.getAccureList(userId, date)
+    fun getDailyAccureList(userId: String, date: String): MutableLiveData<List<TaskAccureData>> {
+        return dailyDAO.getDaliyAccureList(userId, date)
     }
 
-    ///////////////////////////////taskAccureData 테이블
-    fun insert(accureData: TaskAccureData){
-        dailyDAO.insert(accureData)
+    fun insertAccureData(accureData: TaskAccureData){
+        dailyDAO.insertAccureData(accureData)
     }
 
-    fun update(accureData: TaskAccureData){
-        dailyDAO.update(accureData)
+    fun updateAccureData(accureData: TaskAccureData){
+        dailyDAO.updateAccureData(accureData)
     }
 
-    fun delete(accureData: TaskAccureData){
-        dailyDAO.delete(accureData)
+    fun deleteAccureData(accureData: TaskAccureData){
+        dailyDAO.deleteAccureData(accureData)
     }
 }

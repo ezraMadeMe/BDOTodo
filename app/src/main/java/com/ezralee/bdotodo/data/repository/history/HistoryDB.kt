@@ -27,7 +27,7 @@ abstract class HistoryDB : RoomDatabase() {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         HistoryDB::class.java,
-                        "history")
+                        "historyData")
                         .build()
                 }
             }

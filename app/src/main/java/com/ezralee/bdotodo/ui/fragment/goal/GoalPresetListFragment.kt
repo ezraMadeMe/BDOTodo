@@ -11,8 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.data.model.GoalItem
-import com.ezralee.bdotodo.data.repository.goal.GoalDB
-import com.ezralee.bdotodo.data.repository.goal.PresetDB
 import com.ezralee.bdotodo.databinding.FragmentPresetListBinding
 import com.ezralee.bdotodo.ui.activity.goal.SetGoalActivity
 import com.ezralee.bdotodo.ui.adapter.goal.PresetAdapter
