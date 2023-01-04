@@ -30,29 +30,10 @@
         </activity>
 
         <activity
-            android:name=".ui.activity.goal.GoalPresetActivity"
-            android:enabled="true"
-            android:exported="true"
-            android:theme="@style/MyDialogActivity">
-            <intent-filter>
-                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
-            </intent-filter>
-        </activity>
-
-        <activity
             android:name=".ui.activity.history.SetHistoryActivity"
             android:enabled="true"
             android:exported="true"
             android:theme="@style/MyDialogActivity">
-            <intent-filter>
-                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".ui.activity.goal.SetGoalActivity"
-            android:enabled="true"
-            android:exported="true">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
@@ -82,14 +63,6 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".ui.dialog.ColorPickerActivity"
-            android:exported="false"
-            android:theme="@style/MyColorPicker">
-            <intent-filter>
-                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </activity>
 

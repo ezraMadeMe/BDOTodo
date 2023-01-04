@@ -16,9 +16,9 @@ import androidx.room.ForeignKey.CASCADE
     ]
 )
 data class HistoryData(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @ColumnInfo(name = "userId")
-    var userId: String?,
+    var userId: String,
 
     @ColumnInfo(name = "title")
     var title: String,
@@ -31,5 +31,5 @@ data class HistoryData(
     @ColumnInfo(name = "imgUrl")
     var imgUrl: String
 ) {
-    constructor() : this(null, "", "", "", "", "")
+    constructor() : this("", "", "", "", "", "")
 }

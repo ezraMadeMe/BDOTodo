@@ -5,9 +5,9 @@ import androidx.room.*
 //사용자 기본 정보
 @Entity(tableName = "userInfo")
 data class UserInfo(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @ColumnInfo(name ="userId")
-    var userId : String?,
+    var userId : String,
     @ColumnInfo(name ="joinDate")
     var joinDate: String
 )

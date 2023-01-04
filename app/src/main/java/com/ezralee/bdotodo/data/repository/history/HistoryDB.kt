@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.ezralee.bdotodo.data.model.HistoryData
 
-@Database(entities = [HistoryData::class], version = 1)
+@Database(entities = [HistoryData::class], version = 1, exportSchema = false)
 abstract class HistoryDB : RoomDatabase() {
 
     abstract fun hisDAO() : HistoryDAO
