@@ -11,14 +11,8 @@ import com.ezralee.bdotodo.viewmodel.history.HistoryVM
 
 class ShowHistoryActivity: AppCompatActivity() {
 
-    lateinit var binding: ActivityShowHistoryBinding
-    lateinit var viewModel: HistoryVM
-    lateinit var db: HistoryDB
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_show_history)
-        viewModel = ViewModelProvider(this)[HistoryVM::class.java]
-        db = HistoryDB.getInstance(this@ShowHistoryActivity)!!
+
     }
 }

@@ -6,18 +6,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.room.Room
 import androidx.viewpager2.widget.ViewPager2
-import com.ezralee.bdotodo.data.model.PresetItem
-import com.ezralee.bdotodo.data.repository.goal.goal.GoalRepo
 
 class GoalPresetVM(application: Application): AndroidViewModel(application) {
-
-    private val repository = GoalRepo(application)
-    private val db = Room.databaseBuilder(application, PresetDB::class.java, "goalPreset")
-                         .allowMainThreadQueries()
-                         .build()
-
-    var _presets = MutableLiveData<PresetItem>()
-    val presets: LiveData<PresetItem> get() = _presets
 
     init {
 

@@ -6,8 +6,6 @@ import androidx.appcompat.app.AlertDialog
 import com.ezralee.bdotodo.R
 import com.ezralee.bdotodo.data.Util.Info
 import com.ezralee.bdotodo.data.Util.KakaoLogin
-import com.ezralee.bdotodo.data.Util.RetrofitHelper
-import com.ezralee.bdotodo.data.Util.RetrofitService
 import com.ezralee.bdotodo.data.model.UserInfo
 import com.ezralee.bdotodo.ui.activity.intro.MainActivity
 import com.kakao.sdk.auth.model.OAuthToken

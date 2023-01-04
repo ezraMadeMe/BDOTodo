@@ -12,9 +12,6 @@ import com.ezralee.bdotodo.viewmodel.Event
 class HistoryVM(application: Application): AndroidViewModel(application) {
 
     private val repository = HistoryRepo(application)
-    private val db = Room.databaseBuilder(application, HistoryDB::class.java, "historyList")
-                         .allowMainThreadQueries()
-                         .build()
 
     private val _historyList = MutableLiveData<List<HistoryData>>()
     val historyList : LiveData<List<HistoryData>> get() = _historyList

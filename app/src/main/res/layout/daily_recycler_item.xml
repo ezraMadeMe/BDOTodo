@@ -4,24 +4,24 @@
     <variable
         name="accureItem"
         type="com.ezralee.bdotodo.data.model.TaskAccureData" />
-    <variable
-        name="goalItem"
-        type="com.ezralee.bdotodo.data.model.GoalItem" />
-    <variable
-        name="viewModel"
-        type="com.ezralee.bdotodo.viewmodel.daily.MainDailyVM" />
+<!--    <variable-->
+<!--        name="goalItem"-->
+<!--        type="com.ezralee.bdotodo.data.model.GoalItem" />-->
+<!--    <variable-->
+<!--        name="viewModel"-->
+<!--        type="com.ezralee.bdotodo.viewmodel.daily.MainDailyVM" />-->
 </data>
 
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="70dp"
-    android:onLongClick="@{()->viewModel.additionalWork()}">
+    android:onLongClick="@{}">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/daily_recycler_item_civ"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:src="@{goalItem.goalData.color}"
+        android:src="@{}"
         android:layout_centerVertical="true"
         android:layout_margin="12dp"/>
 

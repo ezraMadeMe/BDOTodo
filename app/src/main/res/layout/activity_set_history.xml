@@ -127,7 +127,7 @@
                 android:layout_weight="1"
                 android:text="오늘"
                 android:textSize="16sp"
-                android:onClick="@{()->viewModel.setToday()}"/>
+                android:onClick="@{}"/>
 
         </LinearLayout>
 
@@ -148,7 +148,7 @@
                 android:entries="@array/category_entry"
                 android:textAlignment="center"
                 android:layout_gravity="center"
-                android:onItemSelected="@={()->viewModel.onLanguageSpinnerItemSelected(viewModel.currentSpinnerPosition)}"/>
+                android:onItemSelected="@={}"/>
 
         <View
             android:layout_width="match_parent"
@@ -192,7 +192,7 @@
                     android:foregroundTint="@color/colorPrimaryVariant"
                     android:text=""
                     android:textSize="16sp"
-                    android:onClick="@{()->viewModel.setImage()}"/>
+                    android:onClick="@{}"/>
 
                 <Button
                     android:id="@+id/history_delete_image"
@@ -206,7 +206,7 @@
                     android:foregroundTint="@color/colorPrimaryVariant"
                     android:text=""
                     android:textSize="16sp"
-                    android:onClick="@{()->viewModel.deleteImage()}"/>
+                    android:onClick="@{}"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -248,7 +248,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="완료"
-                android:onClick="@{()->viewModel.done(viewModel.)}"/>
+                android:onClick="@{}"/>
 
             <View
                 android:layout_width="0dp"
@@ -262,7 +262,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:text="취소"
-                android:onClick="@{()->viewModel.cancel()}"/>
+                android:onClick="@{}"/>
 
         </LinearLayout>
     </LinearLayout>

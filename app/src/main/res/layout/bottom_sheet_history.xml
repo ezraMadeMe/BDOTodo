@@ -35,10 +35,7 @@
                 android:layout_alignBottom="@id/bs_title"
                 android:layout_alignParentRight="true"
                 android:fontFamily="@font/nexonlv1_bold"
-                android:onClick="@{()->viewModel.filterHistory(
-                                        filterKeyword.toString(),
-                                        filterDate.toString(),
-                                        filterCategory.toString())}"
+                android:onClick="@{}"
                 android:text="확인" />
 
             <TextView
@@ -47,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/bs_title"
                 android:fontFamily="@font/nexonlv1_bold"
-                android:onClick="@{()->viewModel.cancelBSD()}"
+                android:onClick="@{}"
                 android:text="취소" />
 
             <TextView
@@ -121,7 +118,7 @@
                         android:layout_weight="2"
                         android:fontFamily="@font/nexonlv1_bold"
                         android:gravity="center"
-                        android:text="@={()->viewModel.setToday()}"
+                        android:text="@={}"
                         android:textSize="20sp" />
 
                     <Button
@@ -132,7 +129,7 @@
                         android:backgroundTint="@color/colorOnPrimary"
                         android:minWidth="0dp"
                         android:minHeight="0dp"
-                        android:onClick="@={()->viewModel.setToday()}"
+                        android:onClick="@={}"
                         android:paddingHorizontal="12dp"
                         android:paddingVertical="8dp"
                         android:text="오늘"

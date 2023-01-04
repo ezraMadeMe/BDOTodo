@@ -31,7 +31,7 @@
         android:layout_margin="20dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:onClick="@{()->viewModel.popupFAB()}" />
+        android:onClick="@{}" />
 
     <LinearLayout
         android:id="@+id/layout_preset_FAB"
@@ -41,8 +41,8 @@
         android:layout_marginRight="28dp"
         android:layout_above="@+id/goallist_main_FAB"
         android:layout_alignParentRight="true"
-        android:onClick="@{()->viewModel.openPreset()}"
-        android:visibility="@{viewModel.isGone ? View.VISIBLE : View.GONE, default = GONE}">
+        android:onClick="@{}"
+        android:visibility="@{}">
 
         <TextView
             android:layout_width="wrap_content"
@@ -70,8 +70,8 @@
         android:layout_above="@+id/layout_preset_FAB"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="20dp"
-        android:onClick="@{()->viewModel.openMyself()}"
-        android:visibility="@{viewModel.isGone ? View.VISIBLE : View.GONE, default = GONE}">
+        android:onClick="@{}"
+        android:visibility="@{}">
 
         <TextView
             android:layout_width="wrap_content"

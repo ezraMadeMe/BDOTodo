@@ -12,32 +12,7 @@ import com.ezralee.bdotodo.viewmodel.goal.GoalPresetVM
 
 class GoalPresetActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityGoalPresetBinding
-    lateinit var viewModel: GoalPresetVM
-    lateinit var db: PresetDB
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_goal_preset)
-        viewModel = ViewModelProvider(this)[GoalPresetVM::class.java]
-        db = PresetDB.getInstance(this@GoalPresetActivity)!!
-
-        binding.apply {
-            lifecycleOwner = this@GoalPresetActivity
-            viewModel = viewModel
-            presetVP.adapter = PresetVPAdapter(
-                PRESET_FRAG,
-                supportFragmentManager,
-                lifecycle
-            )
-        }
-    }
-
-    companion object {
-        val PRESET_FRAG = listOf(
-            GoalPresetListFragment.newInstance("보물"),
-            GoalPresetListFragment.newInstance("생활"),
-            GoalPresetListFragment.newInstance("장비")
-        )
     }
 }

@@ -5,7 +5,7 @@ import androidx.room.ForeignKey.CASCADE
 
 //history 하나의 정보
 @Entity(
-    tableName = "historyData",
+    tableName = "HistoryData",
     foreignKeys = [
         ForeignKey(
             entity = UserInfo::class,

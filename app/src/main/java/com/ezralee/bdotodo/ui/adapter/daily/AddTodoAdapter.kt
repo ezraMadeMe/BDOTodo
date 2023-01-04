@@ -7,12 +7,9 @@ import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.ezralee.bdotodo.data.Util.KakaoLogin
 import com.ezralee.bdotodo.data.model.TaskAccureData
-import com.ezralee.bdotodo.data.model.TaskData
 import com.ezralee.bdotodo.databinding.AddTodoRecyclerItemBinding
 import com.ezralee.bdotodo.databinding.SetGoal2RecyclerItemBinding
-import com.ezralee.bdotodo.viewmodel.daily.MainDailyVM
 import com.ezralee.bdotodo.viewmodel.goal.SetGoalVM
 
 class AddTodoAdapter(

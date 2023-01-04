@@ -22,12 +22,5 @@ class HistoryBottomSheetDialog : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //입력한 검색어 넘겨서 DB 쿼리
-        binding.historyKeyword.text
-        //선택한 카테고리에 속한 히스토리만 필터
-        binding.historyCategory[1]
-        //선택한 날짜로 리사이클러의 포커스 이동
-        binding.historyDate.setOnClickListener {  }
-
     }
 }

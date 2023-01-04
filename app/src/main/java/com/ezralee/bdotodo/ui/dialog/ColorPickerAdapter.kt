@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.ezralee.bdotodo.R
-import com.ezralee.bdotodo.databinding.ColorPickerItemBinding
 
 class ColorPickerAdapter(var context: Context, var items: MutableList<Int>) : RecyclerView.Adapter<ColorPickerAdapter.VH>() {
 
@@ -21,7 +20,7 @@ class ColorPickerAdapter(var context: Context, var items: MutableList<Int>) : Re
         itemClickListener = onItemClickListener
     }
     inner class VH(itemView: View) : RecyclerView.ViewHolder(itemView){
-        var binding: ColorPickerItemBinding = ColorPickerItemBinding.bind(itemView)
+
         init {
             itemView.setOnClickListener {
                 val position = adapterPosition
@@ -42,7 +41,7 @@ class ColorPickerAdapter(var context: Context, var items: MutableList<Int>) : Re
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        holder.binding.colorPickerItem.setColorFilter(ContextCompat.getColor(context, items[position]))
+
     }
 
     override fun getItemCount(): Int {

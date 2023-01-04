@@ -20,5 +20,4 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="200dp"/>
 
-
 </RelativeLayout>
